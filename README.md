@@ -8,7 +8,7 @@
 
 <h1 align="center">Boutique En Ligne</h1>
 
-<!-- Status -->
+Status
 
 <h4 align="center"> 
 	🚧  Boutique En Ligne 🚀 Under construction...  🚧
