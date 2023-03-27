@@ -41,13 +41,13 @@ Description
 :heavy_check_mark: Access to the store presenting all the products with the possibility of filtering them by category / subcategories without page reloading;\
 :heavy_check_mark: On clicking on each product: a complete “detail” page dynamically generated (name, image, price, description, add to cart button, etc.);\
 :heavy_check_mark: A system for creating user accounts;\
-:heavy_check_mark: Registration / Connection module (Use of Javascript and Asynchronous mandatory in this part);\
-:heavy_check_mark: User profile management page (Summary and possibility of modifying information, viewing purchase history, shopping cart, etc.);\
+  - Registration / Connection module (Use of Javascript and Asynchronous mandatory in this part);\
+  - User profile management page (Summary and possibility of modifying information, viewing purchase history, shopping cart, etc.);\
 
-### Administrator dashboard area:
+:heavy_check_mark: Administrator dashboard area:
+  - Product management using back office (Add/Delete/Modify products, stocks, etc.);\
+  - Management of categories and subcategories of products (Addition / Deletion / Modifications...);\
 
-:heavy_check_mark: Product management using back office (Add/Delete/Modify products, stocks, etc.);\
-:heavy_check_mark: Management of categories and subcategories of products (Addition / Deletion / Modifications...);\
 :heavy_check_mark: Cart validation system (You don't have to implement a real payment solution, a simulation of the process is enough)\
 
 ## :rocket: Technologies ##
