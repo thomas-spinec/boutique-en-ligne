@@ -1,0 +1,9 @@
+/* maintain footer at bottom with push class*/
+.wrapper {
+    min-height: 100%;
+    background: transparent;
+    margin-bottom: -50px; /* Equal to height of footer */
+} 
+.footer, .push {
+    height: 50px;
+}
