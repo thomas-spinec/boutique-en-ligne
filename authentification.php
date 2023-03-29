@@ -32,6 +32,27 @@
                         <input type="password" name="password2" id="password2" class="password" placeholder="Confirmation" autocomplete="off" required>
                         <p></p>
                         <br>
+                        <label for="firstname">Prénom:</label>
+                        <input type="text" name="firstname" id="firstname" class="firstname" placeholder="Prénom" required>
+                        <p></p>
+                        <label for="lastname">Nom:</label>
+                        <input type="text" name="lastname" id="lastname" class="lastname" placeholder="Nom" required>
+                        <p></p>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" class="email" placeholder="Email" required>
+                        <p></p>
+                        <label for="address">Adresse:</label>
+                        <input type="text" name="address" id="address" class="address" placeholder="Adresse" required>
+                        <p></p>
+                        <label for="city">Ville:</label>
+                        <input type="text" name="city" id="city" class="city" placeholder="Ville" required>
+                        <p></p>
+                        <label for="zip">Code postal:</label>
+                        <input type="text" name="zip" id="zip" class="zip" placeholder="Code postal" required>
+                        <p></p>
+                        <label for="country">Pays:</label>
+                        <input type="text" name="country" id="country" class="country" placeholder="Pays" required>
+                        <p></p>
                         <input type="submit" value="S'inscrire" name="send" id="btnInsc">
                         <p></p>
                     </form>
