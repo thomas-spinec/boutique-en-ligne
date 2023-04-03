@@ -1,8 +1,9 @@
 <?php
-
+require_once 'Model.php';
 class User extends Model
 {
-    private $tablename = 'users';
+    protected $bdd;
+    protected $tablename = 'user';
     private $id;
     private $login;
     private $firstname;
@@ -16,6 +17,16 @@ class User extends Model
     public function __construct()
     {
         parent::__construct();
+
+        $this->id;
+        $this->login;
+        $this->firstname;
+        $this->lastname;
+        $this->address;
+        $this->city;
+        $this->country;
+        $this->zip;
+        $this->email;
 
         // get user data
         if (isset($_SESSION['user'])) {
@@ -73,7 +84,7 @@ class User extends Model
     public function connect($login, $password)
     {
         // Récupérer le login
-        $request = "SELECT * FROM utilisateurs WHERE login = :login";
+        $request = "SELECT * FROM $this->tablename WHERE login = :login";
         // préparation de la requête
         $select = $this->bdd->prepare($request);
 
@@ -89,19 +100,25 @@ class User extends Model
         $result = $select->fetch(PDO::FETCH_ASSOC);
         // vérification de l'existence du login
         if (!$result) {
-            echo "erreur";
+            echo "error";
             die();
         }
         //  password verification
         if (password_verify($password, $result['password'])) {
             $_SESSION['user'] = [
-                'id' => $result['id'],
+                'id' => $result['id_user'],
                 'login' => $result['login'],
-                'password' => $result['password']
+                'firstname' => $result['firstname'],
+                'lastname' => $result['lastname'],
+                'address' => $result['address'],
+                'city' => $result['city'],
+                'country' => $result['country'],
+                'zip' => $result['zip'],
+                'email' => $result['email']
             ];
             echo "Connexion réussie !";
         } else {
-            echo "erreur";
+            echo "error";
         }
         $this->bdd = null;
     }
@@ -116,9 +133,9 @@ class User extends Model
         ]);
         $result = $select->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            echo "Ce login est déjà utilisé";
+            echo "indispo";
         } else {
-            echo "Ce login est disponible";
+            echo "dispo";
         }
         $this->bdd = null;
     }
