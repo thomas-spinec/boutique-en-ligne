@@ -123,6 +123,19 @@ class User extends Model
         $this->bdd = null;
     }
 
+    public function isUserAdmin() {
+        $role = $_SESSION['user']['role'];
+        if (isset($_SESSION['user'])) {
+            if ($_SESSION['user'][$role] == 'admin') {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     // get one user
 
 }
+
