@@ -33,4 +33,14 @@ abstract class Model
         $result = $select->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    // get all data from a table
+    protected function getAll()
+    {
+        $query = "SELECT * FROM $this->tablename";
+        $select = $this->bdd->prepare($query);
+        $select->execute();
+        $result = $select->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
