@@ -268,10 +268,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => {
           response = response.trim();
           //   console.log(response);
-          if (response === "Connexion réussie !") {
+          if (response === "Successfull connection !") {
             // msg de connexion puis redirection
             btnConn.nextElementSibling.innerHTML =
-              "Connexion réussie, vous allez être redirigé";
+              "Successfull connection, you'll be redirected in 2 seconds";
             setTimeout(() => {
               window.location.href = "index.php";
             }, 2000);

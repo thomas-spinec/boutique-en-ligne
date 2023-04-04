@@ -152,6 +152,30 @@ class User extends Model
             return false;
         }
     }
+
+    // check if user is connected
+    public function isLogged()
+    {
+        if (isset($_SESSION['user'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // disconnect user
+    public function logout()
+    {
+        session_destroy();
+        header('Location: index.php');
+    }
+
+    // get user data
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
     // get one user
 
 }
