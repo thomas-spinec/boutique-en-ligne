@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 require_once 'class/User.php';
 $user = new User();
 ?>
@@ -10,15 +11,15 @@ $user = new User();
 
     <nav class="topMenu">
         <?php
-            if (isset($_GET['logout'])) {
-                if ($_GET['logout'] == true) {
-                    $user->logout();
-                    header('Location: index.php');
-                }
+        if (isset($_GET['logout'])) {
+            if ($_GET['logout'] == true) {
+                $user->logout();
+                header('Location: index.php');
             }
+        }
 
         // if user is logged in and is admin
-        if ($this->isAdmin()) { ?>
+        if ($user->isAdmin()) { ?>
             <div class="currentUser">
                 <p id="currentUser"><?= $user->getLogin() ?></p>
             </div>
@@ -27,11 +28,10 @@ $user = new User();
             <a href="profile.php">Account</a>
             <a href="shop.php">Shop Now</a>
             <a href="cart.php">Cart</a>
-            
-        <?php 
-        // if user is logged as member
-        } else if ($user->isLogged()) 
-        { ?>
+
+        <?php
+            // if user is logged as member
+        } else if ($user->isLogged()) { ?>
             <div class="currentUser">
                 <p id="currentUser"><?= $user->getLogin() ?></p>
             </div>
@@ -40,7 +40,7 @@ $user = new User();
             <a href="shop.php">Shop Now</a>
             <a href="cart.php">Cart</a>
         <?php
-        } else { 
+        } else {
         ?>
             <a href="authentification.php?choice=login">Login</a>
             <a href="authentification.php?choice=register">Signon</a>
@@ -52,6 +52,6 @@ $user = new User();
     </nav>
 
     <nav class="close">
-        
+
     </nav>
 </header>

@@ -13,6 +13,7 @@ class User extends Model
     private $country;
     private $zip;
     private $email;
+    private $role;
 
     public function __construct()
     {
@@ -27,6 +28,7 @@ class User extends Model
         $this->country;
         $this->zip;
         $this->email;
+        $this->role;
 
         // get user data
         if (isset($_SESSION['user'])) {
@@ -39,6 +41,7 @@ class User extends Model
             $this->country = $_SESSION['user']['country'];
             $this->zip = $_SESSION['user']['zip'];
             $this->email = $_SESSION['user']['email'];
+            $this->role = $_SESSION['user']['role'];
         }
     }
 
@@ -76,7 +79,7 @@ class User extends Model
             ':country' => $country,
             ':zip' => $zip
         ]);
-        echo "Inscription réussie !";
+        echo "Successfully registered!";
         $this->bdd = null;
     }
 
@@ -114,9 +117,10 @@ class User extends Model
                 'city' => $result['city'],
                 'country' => $result['country'],
                 'zip' => $result['zip'],
-                'email' => $result['email']
+                'email' => $result['email'],
+                'role' => $result['role']
             ];
-            echo "Connexion réussie !";
+            echo "Successfull connection !";
         } else {
             echo "error";
         }
@@ -140,14 +144,10 @@ class User extends Model
         $this->bdd = null;
     }
 
-    public function isUserAdmin() {
-        $role = $_SESSION['user']['role'];
-        if (isset($_SESSION['user'])) {
-            if ($_SESSION['user'][$role] == 'admin') {
-                return true;
-            } else {
-                return false;
-            }
+    public function isAdmin()
+    {
+        if ($this->role === "admin") {
+            return true;
         } else {
             return false;
         }
@@ -176,7 +176,47 @@ class User extends Model
         return $this->login;
     }
 
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+
     // get one user
 
 }
-
