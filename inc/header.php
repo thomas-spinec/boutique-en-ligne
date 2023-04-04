@@ -43,7 +43,7 @@ $user = new User();
         } else {
         ?>
             <a href="authentification.php?choice=login">Login</a>
-            <a href="authentification.php?choice=register">Signon</a>
+            <a href="authentification.php?choice=register">JoinUs</a>
             <a href="shop.php">Shop Now</a>
             <a href="cart.php">Cart</a>
         <?php
