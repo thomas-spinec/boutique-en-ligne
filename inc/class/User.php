@@ -41,6 +41,7 @@ class User extends Model
             $this->country = $_SESSION['user']['country'];
             $this->zip = $_SESSION['user']['zip'];
             $this->email = $_SESSION['user']['email'];
+            $this->role = $_SESSION['user']['role'];
         }
     }
 
@@ -145,12 +146,8 @@ class User extends Model
 
     public function isAdmin()
     {
-        if (isset($_SESSION['user'])) {
-            if ($this->role == 'admin') {
-                return true;
-            } else {
-                return false;
-            }
+        if ($this->role === "admin") {
+            return true;
         } else {
             return false;
         }
@@ -178,6 +175,47 @@ class User extends Model
     {
         return $this->login;
     }
+
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
 
     // get one user
 
