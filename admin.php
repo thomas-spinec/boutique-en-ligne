@@ -26,7 +26,13 @@
             <div class="container">
 
                 <h1>Admin</h1>
-                <h2>titres</h2>
+                <div class="admin">
+                    <a href="" id="users"><h3>MEMBER MANAGEMENT</h3></a>
+                    <a href="" id="products"><h3>PRODUCT MANAGEMENT</h3></a>
+                    <a href="" id="categories"><h3>CATEGORY MANAGEMENT</h3></a>
+                </div>
+                <section id="display"></section>
+                <section id="gestion"></section>
 
             </div> <!-- /container -->
 
