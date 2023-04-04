@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function displayConn() {
     section_insc.style.display = "none";
     section_conn.style.display = "flex";
-    document.title = "Connexion";
+    document.title = "Connection";
   }
   // affichage de la section inscription
   function displayInsc() {
     section_insc.style.display = "flex";
     section_conn.style.display = "none";
-    document.title = "Inscription";
+    document.title = "Register";
   }
 
   // affichage de la section connexion si choice = conn
