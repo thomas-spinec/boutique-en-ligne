@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,11 +18,12 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
 
-    
+
     <div class="wrapper">
-        
+
         <?php include 'inc/header.php'; ?>
 
         <main class="container">
@@ -29,7 +31,7 @@
             <h1>Admin</h1>
 
         </main>
-        
+
         <div class="push"></div>
 
     </div> <!-- /wrapper -->
@@ -40,4 +42,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
