@@ -57,10 +57,9 @@ abstract class Model
             ":id" => $id,
         ]);
 
-        if($delete){
+        if ($delete) {
             return "ok";
-        }
-        else{
+        } else {
             return "error";
         }
     }
@@ -78,12 +77,10 @@ abstract class Model
             ":id" => $idProduct,
         ]);
 
-        if($delete){
+        if ($delete) {
             return "ok";
-        }
-        else{
+        } else {
             return "error";
         }
     }
-
 }
