@@ -29,10 +29,25 @@
         <main class="container">
 
             <h1>Admin</h1>
+            <div class="admin">
+                <a href="" id="users">
+                    <h3>MEMBER MANAGEMENT</h3>
+                </a>
+                <a href="" id="products">
+                    <h3>PRODUCT MANAGEMENT</h3>
+                </a>
+                <a href="" id="categories">
+                    <h3>CATEGORY MANAGEMENT</h3>
+                </a>
+            </div>
+            <section id="display"></section>
+            <section id="gestion"></section>
 
-        </main>
+    </div> <!-- /container -->
 
-        <div class="push"></div>
+    </main>
+
+    <div class="push"></div>
 
     </div> <!-- /wrapper -->
 

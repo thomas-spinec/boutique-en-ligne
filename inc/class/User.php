@@ -216,7 +216,10 @@ class User extends Model
         return $this->role;
     }
 
-
+    public function getAll()
+    {
+       return parent::getAll();
+    }
     // get one user
 
 }
