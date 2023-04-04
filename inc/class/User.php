@@ -76,7 +76,7 @@ class User extends Model
             ':country' => $country,
             ':zip' => $zip
         ]);
-        echo "Inscription réussie !";
+        echo "Successfully registered!";
         $this->bdd = null;
     }
 
@@ -116,7 +116,7 @@ class User extends Model
                 'zip' => $result['zip'],
                 'email' => $result['email']
             ];
-            echo "Connexion réussie !";
+            echo "Successfull connection !";
         } else {
             echo "error";
         }
@@ -140,7 +140,8 @@ class User extends Model
         $this->bdd = null;
     }
 
-    public function isUserAdmin() {
+    public function isUserAdmin()
+    {
         $role = $_SESSION['user']['role'];
         if (isset($_SESSION['user'])) {
             if ($_SESSION['user'][$role] == 'admin') {
@@ -179,4 +180,3 @@ class User extends Model
     // get one user
 
 }
-

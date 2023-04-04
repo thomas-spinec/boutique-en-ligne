@@ -235,9 +235,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => {
           response = response.trim();
           //   console.log(response);
-          if (response === "Inscription réussie !") {
+          if (response === "Successfully registered!") {
             // msg de connexion puis redirection
-            btnInsc.nextElementSibling.innerHTML = " Successfully registered!";
+            btnInsc.nextElementSibling.innerHTML = "Successfully registered!";
             setTimeout(() => {
               displayConn();
             }, 2000);
