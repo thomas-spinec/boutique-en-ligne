@@ -18,7 +18,7 @@ $user = new User();
             }
 
         // if user is logged in and is admin
-        if ($user->isLogged() && $this->isAdmin()) { ?>
+        if ($this->isAdmin()) { ?>
             <div class="currentUser">
                 <p id="currentUser"><?= $user->getLogin() ?></p>
             </div>
