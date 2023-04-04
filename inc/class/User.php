@@ -13,6 +13,7 @@ class User extends Model
     private $country;
     private $zip;
     private $email;
+    private $role;
 
     public function __construct()
     {
@@ -27,6 +28,7 @@ class User extends Model
         $this->country;
         $this->zip;
         $this->email;
+        $this->role;
 
         // get user data
         if (isset($_SESSION['user'])) {
@@ -114,7 +116,8 @@ class User extends Model
                 'city' => $result['city'],
                 'country' => $result['country'],
                 'zip' => $result['zip'],
-                'email' => $result['email']
+                'email' => $result['email'],
+                'role' => $result['role']
             ];
             echo "Successfull connection !";
         } else {
@@ -140,11 +143,10 @@ class User extends Model
         $this->bdd = null;
     }
 
-    public function isUserAdmin()
+    public function isAdmin()
     {
-        $role = $_SESSION['user']['role'];
         if (isset($_SESSION['user'])) {
-            if ($_SESSION['user'][$role] == 'admin') {
+            if ($this->role == 'admin') {
                 return true;
             } else {
                 return false;
