@@ -26,6 +26,7 @@
             <div class="container">
 
                 <h1>Admin</h1>
+                <h2>titres</h2>
 
             </div> <!-- /container -->
 
