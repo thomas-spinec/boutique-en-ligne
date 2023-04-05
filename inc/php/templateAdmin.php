@@ -35,7 +35,7 @@ $users = $user->getAll();
 
                 </th>
                 <th>
-                    <p>cross</p>
+                    <p class="delUser" data-id="<?=$value['id_user'] ?>" >cross</p>
                 </th>
                     <?php  
                 }
