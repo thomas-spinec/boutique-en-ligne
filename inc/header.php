@@ -4,54 +4,151 @@ require_once 'class/User.php';
 $user = new User();
 ?>
 
-<header>
-    <div class="logo">
-        <a href="index.php"><img src="inc/img/logo.png"></a>
-    </div>
+<header class="header">
 
-    <nav class="topMenu">
-        <?php
-        if (isset($_GET['logout'])) {
-            if ($_GET['logout'] == true) {
-                $user->logout();
-                header('Location: index.php');
+    <!-- TOP MENU -->
+    <!------------------------------------------------------------------------------------>   
+    <nav class="topmenu navbar navbar-expand-md navbar-black bg-dark px-3">
+        
+        <div class="container-fluid justify-content-end">
+            
+            <?php
+            // if user click on logout
+            if (isset($_GET['logout'])) {
+                if ($_GET['logout'] == true) {
+                    $user->logout();
+                    header('Location: index.php');
+                }
             }
-        }
+            // if user is logged in and is admin
+            if ($user->isAdmin()) { ?>
 
-        // if user is logged in and is admin
-        if ($user->isAdmin()) { ?>
-            <div class="currentUser">
-                <p id="currentUser"><?= $user->getLogin() ?></p>
-            </div>
-            <a href="admin.php">Admin</a>
-            <a href="index.php?logout=true">Logout</a>
-            <a href="profile.php">Account</a>
-            <a href="shop.php">Shop Now</a>
-            <a href="cart.php">Cart</a>
-
-        <?php
+                <ul class="navbar-nav flex-row mx-3">
+                    <li class="currentUser">
+                        <a class="nav-link" href="profile.php">id="currentUser"><?= $user->getLogin() ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?logout=true">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.php">Shop Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php">Cart</a>
+                    </li>
+                </ul>
+                <?php
             // if user is logged as member
-        } else if ($user->isLogged()) { ?>
-            <div class="currentUser">
-                <p id="currentUser"><?= $user->getLogin() ?></p>
-            </div>
-            <a href="index.php?logout=true">Logout</a>
-            <a href="profile.php">Account</a>
-            <a href="shop.php">Shop Now</a>
-            <a href="cart.php">Cart</a>
-        <?php
-        } else {
-        ?>
-            <a href="authentification.php?choice=login">Login</a>
-            <a href="authentification.php?choice=register">Signon</a>
-            <a href="shop.php">Shop Now</a>
-            <a href="cart.php">Cart</a>
-        <?php
-        }
-        ?>
+            } else if ($user->isLogged()) { ?>
+                <ul class="navbar-nav flex-row mx-3">
+                    <li class="currentUser">
+                        <a class="nav-link" href="profile.php" id="currentUser"><?= $user->getLogin() ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?logout=true">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.php">Shop Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php">Cart</a>
+                    </li>
+                </ul>
+                <?php
+            } else { ?>
+                <ul class="navbar-nav flex-row mx-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="authentification.php?choice=login"><img class="menuIcon" src="inc/img/icons/login.png"/> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="authentification.php?choice=register"><img class="menuIcon" src="inc/img/icons/join.png"/> JoinUs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png"/> Shop Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php"><img class="menuIcon" src="inc/img/icons/bag.png"/> Cart</a>
+                    </li>
+                </ul>
+                <?php
+            } ?>
+        </div>
+    </nav> <!-- /menu-top -->
+    
+    <!-- MAIN MENU -->
+    <!------------------------------------------------------------------------------------>
+    <nav class="mainmenu navbar navbar-expand-md navbar-white bg-light">
+
+        <div class="container-fluid justify-content-end">
+
+            <a class="navbar-brand me-auto" href="index.php"><img src="inc/img/design/logo_bk.png" alt="logo" width="100px"></a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=new">New collection</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=best">Best sales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=clearance">Clearance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="about.php">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="contact.php">Contact</a>
+                </li>
+                </ul>
+            </div> <!-- /collapse -->
+        </div> <!-- /container-fluid -->
     </nav>
 
-    <nav class="close">
+    <!-- category menu -->
+    <!------------------------------------------------------------------------------------>
+    <nav class="categmenu navbar navbar-expand-md navbar-black bg-light px-3">
+
+        <div class="container-fluid justify-content-start">
+
+            <ul class="navbar-nav flex-row mx-3">
+                <li class="nav-item" class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=accessory">accessory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=dress">dress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=shirt">shirt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=skirt">skirt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=suit">suit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=sweater">sweater</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=trouser">trouser</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?page=coat">coat</a>
+                </li>
+            </ul>
+
+        </div> <!-- /container-fluid -->
 
     </nav>
+    
 </header>

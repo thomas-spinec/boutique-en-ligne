@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 03 avr. 2023 à 11:43
+-- Généré le : lun. 03 avr. 2023 à 13:59
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.11
 
@@ -49,10 +49,10 @@ CREATE TABLE `detail` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `linkCateg`
+-- Structure de la table `link_categ`
 --
 
-CREATE TABLE `linkCateg` (
+CREATE TABLE `link_categ` (
   `id_linkCateg` int(11) NOT NULL,
   `id_sub` int(11) NOT NULL,
   `id_categ` int(11) NOT NULL
@@ -90,10 +90,10 @@ CREATE TABLE `product_size` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `shopOrder`
+-- Structure de la table `shop_order`
 --
 
-CREATE TABLE `shopOrder` (
+CREATE TABLE `shop_order` (
   `id_order` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -115,10 +115,10 @@ CREATE TABLE `size` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `subCategory`
+-- Structure de la table `sub_category`
 --
 
-CREATE TABLE `subCategory` (
+CREATE TABLE `sub_category` (
   `id_sub` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -162,9 +162,9 @@ ALTER TABLE `detail`
   ADD KEY `id_product` (`id_product`);
 
 --
--- Index pour la table `linkCateg`
+-- Index pour la table `link_categ`
 --
-ALTER TABLE `linkCateg`
+ALTER TABLE `link_categ`
   ADD PRIMARY KEY (`id_linkCateg`),
   ADD KEY `id_categ` (`id_categ`),
   ADD KEY `id_sub` (`id_sub`);
@@ -185,9 +185,9 @@ ALTER TABLE `product_size`
   ADD KEY `id_color` (`id_size`);
 
 --
--- Index pour la table `shopOrder`
+-- Index pour la table `shop_order`
 --
-ALTER TABLE `shopOrder`
+ALTER TABLE `shop_order`
   ADD PRIMARY KEY (`id_order`),
   ADD KEY `user` (`id_user`);
 
@@ -198,9 +198,9 @@ ALTER TABLE `size`
   ADD PRIMARY KEY (`id_size`);
 
 --
--- Index pour la table `subCategory`
+-- Index pour la table `sub_category`
 --
-ALTER TABLE `subCategory`
+ALTER TABLE `sub_category`
   ADD PRIMARY KEY (`id_sub`);
 
 --
@@ -226,9 +226,9 @@ ALTER TABLE `detail`
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `linkCateg`
+-- AUTO_INCREMENT pour la table `link_categ`
 --
-ALTER TABLE `linkCateg`
+ALTER TABLE `link_categ`
   MODIFY `id_linkCateg` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -244,9 +244,9 @@ ALTER TABLE `product_size`
   MODIFY `id_product_size` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `shopOrder`
+-- AUTO_INCREMENT pour la table `shop_order`
 --
-ALTER TABLE `shopOrder`
+ALTER TABLE `shop_order`
   MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -256,9 +256,9 @@ ALTER TABLE `size`
   MODIFY `id_size` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `subCategory`
+-- AUTO_INCREMENT pour la table `sub_category`
 --
-ALTER TABLE `subCategory`
+ALTER TABLE `sub_category`
   MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -275,21 +275,21 @@ ALTER TABLE `user`
 -- Contraintes pour la table `detail`
 --
 ALTER TABLE `detail`
-  ADD CONSTRAINT `detail_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `shopOrder` (`id_order`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detail_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `shop_order` (`id_order`) ON DELETE CASCADE,
   ADD CONSTRAINT `detail_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `linkCateg`
+-- Contraintes pour la table `link_categ`
 --
-ALTER TABLE `linkCateg`
-  ADD CONSTRAINT `linkCateg_ibfk_1` FOREIGN KEY (`id_categ`) REFERENCES `category` (`id_category`) ON DELETE CASCADE,
-  ADD CONSTRAINT `linkCateg_ibfk_2` FOREIGN KEY (`id_sub`) REFERENCES `subCategory` (`id_sub`) ON DELETE CASCADE;
+ALTER TABLE `link_categ`
+  ADD CONSTRAINT `link_categ_ibfk_1` FOREIGN KEY (`id_categ`) REFERENCES `category` (`id_category`) ON DELETE CASCADE,
+  ADD CONSTRAINT `link_categ_ibfk_2` FOREIGN KEY (`id_sub`) REFERENCES `sub_category` (`id_sub`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category`) REFERENCES `subCategory` (`id_sub`) ON DELETE CASCADE;
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category`) REFERENCES `sub_category` (`id_sub`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `product_size`
@@ -299,9 +299,9 @@ ALTER TABLE `product_size`
   ADD CONSTRAINT `product_size_ibfk_2` FOREIGN KEY (`id_size`) REFERENCES `size` (`id_size`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `shopOrder`
+-- Contraintes pour la table `shop_order`
 --
-ALTER TABLE `shopOrder`
+ALTER TABLE `shop_order`
   ADD CONSTRAINT `user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
 COMMIT;
 

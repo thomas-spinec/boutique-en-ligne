@@ -9,31 +9,39 @@
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <!-- JS -->
+    <script type="text/javascript" src="inc/js/menu.js"></script>
 
 </head>
 <body>
-
-    <?php include 'inc/header.php'; ?>
     
     <div class="wrapper">
+        
+        <?php include 'inc/header.php'; ?>
 
+        
         <section class="hero">
-            
+
+            <!-- <video class="w-100" autoplay loop muted>
+                <source src="inc/img/design/shop.mp4" type="video/mp4" />
+                <span class="slogan">Veni, vedi,</span>
+                <h1>Vetix</h1>
+            </video> -->
+
+            <div class="slogan">Veni, vedi,</div>
+            <img class="logo_big" src="inc/img/design/logo_wt.png" alt="logo">
+
         </section>
-            
+        
         <main>
-                
-            <div class="container">
-
-                <h1>Home</h1>
-
-            </div> <!-- /container -->
 
         </main>
 
         <div class="push"></div>
 
     </div> <!-- /wrapper -->
+
+    <?php include 'inc/footer.php'; ?>
 
         <!-- Bootstrap js -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

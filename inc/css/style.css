@@ -1,28 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montez&display=swap');
+
 /* maintain footer at bottom with push class*/
 .wrapper {
+    width: 100%;
     min-height: 100%;
     background: transparent;
     margin-bottom: -50px; /* Equal to height of footer */
-} 
-.footer, .push {
-    height: 50px;
+}
+.footer, .push {height: 50px;} 
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff;
+}
+
+main {
+    margin-top: 50px;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .container {
-    width: 100%;
-    max-width: 100%;
+    width: 80%;
+    margin: 0 auto;
     padding: 0;
 }
 
-/**************MENU***************/
-.topMenu {
+.hero {
+    background-image: url(../img/design/hero_01.jpg);
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    background-color: #000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     color: #fff;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
-    border: 0;
+}
+
+.slogan {
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 0.5rem;
+    margin-left: -23%;
+}
+
+.menuIcon {
+    display: inline;
+    vertical-align: baseline;
+}
+
+
+/***** LIST *****/
+
+ul a:hover{
+    color: #d9b420 !important;
+}
+
+nav li{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+li > a:after{
+    content: '';
+    display: block;
+    height: 1.5px;
+    background: #fdd162;
+    transform: scaleX(0);
+    transition: transform .3s;
+}
+
+li > a:hover:after{
+    transform: scaleX(1);
+    transition: transform .3s;
+}
+
+.active{
+    color: #fece55 !important;
+}
+
+/***** MENUS *****/
+
+.topmenu, .categmenu {
+    display: block;
+    height: 35px;
+    width: 100%;
+    top: 0;
+}
+
+@media all and (max-width: 768px) {
+    .lined {
+        display: inline;
+        padding-left: 2rem;
+    }
+}
+
+.topmenu a {
+    color: #fff;
+    font-size: .7em;
+}
+
+.categmenu a {
+    color: #000;
+    font-size: .7em;
+}
+
+.mainmenu {
+    display: block;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+@media only screen and (max-width: 767px) {
+    .categmenu .navbar-nav li {
+        padding: 0 10px;
+    }
+    .topmenu .navbar-nav li {
+        margin: -5px 10px;
+    }
 }
