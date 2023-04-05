@@ -1,64 +1,63 @@
 <?php
 session_start();
-if(isset($_GET["users"])):
-require_once "../class/User.php";
-$user = new User();
-$users = $user->getAll();
-    ?>
+if (isset($_GET["users"])) :
+    require_once "../class/User.php";
+    $user = new User();
+    $users = $user->getAll();
+?>
 
-<table>
-<thead>
-    <tr>
-        <th>Login</th>  
-        <th>Role</th>
-        <th>Manage</th>
-    </tr>
-</thead>
-<tbody>
-    <?php
-        foreach($users as $cols=>$value){
-            ?> 
+    <table>
+        <thead>
             <tr>
-                <th>
-                    <?= $value["login"];?>
-                </th>
-                <th>
-                    <?= $value['role'];?>
-                </th>
-                <?php if ($user->getLogin()!=$value["login"]) {?>
-                <th>
-                    <select name="role" data-id="<?=$value['id_user'] ?>" class="role">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                    <input type="submit" class="changeDroit" data-id="<?=$value['id_user'] ?>" value="Change">
-
-                </th>
-                <th>
-                    <p>cross</p>
-                </th>
-                    <?php  
-                }
-                else{
-                    ?>
-                    <th>
-                        <span>Current user</span>
-                    </th>
-                    <?php
-                }
-                    ?>
+                <th>Login</th>
+                <th>Role</th>
+                <th>Manage</th>
             </tr>
+        </thead>
+        <tbody>
             <?php
-        }
-        
-    ?>
-</tbody>
+            foreach ($users as $cols => $value) {
+            ?>
+                <tr>
+                    <th>
+                        <?= $value["login"]; ?>
+                    </th>
+                    <th>
+                        <?= $value['role']; ?>
+                    </th>
+                    <?php if ($user->getLogin() != $value["login"]) { ?>
+                        <th>
+                            <select name="role" data-id="<?= $value['id_user'] ?>" class="role">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            <input type="submit" class="changeDroit" data-id="<?= $value['id_user'] ?>" value="Change">
 
-</table>
+                        </th>
+                        <th>
+                            <p>cross</p>
+                        </th>
+                    <?php
+                    } else {
+                    ?>
+                        <th>
+                            <span>Current user</span>
+                        </th>
+                    <?php
+                    }
+                    ?>
+                </tr>
+            <?php
+            }
+
+            ?>
+        </tbody>
+
+    </table>
 
 
-<?php 
-elseif(isset($_GET["products"])):
+<?php
+elseif (isset($_GET["products"])) :
     require_once "../class/Product.php";
     $product = new Product();
     $products = $product->getAll();
@@ -67,9 +66,9 @@ elseif(isset($_GET["products"])):
         <thead>
             <tr>
                 <th>PRODUCT</th>
-        
+
                 <th>REFERENCE</th>
-           
+
                 <th>CATEGORY</th>
 
                 <th>STOCK</th>
@@ -79,33 +78,33 @@ elseif(isset($_GET["products"])):
 
         </thead>
         <tbody>
-        <?php
-            if (empty($products)){
-                ?>
+            <?php
+            if (empty($products)) {
+            ?>
                 <tr>
                     <th>Il n'y a aucun article</th>
                 </tr>
                 <?php
             } else {
-                foreach($products as $cols=>$value){
-            ?> 
-            <tr>
-                <th> <span>cross</span> <span>crayon</span> <?= $value['title'] ?></th>
-                <th><?= $value['id_product']?></th>
-                <th><?= $value['category']?></th>
-                <th><?= "5"?></th>
-                <th><?= $value['description']?></th>
-            </tr>
+                foreach ($products as $cols => $value) {
+                ?>
+                    <tr>
+                        <th> <span>cross</span> <span>crayon</span> <?= $value['title'] ?></th>
+                        <th><?= $value['id_product'] ?></th>
+                        <th><?= $value['category'] ?></th>
+                        <th><?= "5" ?></th>
+                        <th><?= $value['description'] ?></th>
+                    </tr>
 
-        <?php
-        }
-        } 
-        ?>
+            <?php
+                }
+            }
+            ?>
         </tbody>
     </table>
 
-    <?php 
-elseif(isset($_GET["addProducts"])):
+<?php
+elseif (isset($_GET["addProducts"])) :
     require_once "../class/Product.php";
     $product = new Product();
     $tableSize = 'size';
@@ -114,101 +113,100 @@ elseif(isset($_GET["addProducts"])):
     $categories = $product->getInfo($tableCategory);
 ?>
 
-<form method="POST" id="addProduct">
+    <form method="POST" id="addProduct">
 
-    <label for="title">Title</label>
-    <input type="text" name="title">
+        <label for="title">Title</label>
+        <input type="text" name="title">
 
-    <label for="descritpion">Description</label>
-    <input type="text" name="description">
+        <label for="descritpion">Description</label>
+        <input type="text" name="description">
 
-    <label for="image">photo</label>
-    <input type="file" name="image">
+        <label for="image">photo</label>
+        <input type="file" name="image">
 
-    <label for="category">Category</label>
-    <select name="category">
-        <option value="" disabled selected>Category</option>
-        <?php  
-        foreach($categories as $cols=>$value){
-            ?>
-            <option value="<?= $value['id_category'] ?>"><?= $value['name']?></option>
+        <label for="category">Category</label>
+        <select name="category">
+            <option value="" disabled selected>Category</option>
             <?php
-        }
-        ?>
-    </select>
-
-    <div class="size">
-    <label for="size">Size</label>
-    <select name="size">
-        <option value="" disabled selected>Size</option>
-        <?php  
-        foreach($sizes as $cols=>$value){
+            foreach ($categories as $cols => $value) {
             ?>
-            <option value="<?= $value['id_size'] ?>"><?= $value['size']?></option>
+                <option value="<?= $value['id_category'] ?>"><?= $value['name'] ?></option>
             <?php
-        }
-        ?>
-    </select>
+            }
+            ?>
+        </select>
 
-    <button id="addSize"><span>+</span> </button> add a new size
-    </div>
+        <div class="size">
+            <label for="size">Size</label>
+            <select name="size">
+                <option value="" disabled selected>Size</option>
+                <?php
+                foreach ($sizes as $cols => $value) {
+                ?>
+                    <option value="<?= $value['id_size'] ?>"><?= $value['size'] ?></option>
+                <?php
+                }
+                ?>
+            </select>
 
-    <label for="stock">Stock</label>
-    <input type="number" name="stock" min="1">
+            <button id="addSize"><span>+</span> </button> add a new size
+        </div>
 
-    <label for="price">Price</label>
-    <input type="number" name="price" min="1"id="euros">
-    <span>€</span>
-    <input type="number" name="price" min="0" id="centimes">
+        <label for="stock">Stock</label>
+        <input type="number" name="stock" min="1">
 
-    <input type="submit" name="add" value="ADD">
-</form>
+        <label for="price">Price</label>
+        <input type="number" name="price" min="1" id="euros">
+        <span>€</span>
+        <input type="number" name="price" min="0" id="centimes">
 
-<?php 
-elseif(isset($_GET["categories"])):
+        <input type="submit" name="add" value="ADD">
+    </form>
+
+<?php
+elseif (isset($_GET["categories"])) :
     require_once "../class/Product.php";
     $product = new Product();
     $tableCategory = 'category';
     $categories = $product->getInfo($tableCategory);
 ?>
-<table>
-    <thead>
-        <tr>
-            <th>Manage</th>
-            <th>CATEGORY</th>
-        </tr>
+    <table>
+        <thead>
+            <tr>
+                <th>Manage</th>
+                <th>CATEGORY</th>
+            </tr>
 
-    </thead>
-    <tbody>
-        <?php
-            foreach($categories as $col=>$value){
-
-            
-        ?>
-        <tr>
-            <th>
-                <span>Dustbin</span> <span>Pencil</span> 
-            </th>
-            <th>
-                <?= $value['name'] ?>
-            </th>
-        </tr>
-        <?php } ?>
-    </tbody>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($categories as $col => $value) {
 
 
-</table>
-<?php 
-elseif(isset($_GET["addCategories"])):
+            ?>
+                <tr>
+                    <th>
+                        <span>Dustbin</span> <span>Pencil</span>
+                    </th>
+                    <th>
+                        <?= $value['name'] ?>
+                    </th>
+                </tr>
+            <?php } ?>
+        </tbody>
+
+
+    </table>
+<?php
+elseif (isset($_GET["addCategories"])) :
 
 ?>
 
-<form method="POST" id="addCategory">
-    <label for="category">Add a category</label>
-    <input type="text">
-    <button id="validate">ADD</button>
-</form>
+    <form method="POST" id="addCategory">
+        <label for="category">Add a category</label>
+        <input type="text">
+        <button id="validate">ADD</button>
+    </form>
 
 <?php
 endif;
-
