@@ -56,6 +56,7 @@ The following tools were used in this project:
 
 - [LucidChart](https://www.lucidchart.com/)
 - [Figma](https://www.figma.com/fr/)
+- [Bootstrap](https://getbootstrap.com/)
 
 ## :white_check_mark: Requirements ##
 
