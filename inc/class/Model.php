@@ -43,4 +43,28 @@ abstract class Model
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+
+    //Delete one from table//
+
+    protected function deleteOne($id)
+    {
+        $id = htmlspecialchars($id);
+
+        $request = "DELETE FROM $this->tablename WHERE id_user = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $id,
+        ]);
+
+        if($delete){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+    }
+
 }

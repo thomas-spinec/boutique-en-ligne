@@ -14,23 +14,42 @@ document.addEventListener("DOMContentLoaded", function(){
 function displayUsers(){
     display.innerHTML="";
     gestion.innerHTML="";
-    fetch("inc/php/adminGestion.php?users")
+    fetch("inc/php/templateAdmin.php?users")
 
     .then((response)=> response.text())
     .then((table)=>
     display.innerHTML = table)
 }
 
+
+
+function deleteUsers(id){
+    fetch("inc/php/adminGestion.php?delUser=" + id)
+
+    .then((response)=>response.text())
+    .then((response)=>{
+        response = response.trim()
+        if(response === "ok"){
+            displayUsers();
+        }
+        else{
+            display.nextElementSibling.innerHTML = "Error during suppression";
+            setTimeout(()=>{
+                display.nextElementSibling.innerHTML = ""}, "2000")  
+        }
+    })
+}
+
 //PRODUCTS//
 function displayProducts(){
     display.innerHTML="";
     gestion.innerHTML="";
-    fetch("inc/php/adminGestion.php?products")
+    fetch("inc/php/templateAdmin.php?products")
     .then((response)=>response.text())
     .then((table)=>
     display.innerHTML=table
     );
-    fetch("inc/php/adminGestion.php?addProducts")
+    fetch("inc/php/templateAdmin.php?addProducts")
     .then((response)=>response.text())
     .then((form)=>
     gestion.innerHTML=form);
@@ -44,12 +63,12 @@ function displayCategories(){
     display.innerHTML="";
     gestion.innerHTML="";
 
-    fetch("inc/php/adminGestion.php?categories")
+    fetch("inc/php/templateAdmin.php?categories")
     .then((response)=>response.text())
     .then((table)=>
     display.innerHTML=table)
 
-    fetch("inc/php/adminGestion.php?addCategories")
+    fetch("inc/php/templateAdmin.php?addCategories")
     .then((response)=>response.text())
     .then((form)=>
     gestion.innerHTML=form)
@@ -67,7 +86,13 @@ users.addEventListener("click", function(e){
     displayUsers();
 })
 
-
+display.addEventListener("click", function(e){
+    e.preventDefault();
+    if(e.target.classList.contains("delUser")){
+        const id = e.target.getAttribute("data-id");
+        deleteUsers(id)
+    }
+})
 //PRODUCT//
 
 

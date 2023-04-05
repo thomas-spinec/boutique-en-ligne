@@ -32,6 +32,7 @@
                     <a href="" id="categories"><h3>CATEGORY MANAGEMENT</h3></a>
                 </div>
                 <section id="display"></section>
+                <span></span>
                 <section id="gestion"></section>
 
             </div> <!-- /container -->

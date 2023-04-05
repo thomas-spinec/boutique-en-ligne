@@ -220,6 +220,13 @@ class User extends Model
     {
        return parent::getAll();
     }
-    // get one user
+
+    public function deleteOne($id){
+
+        echo parent::deleteOne($id);
+
+
+    }
+
 
 }
