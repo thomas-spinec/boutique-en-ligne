@@ -148,8 +148,11 @@ display.addEventListener("click", function(e){
 display.addEventListener("click", function(d){
     d.preventDefault();
     if(d.target.classList.contains("changeDroit")){
-        const role = d.target.getAttribute("data-id");
-        changeRole(role)
+
+        const role = document.querySelector('#catchRole');
+        const value = role.options[role.selectedIndex].text;
+        console.log(value);
+        changeRole(value);
     }
 })
 
