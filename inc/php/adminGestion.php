@@ -13,4 +13,11 @@ if(isset($_GET['delUser'])){
     $user->deleteOne($id);
 
 }
+
+if(isset($_GET['delProduct'])){
+    $idProduct = $_GET['delProduct'];
+
+    $product->deleteProduct($idProduct);
+
+}
 ?>
