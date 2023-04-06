@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
 //SECTION D'AFFICHAGE//
     const display = document.querySelector('#display');
     const gestion = document.querySelector('#gestion');
+    const changeDroit = document.querySelector('#changeDroit');
 // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
 
@@ -39,6 +40,24 @@ function deleteUsers(id){
         }
     })
 }
+
+function changeRole(id){
+    fetch("inc/php/adminGestion.php?changeDroit=" + id)
+
+    .then((response)=>response.text())
+    .then((response)=>{
+        response = response.trim()
+        if(response === "ok"){
+            displayUsers();
+        }
+        else{
+            display.nextElementSibling.innerHTML = "Error during suppression";
+            setTimeout(()=>{
+                display.nextElementSibling.innerHTML = ""}, "2000")  
+        }
+    })
+}
+
 
 //PRODUCTS//
 function displayProducts(){
@@ -125,6 +144,15 @@ display.addEventListener("click", function(e){
         deleteUsers(id)
     }
 })
+
+display.addEventListener("click", function(d){
+    d.preventDefault();
+    if(d.target.classList.contains("changeDroit")){
+        const role = d.target.getAttribute("data-id");
+        changeRole(role)
+    }
+})
+
 //PRODUCT//
 
 

@@ -24,7 +24,12 @@ if(isset($_GET['delProduct'])){
 
 if(isset($_GET['delCategory'])){
     $idCategory = $_GET['delCategory'];
-    echo $idCategory;
     $product->deleteCategory($idCategory);
+}
+
+
+if(isset($_POST['changeDroit'])){
+    $newRole = $_POST['changeDroit'];
+    $user->changeRole($newRole);
 }
 ?>

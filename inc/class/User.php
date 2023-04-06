@@ -228,5 +228,12 @@ class User extends Model
 
     }
 
+    public function changeRole($id){
 
+        echo parent::changeRole($id);
+
+
+    }
+
+    
 }

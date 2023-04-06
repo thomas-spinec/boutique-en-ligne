@@ -115,4 +115,25 @@ abstract class Model
     }
 
 
+    protected function changeRole($newRole)
+    {
+        $newRole = htmlspecialchars($newRole);
+        $request = "UPDATE FROM user SET `role` = :role";
+
+        $updateRole = $this->bdd->prepare($request);
+
+        $updateRole->execute([
+             ":role" =>$newRole,
+        ]);
+
+        if($updateRole){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+
+
+    }
+
 }
