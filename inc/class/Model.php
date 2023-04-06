@@ -67,7 +67,9 @@ abstract class Model
         }
     }
 
-    //Delete one product from table//
+
+    
+//Delete one product from table
 
     protected function deleteProduct($idProduct)
     {
@@ -88,5 +90,29 @@ abstract class Model
             return "error";
         }
     }
+
+
+
+    //Delete one category from table
+    protected function deleteCategory($idCategory)
+    {
+        $idCategory = htmlspecialchars($idCategory);
+
+        $request = "DELETE FROM category WHERE id_category = :id";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idCategory,
+        ]);
+
+        if($delete){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+    }
+
 
 }

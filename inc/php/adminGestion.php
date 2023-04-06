@@ -20,4 +20,11 @@ if(isset($_GET['delProduct'])){
     $product->deleteProduct($idProduct);
 
 }
+
+
+if(isset($_GET['delCategory'])){
+    $idCategory = $_GET['delCategory'];
+    echo $idCategory;
+    $product->deleteCategory($idCategory);
+}
 ?>

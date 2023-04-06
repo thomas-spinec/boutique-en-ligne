@@ -172,6 +172,7 @@ elseif(isset($_GET["categories"])):
     $product = new Product();
     $tableCategory = 'category';
     $categories = $product->getInfo($tableCategory);
+    var_dump($categories);
 ?>
 <table>
     <thead>
@@ -189,7 +190,7 @@ elseif(isset($_GET["categories"])):
         ?>
         <tr>
             <th>
-                <span>Dustbin</span> <span>Pencil</span> 
+                <span class="delCategory" data-id="<?=$value['id_category']?>">Dustbin</span> <span>Pencil</span> 
             </th>
             <th>
                 <?= $value['name'] ?>
