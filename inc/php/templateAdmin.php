@@ -28,10 +28,10 @@ $users = $user->getAll();
                 <?php if ($user->getLogin()!=$value["login"]) {?>
                 <th>
                     <select name="role" data-id="<?=$value['id_user'] ?>" class="role">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
+                        <option data-id="user" value="user">User</option>
+                        <option  data-id="admin" value="admin">Admin</option>
                     </select>
-                    <input type="submit" class="changeDroit" data-id="<?=$value['id_user'] ?>" value="Change">
+                    <input type="submit" class="changeDroit" id="changeDroit" data-id="<?=$value['id_user'] ?>" value="Change">
 
                 </th>
                 <th>
