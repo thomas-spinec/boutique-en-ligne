@@ -91,6 +91,22 @@ function displayCategories(){
 
 }
 
+function deleteCategory(id){
+    fetch("inc/php/adminGestion.php?delCategory=" + id)
+
+    .then((response)=>response.text())
+    .then((response)=>{
+        response = response.trim()
+        if(response === "ok"){
+            displayCategories();
+        }
+        else{
+            display.nextElementSibling.innerHTML = "Error during suppression";
+            setTimeout(()=>{
+                display.nextElementSibling.innerHTML = ""}, "2000")  
+        }
+    })
+}
 
 
 
@@ -122,6 +138,7 @@ display.addEventListener("click", function(e){
     if(e.target.classList.contains("delProduct")){
         const idProduct = e.target.getAttribute("data-id");
         deleteProduct(idProduct)
+        
     }
 })  
 
@@ -134,6 +151,14 @@ display.addEventListener("click", function(e){
 categories.addEventListener("click", function(e){
     e.preventDefault();
     displayCategories();
+})
+
+display.addEventListener("click", function(e){
+    e.preventDefault();
+    if(e.target.classList.contains("delCategory")){
+        const idCategory = e.target.getAttribute("data-id");
+        deleteCategory(idCategory);
+    }
 })
 
 
