@@ -37,6 +37,11 @@ class Product extends Model{
 
     }
 
+    public function deleteProduct($id){
+
+        echo parent::deleteProduct($id);
+    }
+
 
 }   
 

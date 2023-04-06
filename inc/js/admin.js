@@ -55,6 +55,22 @@ function displayProducts(){
     gestion.innerHTML=form);
 }
 
+function deleteProduct(id){
+    fetch("inc/php/adminGestion.php?delProduct=" + id)
+
+    .then((response)=>response.text())
+    .then((response)=>{
+        response = response.trim()
+        if(response === "ok"){
+            displayProducts();
+        }
+        else{
+            display.nextElementSibling.innerHTML = "Error during suppression";
+            setTimeout(()=>{
+                display.nextElementSibling.innerHTML = ""}, "2000")  
+        }
+    })
+}
 
 
 //CATEGORIES//
@@ -100,6 +116,14 @@ products.addEventListener("click", function(e){
     e.preventDefault();
     displayProducts();
 })
+
+display.addEventListener("click", function(e){
+    e.preventDefault();
+    if(e.target.classList.contains("delProduct")){
+        const idProduct = e.target.getAttribute("data-id");
+        deleteProduct(idProduct)
+    }
+})  
 
 
 

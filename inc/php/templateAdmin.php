@@ -62,6 +62,8 @@ elseif(isset($_GET["products"])):
     require_once "../class/Product.php";
     $product = new Product();
     $products = $product->getAll();
+    var_dump($products)
+    // $idProduct = $product['id_product'];
 ?>
     <table>
         <thead>
@@ -90,7 +92,7 @@ elseif(isset($_GET["products"])):
                 foreach($products as $cols=>$value){
             ?> 
             <tr>
-                <th> <span>cross</span> <span>crayon</span> <?= $value['title'] ?></th>
+                <th> <p class="delProduct" data-id="<?=$value['id_product']?>">cross</p> <span>crayon</span> <?= $value['title'] ?></th>
                 <th><?= $value['id_product']?></th>
                 <th><?= $value['category']?></th>
                 <th><?= "5"?></th>
