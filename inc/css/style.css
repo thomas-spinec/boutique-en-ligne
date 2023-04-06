@@ -1,8 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montez&display=swap');
-
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80px!important;
+    font-weight: 300!important;
+    text-align: center;
+    z-index: 1!important;
+}
+h1.bis {
+    position: relative;
+    font-size: 100px!important;
+    font-weight: 300!important;
+    text-align: center;
+    color: #eae9e9;
+    margin: -80px 0 0 0;
+    z-index: -1!important;
+}
 /* maintain footer at bottom with push class*/
 .wrapper {
     width: 100%;
@@ -29,6 +40,7 @@ main {
     padding: 0;
 }
 
+/* HERO *****************************************************/
 .hero {
     background-image: url(../img/design/hero_01.jpg);
     background-size: cover;
@@ -48,13 +60,7 @@ main {
     margin-left: -23%;
 }
 
-.menuIcon {
-    display: inline;
-    vertical-align: baseline;
-}
-
-
-/***** LIST *****/
+/* LIST ****************************************************/
 
 ul a:hover{
     color: #d9b420 !important;
@@ -83,20 +89,27 @@ li > a:hover:after{
     color: #fece55 !important;
 }
 
-/***** MENUS *****/
+/* MENUS *************************************************/
+
+.menuIcon {
+    display: inline;
+    vertical-align: baseline;
+}
+
+form.search {
+    background-color:transparent!important;
+    height: 35px;
+
+}
+.fa-search {
+    margin-bottom: 5px;
+}
 
 .topmenu, .categmenu {
     display: block;
     height: 35px;
     width: 100%;
     top: 0;
-}
-
-@media all and (max-width: 768px) {
-    .lined {
-        display: inline;
-        padding-left: 2rem;
-    }
 }
 
 .topmenu a {
@@ -114,7 +127,6 @@ li > a:hover:after{
     width: 100%;
     top: 0;
     z-index: 999;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 @media only screen and (max-width: 767px) {
@@ -123,5 +135,9 @@ li > a:hover:after{
     }
     .topmenu .navbar-nav li {
         margin: -5px 10px;
+    }
+    .lined {
+        display: inline;
+        padding-left: 2rem;
     }
 }

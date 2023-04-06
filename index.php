@@ -7,6 +7,8 @@
     <title>Home</title>
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
+    <!-- Fontawesome kit -->
+    <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
@@ -35,6 +37,12 @@
         
         <main>
 
+            <div class="container">
+
+                <h1>New Collection</h1>
+                <h1 class="bis">New Collection</h1>
+                
+            </div> <!-- /container -->
         </main>
 
         <div class="push"></div>
