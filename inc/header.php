@@ -1,4 +1,7 @@
 <?php
+
+use User;
+
 session_start();
 require_once 'class/User.php';
 $user = new User();
@@ -9,9 +12,9 @@ $user = new User();
     <!--------------------------------------TOPMENU---------------------------------------------->
     <div class="d-flex">
         <nav class="topmenu navbar navbar-expand-md navbar-black bg-dark px-3">
-            
+
             <div class="container-fluid justify-content-end">
-                
+
                 <?php
                 // if user click on logout
                 if (isset($_GET['logout'])) {
@@ -25,7 +28,7 @@ $user = new User();
 
                     <ul class="navbar-nav flex-row mx-3">
                         <li class="currentUser">
-                            <a class="nav-link" href="profile.php">id="currentUser"><?= $user->getLogin() ?></a>
+                            <a class="nav-link" href="profile.php" id="currentUser"><?= $user->getLogin() ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="admin.php">Admin</a>
@@ -40,8 +43,8 @@ $user = new User();
                             <a class="nav-link" href="cart.php">Cart</a>
                         </li>
                     </ul>
-                    <?php
-                // if user is logged as member
+                <?php
+                    // if user is logged as member
                 } else if ($user->isLogged()) { ?>
                     <ul class="navbar-nav flex-row mx-3">
                         <li class="currentUser">
@@ -57,23 +60,23 @@ $user = new User();
                             <a class="nav-link" href="cart.php">Cart</a>
                         </li>
                     </ul>
-                    <?php
+                <?php
                 } else { ?>
                     <ul class="navbar-nav flex-row mx-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="authentification.php?choice=login"><img class="menuIcon" src="inc/img/icons/login.png"/> Login</a>
+                            <a class="nav-link" href="authentification.php?choice=login"><img class="menuIcon" src="inc/img/icons/login.png" /> Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="authentification.php?choice=register"><img class="menuIcon" src="inc/img/icons/join.png"/> JoinUs</a>
+                            <a class="nav-link" href="authentification.php?choice=register"><img class="menuIcon" src="inc/img/icons/join.png" /> JoinUs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png"/> Shop Now</a>
+                            <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png" /> Shop Now</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.php"><img class="menuIcon" src="inc/img/icons/bag.png"/> Cart</a>
+                            <a class="nav-link" href="cart.php"><img class="menuIcon" src="inc/img/icons/bag.png" /> Cart</a>
                         </li>
                     </ul>
-                    <?php
+                <?php
                 } ?>
             </div>
         </nav> <!-- /menu-top -->
@@ -93,40 +96,40 @@ $user = new User();
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link lined" href="shop.php?page=new">New collection</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link lined" href="shop.php?page=best">Best sales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link lined" href="shop.php">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link lined" href="shop.php?page=clearance">Clearance</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link lined" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link lined" href="contact.php">Contact</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link lined" href="shop.php?page=new">New collection</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link lined" href="shop.php?page=best">Best sales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link lined" href="shop.php">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link lined" href="shop.php?page=clearance">Clearance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link lined" href="about.php">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link lined" href="contact.php">Contact</a>
+                        </li>
                     </ul>
                 </div> <!-- /collapse -->
             </div> <!-- /container-fluid -->
         </nav>
 
         <div class="d-flex">
-        <div class="col-lg-11 col-md-1 mx-auto">
-            <form class="d-flex search" method="get" action="recherche.php">
-                <input id="search" class="form-control me-sm-1" type="text" name="search" placeholder="Search...">
-                
-                <button class="btn btn-light my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            </form>
+            <div class="col-lg-11 col-md-1 mx-auto">
+                <form class="d-flex search" method="get" action="recherche.php">
+                    <input id="search" class="form-control me-sm-1" type="text" name="search" placeholder="Search...">
 
-            <ul id="matchList"></ul>
-            <ul id="matchList2"></ul>
-        </div>
+                    <button class="btn btn-light my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
+                <ul id="matchList"></ul>
+                <ul id="matchList2"></ul>
+            </div>
     </section> <!-- /mainnav -->
 
     <!--------------------------------------CATEGMENU-------------------------------------------->
@@ -164,5 +167,5 @@ $user = new User();
         </div> <!-- /container-fluid -->
 
     </nav>
-    
+
 </header>
