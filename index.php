@@ -12,7 +12,7 @@
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
-    <script type="text/javascript" src="inc/js/menu.js"></script>
+    <script type="text/javascript" src="inc/js/search.js"></script>
 
 </head>
 <body>
@@ -35,14 +35,11 @@
 
         </section>
         
-        <main>
+        <main class="container">
 
-            <div class="container">
+            <h1>New Collection</h1>
+            <h1 class="bis">New Collection</h1>
 
-                <h1>New Collection</h1>
-                <h1 class="bis">New Collection</h1>
-                
-            </div> <!-- /container -->
         </main>
 
         <div class="push"></div>

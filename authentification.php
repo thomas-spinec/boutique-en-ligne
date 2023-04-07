@@ -26,80 +26,76 @@
         
         <?php include 'inc/header.php'; ?>
 
-        <main>
+        <main class="container">
 
-            <div class="container">
+            <section id="inscription" class="colcenter">
 
-                <section id="inscription" class="colcenter">
+                <h1>Inscription</h1>
 
-                    <h1>Inscription</h1>
+                <div class="row m-2">
+                    <p><b>Already a member ? </b></p> <button id="switchConn" class="switch">Connexion</button>
+                </div>
 
-                    <div class="row m-2">
-                        <p><b>Already a member ? </b></p> <button id="switchConn" class="switch">Connexion</button>
-                    </div>
-
-                    <form method="post" class="auth_form">
-                        <label for="login">login</label>
-                        <input type="text" name="login" class="login" placeholder="login" required>
-                        <p></p>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="password" placeholder="Mot de passe" autocomplete="off" required>
-                        <p></p>
-                        <label for="password2">Password confirm</label>
-                        <input type="password" name="password2" id="password2" class="password" placeholder="Confirmation" autocomplete="off" required>
-                        <p></p>
-                        <br>
-                        <label for="firstname">firstname:</label>
-                        <input type="text" name="firstname" id="firstname" class="firstname" placeholder="Prénom" required>
-                        <p></p>
-                        <label for="lastname">lastname:</label>
-                        <input type="text" name="lastname" id="lastname" class="lastname" placeholder="Nom" required>
-                        <p></p>
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" class="email" placeholder="Email" required>
-                        <p></p>
-                        <label for="address">Adress:</label>
-                        <input type="text" name="address" id="address" class="address" placeholder="Adresse" required>
-                        <p></p>
-                        <label for="city">City:</label>
-                        <input type="text" name="city" id="city" class="city" placeholder="Ville" required>
-                        <p></p>
-                        <label for="zip">Zip:</label>
-                        <input type="text" name="zip" id="zip" class="zip" placeholder="Code postal" required>
-                        <p></p>
-                        <label for="country">Country:</label>
-                        <input type="text" name="country" id="country" class="country" placeholder="Pays" required>
-                        <p></p>
-                        <input type="submit" value="Register" name="send" id="btnInsc">
-                        <p></p>
-                    </form>
+                <form method="post" class="auth_form">
+                    <label for="login">login</label>
+                    <input type="text" name="login" class="login" placeholder="login" required>
+                    <p></p>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="password" placeholder="Mot de passe" autocomplete="off" required>
+                    <p></p>
+                    <label for="password2">Password confirm</label>
+                    <input type="password" name="password2" id="password2" class="password" placeholder="Confirmation" autocomplete="off" required>
+                    <p></p>
                     <br>
-                </section>
+                    <label for="firstname">firstname:</label>
+                    <input type="text" name="firstname" id="firstname" class="firstname" placeholder="Prénom" required>
+                    <p></p>
+                    <label for="lastname">lastname:</label>
+                    <input type="text" name="lastname" id="lastname" class="lastname" placeholder="Nom" required>
+                    <p></p>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" class="email" placeholder="Email" required>
+                    <p></p>
+                    <label for="address">Adress:</label>
+                    <input type="text" name="address" id="address" class="address" placeholder="Adresse" required>
+                    <p></p>
+                    <label for="city">City:</label>
+                    <input type="text" name="city" id="city" class="city" placeholder="Ville" required>
+                    <p></p>
+                    <label for="zip">Zip:</label>
+                    <input type="text" name="zip" id="zip" class="zip" placeholder="Code postal" required>
+                    <p></p>
+                    <label for="country">Country:</label>
+                    <input type="text" name="country" id="country" class="country" placeholder="Pays" required>
+                    <p></p>
+                    <input type="submit" value="Register" name="send" id="btnInsc">
+                    <p></p>
+                </form>
+                <br>
+            </section>
 
-                <!--------------------------------------------------------------------->
+            <!--------------------------------------------------------------------->
 
-                <section id="connexion" class="colcenter">
+            <section id="connexion" class="colcenter">
 
-                    <h1>Connexion</h1>
+                <h1>Connexion</h1>
 
-                    <div class="row m-2">
-                        <p><b>You don't have an account ? </b></p> <button id="switchInsc" class="switch">Inscription</button>
-                    </div>
+                <div class="row m-2">
+                    <p><b>You don't have an account ? </b></p> <button id="switchInsc" class="switch">Inscription</button>
+                </div>
 
-                    <form method="post" class="auth_form">
-                        <label for="login">login</label>
-                        <input type="text" name="login" class="login" placeholder="login" required>
-                        <p></p>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="password" placeholder="Mot de passe" required>
-                        <p></p>
-                        <input type="submit" value="Connect" id="btnConn">
-                        <p></p>
-                    </form>
-                    <br>
-                </section>
-
-            </div> <!-- container -->
+                <form method="post" class="auth_form">
+                    <label for="login">login</label>
+                    <input type="text" name="login" class="login" placeholder="login" required>
+                    <p></p>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="password" placeholder="Mot de passe" required>
+                    <p></p>
+                    <input type="submit" value="Connect" id="btnConn">
+                    <p></p>
+                </form>
+                <br>
+            </section>
 
         </main>
 

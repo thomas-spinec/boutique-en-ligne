@@ -19,13 +19,9 @@
         
         <?php include 'inc/header.php'; ?>
 
-        <main>
+        <main class="container">
 
-            <div class="container">
-
-                <h1>Shop</h1>
-
-            </div> <!-- /container -->
+            <h1>Shop</h1>
 
         </main>
 

@@ -33,4 +33,57 @@ abstract class Model
         $result = $select->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    // get all data from a table
+    protected function getAll()
+    {
+        $query = "SELECT * FROM $this->tablename";
+        $select = $this->bdd->prepare($query);
+        $select->execute();
+        $result = $select->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    //Delete one from table//
+    protected function deleteOne($id)
+    {
+        $id = htmlspecialchars($id);
+
+        $request = "DELETE FROM $this->tablename WHERE id_user = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $id,
+        ]);
+
+        if($delete){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+    }
+
+    //Delete one product from table//
+    protected function deleteProduct($idProduct)
+    {
+        $idProduct = htmlspecialchars($idProduct);
+
+        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idProduct,
+        ]);
+
+        if($delete){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+    }
+
 }

@@ -60,6 +60,12 @@ main {
     margin-left: -23%;
 }
 
+.logo_big {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
+}
 /* LIST ****************************************************/
 
 ul a:hover{
@@ -97,6 +103,7 @@ li > a:hover:after{
 }
 
 form.search {
+    position: relative;
     background-color:transparent!important;
     height: 35px;
 
@@ -104,6 +111,11 @@ form.search {
 .fa-search {
     margin-bottom: 5px;
 }
+
+/* .matchList, .matchList2 {
+    position: absolute;
+    padding: 1em;
+} */
 
 .topmenu, .categmenu {
     display: block;
@@ -114,12 +126,12 @@ form.search {
 
 .topmenu a {
     color: #fff;
-    font-size: .7em;
+    font-size: .8em;
 }
 
 .categmenu a {
     color: #000;
-    font-size: .7em;
+    font-size: .8em;
 }
 
 .mainmenu {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 03 avr. 2023 à 13:59
+-- Généré le : mer. 05 avr. 2023 à 13:57
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.11
 
@@ -32,6 +32,13 @@ CREATE TABLE `category` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `category`
+--
+
+INSERT INTO `category` (`id_category`, `name`) VALUES
+(1, 'sweater');
+
 -- --------------------------------------------------------
 
 --
@@ -54,9 +61,17 @@ CREATE TABLE `detail` (
 
 CREATE TABLE `link_categ` (
   `id_linkCateg` int(11) NOT NULL,
-  `id_sub` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
   `id_categ` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `link_categ`
+--
+
+INSERT INTO `link_categ` (`id_linkCateg`, `id_product`, `id_categ`) VALUES
+(1, 2, 1),
+(2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -70,9 +85,16 @@ CREATE TABLE `product` (
   `description` text NOT NULL,
   `image` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
-  `category` int(11) NOT NULL,
   `sales` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `product`
+--
+
+INSERT INTO `product` (`id_product`, `title`, `description`, `image`, `price`, `sales`) VALUES
+(2, 'Pull', 'Un beau pull', '', 15, 0),
+(3, 'pull bleu', 'un autre pull', '', 25, 0);
 
 -- --------------------------------------------------------
 
@@ -112,16 +134,14 @@ CREATE TABLE `size` (
   `size` enum('1','2','3') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `sub_category`
+-- Déchargement des données de la table `size`
 --
 
-CREATE TABLE `sub_category` (
-  `id_sub` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `size` (`id_size`, `size`) VALUES
+(1, '1'),
+(2, '2'),
+(3, '3');
 
 -- --------------------------------------------------------
 
@@ -134,14 +154,23 @@ CREATE TABLE `user` (
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
-  `lastename` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `zip` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL DEFAULT 'user'
+  `role` enum('user','admin') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `login`, `password`, `firstname`, `lastname`, `email`, `address`, `city`, `zip`, `country`, `role`) VALUES
+(1, 'jeremy', '$2y$10$ljcpdniyMc9oCci5sjIekezalUJNyv5E7HHRHi0LGJ6KSAC53ngyK', ' n', 'jn@orange.fr', 'j', 'a', 'a', 'france', '83500', 'user'),
+(2, 'admin', '$2y$10$1WgJOFotErRi.IV85iL9o.DOjgQ.6kh/QVnlfYty3QqWRFcH5SHLm', 'n', 'jn@orange.fr', 'j', 'a', 'La Seyne sur Mer', 'France', '83500', 'admin'),
+(3, 'a', '$2y$10$Vat5HPRTVK/Qx..cnYOG1ut6UQXyZgwUZjkn56qe8w/HbwOSQjRQm', 'a', 'azda@hotmail', 'a', 'a', 'a', 'France', '83500', 'user');
 
 --
 -- Index pour les tables déchargées
@@ -167,14 +196,13 @@ ALTER TABLE `detail`
 ALTER TABLE `link_categ`
   ADD PRIMARY KEY (`id_linkCateg`),
   ADD KEY `id_categ` (`id_categ`),
-  ADD KEY `id_sub` (`id_sub`);
+  ADD KEY `id_product` (`id_product`);
 
 --
 -- Index pour la table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id_product`),
-  ADD KEY `category` (`category`);
+  ADD PRIMARY KEY (`id_product`);
 
 --
 -- Index pour la table `product_size`
@@ -198,12 +226,6 @@ ALTER TABLE `size`
   ADD PRIMARY KEY (`id_size`);
 
 --
--- Index pour la table `sub_category`
---
-ALTER TABLE `sub_category`
-  ADD PRIMARY KEY (`id_sub`);
-
---
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
@@ -217,7 +239,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `detail`
@@ -229,13 +251,13 @@ ALTER TABLE `detail`
 -- AUTO_INCREMENT pour la table `link_categ`
 --
 ALTER TABLE `link_categ`
-  MODIFY `id_linkCateg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_linkCateg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `product_size`
@@ -253,19 +275,13 @@ ALTER TABLE `shop_order`
 -- AUTO_INCREMENT pour la table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id_size` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `sub_category`
---
-ALTER TABLE `sub_category`
-  MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_size` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
@@ -283,13 +299,7 @@ ALTER TABLE `detail`
 --
 ALTER TABLE `link_categ`
   ADD CONSTRAINT `link_categ_ibfk_1` FOREIGN KEY (`id_categ`) REFERENCES `category` (`id_category`) ON DELETE CASCADE,
-  ADD CONSTRAINT `link_categ_ibfk_2` FOREIGN KEY (`id_sub`) REFERENCES `sub_category` (`id_sub`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `product`
---
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category`) REFERENCES `sub_category` (`id_sub`) ON DELETE CASCADE;
+  ADD CONSTRAINT `link_categ_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `product_size`
