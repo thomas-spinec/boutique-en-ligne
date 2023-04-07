@@ -44,10 +44,42 @@ class Product extends Model
         return $result;
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct($idProduct)
     {
+        $idProduct = htmlspecialchars($idProduct);
 
-        echo parent::deleteProduct($id);
+        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idProduct,
+        ]);
+
+        if ($delete) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function deleteCategory($idCategory)
+    {
+        $idCategory = htmlspecialchars($idCategory);
+
+        $request = "DELETE FROM category WHERE id_category = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idCategory,
+        ]);
+
+        if ($delete) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
     }
 
     public function completion()

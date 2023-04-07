@@ -63,44 +63,4 @@ abstract class Model
             return "error";
         }
     }
-
-    //Delete one product from table//
-
-    protected function deleteProduct($idProduct)
-    {
-        $idProduct = htmlspecialchars($idProduct);
-
-        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idProduct,
-        ]);
-
-        if ($delete) {
-            return "ok";
-        } else {
-            return "error";
-        }
-    }
-
-
-    protected function changeRole($newRole)
-    {
-        $newRole = htmlspecialchars($newRole);
-        $request = "UPDATE FROM user SET `role` = :role";
-
-        $updateRole = $this->bdd->prepare($request);
-
-        $updateRole->execute([
-            ":role" => $newRole,
-        ]);
-
-        if ($updateRole) {
-            return "ok";
-        } else {
-            return "error";
-        }
-    }
 }
