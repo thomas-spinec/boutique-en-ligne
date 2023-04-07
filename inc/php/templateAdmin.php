@@ -125,8 +125,8 @@ elseif(isset($_GET["addProducts"])):
     <label for="descritpion">Description</label>
     <input type="text" name="description">
 
-    <label for="image">photo</label>
-    <input type="file" name="image">
+    <label for="imageProduct">photo</label>
+    <input type="file" name="imageProduct">
 
     <label for="category">Category</label>
     <select name="category">

@@ -113,4 +113,31 @@ class Product extends Model
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function addProduct(){
+
+
+    
+        $imageProduct = $_FILES["imageProduct"]["name"];
+        $titleProduct = $_POST["title"];
+        $descriptionProduct =  $_POST['description'];
+        $categoryProduct = $_POST['category'];
+        $sizeProduct = $_POST['size'];
+        $stockProduct = $_POST['stock'];
+        $priceProduct = $_POST['price'];
+        $addProduct = $_POST['addProduct'];
+
+
+
+
+        $register = "INSERT INTO articles (titre, article, image, id_utilisateur, date) VALUE( ?, ?, ?, ?, NOW())";
+        $prepare = $this->pdo ->prepare($register);
+
+      $prepare->execute([$artTitle, $artText, $artImg, $id]);
+
+
+
+
+}
+
 }
