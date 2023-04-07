@@ -121,6 +121,7 @@ $product = new Product();
             </div> <!-- /container-fluid -->
         </nav>
 
+        <!-- Serach bar -->
         <div class="d-flex">
             <div class="col-lg-11 col-md-1 mx-auto">
                 <form class="d-flex search" method="get" action="search.php">
@@ -128,13 +129,6 @@ $product = new Product();
                     
                     <button class="btn btn-light my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
-            <div class="col-lg-11 col-md-1 mx-auto">
-                <form class="d-flex search" method="get" action="recherche.php">
-                    <input id="search" class="form-control me-sm-1" type="text" name="search" placeholder="Search...">
-
-                    <button class="btn btn-light my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-
                 <ul id="matchList"></ul>
                 <ul id="matchList2"></ul>
             </div>
