@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
 //SECTION D'AFFICHAGE//
     const display = document.querySelector('#display');
     const gestion = document.querySelector('#gestion');
-    const changeDroit = document.querySelector('#changeDroit');
+
 // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
 
@@ -41,22 +41,31 @@ function deleteUsers(id){
     })
 }
 
-function changeRole(id){
-    fetch("inc/php/adminGestion.php?changeDroit=" + id)
+    function changeRole(id){
+        const formRole = document.querySelector('#formRole');
 
-    .then((response)=>response.text())
-    .then((response)=>{
-        response = response.trim()
-        if(response === "ok"){
-            displayUsers();
+        let data = new FormData(formRole)
+        data.append("id", id)
+        data.append("changeRole", "ok")
+        fetch("inc/php/adminGestion.php", {
+            method : "POST",
+            body : data
+        })
+        .then((response)=> response.text())
+        .then((response)=>{
+            response = response.trim()
+            if(response === "ok"){
+                displayUsers();
+            }
+            else{
+                display.nextElementSibling.innerHTML = "Error role didn't changed";
+                setTimeout(()=>{
+                    display.nextElementSibling.innerHTML = ""}, "2000")  
+        
+    
+            }
         }
-        else{
-            display.nextElementSibling.innerHTML = "Error during suppression";
-            setTimeout(()=>{
-                display.nextElementSibling.innerHTML = ""}, "2000")  
-        }
-    })
-}
+        )}
 
 
 //PRODUCTS//
@@ -145,14 +154,11 @@ display.addEventListener("click", function(e){
     }
 })
 
-display.addEventListener("click", function(d){
-    d.preventDefault();
-    if(d.target.classList.contains("changeDroit")){
-
-        const role = document.querySelector('#catchRole');
-        const value = role.options[role.selectedIndex].text;
-        console.log(value);
-        changeRole(value);
+display.addEventListener("click", function(e){
+    e.preventDefault();
+    if(e.target.classList.contains("changeDroit")){
+        const id = e.target.getAttribute("data-id");
+        changeRole(id);
     }
 })
 

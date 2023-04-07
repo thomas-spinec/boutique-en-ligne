@@ -27,11 +27,13 @@ $users = $user->getAll();
                 </th>
                 <?php if ($user->getLogin()!=$value["login"]) {?>
                 <th>
+                    <form method="post" id="formRole">
                     <select name="role" id="catchRole" data-id="<?=$value['id_user'] ?>" class="role">
                         <option data-id="user" value="user">user</option>
                         <option  data-id="admin" value="admin">admin</option>
                     </select>
                     <input type="submit" class="changeDroit" id="changeDroit" data-id="<?=$value['id_user'] ?>" value="Change">
+                    </form>
 
                 </th>
                 <th>

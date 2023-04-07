@@ -28,8 +28,10 @@ if(isset($_GET['delCategory'])){
 }
 
 
-if(isset($_POST['changeDroit'])){
-    $newRole = $_POST['changeDroit'];
-    $user->changeRole($newRole);
+if(isset($_POST['changeRole'])){
+    $newRole = $_POST['role'];
+    $id = $_POST['id'];
+    $user->changeRole($newRole, $id);
 }
 ?>
+ 
