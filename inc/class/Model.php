@@ -44,7 +44,9 @@ abstract class Model
         return $result;
     }
 
+
     //Delete one from table//
+
     protected function deleteOne($id)
     {
         $id = htmlspecialchars($id);
@@ -55,6 +57,51 @@ abstract class Model
 
         $delete->execute([
             ":id" => $id,
+        ]);
+
+        if ($delete) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
+
+
+
+    //Delete one product from table
+
+    protected function deleteProduct($idProduct)
+    {
+        $idProduct = htmlspecialchars($idProduct);
+
+        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idProduct,
+        ]);
+
+        if ($delete) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
+
+
+
+    //Delete one category from table
+    protected function deleteCategory($idCategory)
+    {
+        $idCategory = htmlspecialchars($idCategory);
+
+        $request = "DELETE FROM category WHERE id_category = :id";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idCategory,
         ]);
 
         if ($delete) {
