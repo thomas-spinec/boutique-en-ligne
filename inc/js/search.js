@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", event => {
             // Réduit le nombre de résultats
             const html = matches.slice(0, 5).map(match => `
                 <li class="card card-body bg-dark mb-1">
-                    <a class="text-decoration-none link-light" href="product.php?search=${match.id_product} ${match.title}">${match.title}</a>
+                    <a class="text-decoration-none link-light" href="product.php?id=${match.id_product}">${match.title}</a>
                 </li>
             `
             ).join('');
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
             const html = matches.slice(0, 5).map(match => `
                 <li class="card card-body text-white bg-secondary mb-1">
-                    <a class="text-decoration-none link-light" href="product.php?search=${match.id_product} ${match.title}">${match.title}</a>
+                    <a class="text-decoration-none link-light" href="product.php?id=${match.id_product}">${match.title}</a>
                 </li>
             `
             ).join('');
