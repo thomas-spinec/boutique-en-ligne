@@ -21,21 +21,23 @@
         
         <?php include 'inc/header.php'; ?>
 
-        <main class="container">
+        <main class="container px-5 px-lg-5 mx-5 my-5">
             <?php
             $id = $_GET['id'];
             $product_info = $product->getProductInfo($id);
             ?>
 
-            <div class="d-flex-row">
-                <div class="col-md-6">
-                    <img class="product_img" src="inc/img/<?= $product_info['image'] ?>" alt="<?= $product_info['title'] ?> ">
-                </div>
-                <div class="col-md-6">
-                    <h2><?php echo $product_info['title'] ?></h2>
-                    <p><?php echo $product_info['description'] ?></p>
-                    <p><?php echo $product_info['price']; ?>€</p>
-                </div>
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <img class="product_img" src="inc/img/shop/<?= $product_info['image'] ?>" alt="<?= $product_info['title'] ?> ">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="small mb-1">SKU: BST-498</div>
+                        <h2 class="display-5 fw-bolder"><?php echo $product_info['title'] ?></h2>
+                        <div class="fs-5 mb-5">
+                            <p class="lead"><?php echo $product_info['description'] ?></p>
+                            <p><?php echo $product_info['price']; ?>€</p>
+                    </div>
             </div>
 
         </main>
