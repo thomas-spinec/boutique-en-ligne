@@ -64,7 +64,6 @@ elseif(isset($_GET["products"])):
     require_once "../class/Product.php";
     $product = new Product();
     $products = $product->getAll();
-    var_dump($products)
     // $idProduct = $product['id_product'];
 ?>
     <table>
@@ -174,7 +173,6 @@ elseif(isset($_GET["categories"])):
     $product = new Product();
     $tableCategory = 'category';
     $categories = $product->getInfo($tableCategory);
-    var_dump($categories);
 ?>
 <table>
     <thead>
