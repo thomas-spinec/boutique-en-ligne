@@ -30,6 +30,17 @@
 
             <h1>Admin</h1>
 
+            <div class="admin">
+                <a href="" id="users">MEMBER MANAGEMENT</a>
+                <a href="" id="products">PRODUCT MANAGEMENT</a>
+                <a href="" id="categories">CATEGORY MANAGEMENT</a>
+
+            </div>
+
+            <section id="display"></section>
+            <span></span>
+            <section id="gestion"></section>
+
     </div> <!-- /container -->
 
     </main>
