@@ -33,5 +33,9 @@ if(isset($_POST['changeRole'])){
     $id = $_POST['id'];
     $user->changeRole($newRole, $id);
 }
-?>
+
+
+if(isset($_POST['addProduct'])){
+    var_dump($_POST);
+}
  

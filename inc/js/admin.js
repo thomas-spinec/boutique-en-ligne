@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function(){
 //SECTION D'AFFICHAGE//
     const display = document.querySelector('#display');
     const gestion = document.querySelector('#gestion');
-
 // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
 
@@ -100,6 +99,21 @@ function deleteProduct(id){
     })
 }
 
+function addProduct(){
+    const formProduct = document.querySelector('#formProduct');
+    
+    let data = new FormData(formProduct);
+    data.append("addProduct", "ok")
+    fetch("inc/php/adminGestion.php",{
+        method : "POST",
+        body : data,
+    })
+    .then((response)=>response.text())
+    .then((response)=>{
+        console.table(response);
+    })
+}
+
 
 //CATEGORIES//
 
@@ -175,9 +189,15 @@ display.addEventListener("click", function(e){
     if(e.target.classList.contains("delProduct")){
         const idProduct = e.target.getAttribute("data-id");
         deleteProduct(idProduct)
-        
     }
 })  
+
+gestion.addEventListener("click", function(e){
+    e.preventDefault();
+    if(e.target.classList.contains("submitAdd")){
+        addProduct();
+    }
+})
 
 
 

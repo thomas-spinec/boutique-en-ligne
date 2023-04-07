@@ -117,7 +117,7 @@ elseif(isset($_GET["addProducts"])):
     $categories = $product->getInfo($tableCategory);
 ?>
 
-<form method="POST" id="addProduct">
+<form method="POST" id="formProduct">
 
     <label for="title">Title</label>
     <input type="text" name="title">
@@ -164,7 +164,7 @@ elseif(isset($_GET["addProducts"])):
     <span>€</span>
     <input type="number" name="price" min="0" id="centimes">
 
-    <input type="submit" name="add" value="ADD">
+    <input type="submit" name="add" value="ADD" class="submitAdd">
 </form>
 
 <?php 
