@@ -78,6 +78,54 @@ class Product extends Model{
         return $result;
     }
     
+    public function updateProduct($id, $title, $description, $image, $price, $sales, $categ) {
+        $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, price = :price, sales = :sales WHERE id_product = :id");
+        $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':price' => $price, ':sales' => $sales]);
+        $query = $this->bdd->prepare("UPDATE link_categ SET id_categ = :categ WHERE id_product = :id");
+        $query->execute([':id' => $id, ':categ' => $categ]);
+    }
+
+    public function getCategoryName($id) {
+        $query = $this->bdd->prepare("SELECT name FROM category INNER JOIN link_categ ON category.id_category = link_categ.id_categ WHERE link_categ.id_product = :id");
+        $query->execute([':id' => $id]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        
+        if ($result) {
+            return $result['name'];
+        } else {
+            return 'not ok';
+        }
+    }
+
+    public function getProductImages($id) {
+        $query = $this->bdd->prepare("SELECT image, image_1, image_2 FROM product WHERE id_product = :id ORDER BY image ASC");
+        $query->execute([':id' => $id]);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRandomBestSales() {
+        $query = $this->bdd->prepare("SELECT id_product, title, image, price, best_sales FROM $this->tablename ORDER BY RAND() LIMIT 4");
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+        if (count($results) > 0) {
+            echo '<div class="d-flex flex-wrap justify-content-between">';
+            foreach ($results as $result) { ?>
+                <div class="card col-lg-3 col-md-6 col-sm-12 p-3">
+                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['best_sales'] ?>">
+                    <div class="d-flex justify-content-between">
+                        <p class="text-center"> <?php echo $result['title'] ?> </p>
+                        <p class="text-center"> <?php echo $result['price'] ?> € </p>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark "><a class="text-decoration-none text-black" href="./product.php?id=<?php echo $result['id_product'] ?>">SEE MORE</a></button>
+                </div>
+            <?php }
+        } else {
+            echo 'Actually no best sales';
+        }
+    }
+    
 }   
 
 ?>

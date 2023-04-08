@@ -5,8 +5,10 @@ use User;
 session_start();
 require_once 'class/User.php';
 require_once 'class/Product.php';
+require_once "class/Comment.php";
 $user = new User();
 $product = new Product();
+$comment = new Comment();
 ?>
 
 <header class="header">

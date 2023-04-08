@@ -39,6 +39,7 @@
 
             <h1>New Collection</h1>
             <h1 class="bis">New Collection</h1>
+            
 
         </main>
 
