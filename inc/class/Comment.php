@@ -9,67 +9,75 @@ class Comment extends Model {
             parent::__construct();
     }
 
-    // fonction pour récupérer tous les commentaires
+    // function to get all comments for a product
     public function getComments($id)
     {
-
-        $request = "SELECT comment.*, DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date FROM comment INNER JOIN user ON comment.id_user = user.id_user WHERE comment.id_product = :id ORDER BY date DESC";
-        // requete
+        $id = (int)$id;
+        $request = "SELECT comment.*, DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date, user.login as author 
+        FROM comment 
+        INNER JOIN user ON comment.id_user = user.id_user 
+        WHERE comment.id_product = :id 
+        ORDER BY date DESC
+        ";
+        // request
         $select = $this->bdd->prepare($request);
-        // execution avec liaison des params
+        // exec with params
         $select->execute([
             'id' => $id,
         ]);
 
-        // récupération des résultats
+        // get results
         $comments = $select->fetchAll(PDO::FETCH_ASSOC);
-        // Si $result produit une erreur, on retourne null
+        // if $result produce an error, we return null
         if (!$comments) {
             return null;
         } else {
-            // sinon on retourne le résultat
+            // else we return the result
             return $comments;
         }
     }
 
-    // fonction pour récupérer un commentaire en particulier avec l'auteur et tout ce qui va avec
+    // function to get a comment with the author and everything that goes with it
     public function getComment($id)
     {
-        $request = "SELECT comment.*, DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date FROM comment INNER JOIN user ON comment.id_user = user.id_user WHERE comment.id_comment = :id";
+        $request = "SELECT comment.*, DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date, user.login as author 
+        FROM comment 
+        INNER JOIN user ON comment.id_user = user.id_user 
+        WHERE comment.id_comment = :id_comment";
 
-        // requete
+        // request
         $select = $this->bdd->prepare($request);
-        // execution avec liaison des params
+        // exec with params
         $select->execute([
-            'id' => $id,
+            'id_comment' => $id,
         ]);
 
-        // récupération des résultats
+        // get results
         $comment = $select->fetch(PDO::FETCH_ASSOC);
-        // Si $result produit une erreur, on retourne null
+        // if $result produce an error, we return null
         if (!$comment) {
             return null;
         } else {
-            // sinon on retourne le résultat
+            // else we return the result
             return $comment;
         }
     }
 
-    // création d'un commentaire lié à l'id de l'article et à l'id de l'utilisateur qui le crée
+    // function to add a comment
     public function addComment($subject, $comment, $id_product, $id_user)
     {
-        // html special char
+        // html special chars to avoid injections
         $subject = htmlspecialchars($subject);
         $comment = htmlspecialchars($comment);
         $id_product = htmlspecialchars($id_product);
         $id_user = htmlspecialchars($id_user);
 
-        // requete
+        // request
         $request = "INSERT INTO comment (subject, comment, date, id_product, id_user) VALUES (:subject, :comment, NOW(), :id_product, :id_user)";
 
         $insert = $this->bdd->prepare($request);
 
-        // execution avec liaisons des param
+        // exec with params
         $insert->execute([
             'subject' => $subject,
             'comment' => $comment,
@@ -77,7 +85,7 @@ class Comment extends Model {
             'id_user' => $id_user,
         ]);
 
-        // echo "ok" si la requete s'est bien passée
+        // echo "ok" if the request went well
         if ($insert) {
             echo "ok";
         } else {
@@ -86,19 +94,19 @@ class Comment extends Model {
         $this->bdd = null;
     }
 
-    // fonction pour supprimer un commentaire
+    // function to delete a comment
     public function deleteComment($id)
     {
-        // requête
-        $request = "DELETE FROM comment WHERE id = :id";
+        // request
+        $request = "DELETE FROM comment WHERE id_comment = :id";
 
         $delete = $this->bdd->prepare($request);
-        // execution avec liaisons des param
+        // exec with params
         $delete->execute([
-            'id' => $id
+            'id_comment' => $id
         ]);
 
-        // echo "ok" si la requête s'est bien passée
+        // echo "ok" if the request went well
         if ($delete) {
             echo "ok";
         } else {
@@ -106,26 +114,26 @@ class Comment extends Model {
         }
     }
 
-    // fonction pour modifier un commentaire
+    // function to update a comment
     public function updateComment($id, $subject, $comment)
     {
-        // html special char
+        // html special char to avoid injections
         $subject = htmlspecialchars($subject);
         $comment = htmlspecialchars($comment);
 
-        // requete
-        $request = "UPDATE comment SET subject = :subject, comment = :comment WHERE id = :id";
+        // request
+        $request = "UPDATE comment SET subject = :subject, comment = :comment WHERE id_comment = :id_comment";
 
         $update = $this->bdd->prepare($request);
 
-        // execution avec liaisons des param
+        // exec with params
         $update->execute([
             'subject' => $subject,
             'comment' => $comment,
-            'id' => $id,
+            'id_comment' => $id,
         ]);
 
-        // echo "ok" si la requete s'est bien passée
+        // echo "ok" if the request went well
         if ($update) {
             echo "ok";
         } else {

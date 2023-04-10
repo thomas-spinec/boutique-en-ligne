@@ -11,23 +11,39 @@
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-
+    <!-- JS -->
+    <script src="inc/js/menu.js"></script>
 </head>
-<body>
-    
-    <div class="wrapper">
-        
-        <?php include 'inc/header.php'; ?>
+<body>        
+    <?php include 'inc/header.php'; ?>
 
-        <main class="container">
+    <main>
+        <h1>Shop</h1>
+        <h1 class="bis">Shop</h1>
 
-            <h1>Shop</h1>
+        <div id="product_container" class="container d-flex flex-wrap">
+            <?php
+            $displayMode = 'allProducts'; // Default display mode
+            
+            if (isset($_GET['display'])) {
+                $displayMode = $_GET['display'];
+            }
+            
+            switch ($displayMode) {
+                case 'bestSales':
+                    $products = $product->getRandomBestSales();
+                    break;
+                case 'newCollection':
+                    $products = $product->getRandomNewCollection();
+                    break;
+                default:
+                    $products = $product->getAllProducts();
+            }
+            ?>
+        </div>
 
-        </main>
 
-        <div class="push"></div>
-
-    </div> <!-- /wrapper -->
+    </main>
 
     <?php include 'inc/footer.php'; ?>
 

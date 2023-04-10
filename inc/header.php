@@ -30,7 +30,7 @@ $comment = new Comment();
                 // if user is logged in and is admin
                 if ($user->isAdmin()) { ?>
 
-                    <ul class="navbar-nav flex-row mx-3">
+                    <ul class="navbar-nav flex-row px-3">
                         <li class="currentUser">
                             <a class="nav-link" href="profile.php" id="currentUser"><?= $user->getLogin() ?></a>
                         </li>
@@ -50,7 +50,7 @@ $comment = new Comment();
                 <?php
                     // if user is logged as member
                 } else if ($user->isLogged()) { ?>
-                    <ul class="navbar-nav flex-row mx-3">
+                    <ul class="navbar-nav flex-row px-3">
                         <li class="currentUser">
                             <a class="nav-link" href="profile.php" id="currentUser"><?= $user->getLogin() ?></a>
                         </li>
@@ -66,7 +66,7 @@ $comment = new Comment();
                     </ul>
                 <?php
                 } else { ?>
-                    <ul class="navbar-nav flex-row mx-3">
+                    <ul class="navbar-nav flex-row px-3">
                         <li class="nav-item">
                             <a class="nav-link" href="authentification.php?choice=login"><img class="menuIcon" src="inc/img/icons/login.png" /> Login</a>
                         </li>
@@ -87,7 +87,7 @@ $comment = new Comment();
     </div> <!-- /d-flex -->
 
     <!--------------------------------------MAINMENU---------------------------------------------->
-    <section class="mainmenu">
+    <section class="mainmenu px-5">
 
         <nav class="navbar navbar-expand-md">
 
@@ -101,16 +101,17 @@ $comment = new Comment();
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link lined" href="shop.php?page=new">New collection</a>
+                            <a id="new_collection" class="nav-link" href="shop.php?display=newCollection">New collection</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link lined" href="shop.php?page=best">Best sales</a>
+                            <a id="best_sales" class="nav-link" href="shop.php?display=bestSales">Best sales</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link lined" href="shop.php">Shop</a>
+                            <a class="nav-link" href="shop.php">Shop</a>
+                    </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link lined" href="shop.php?page=clearance">Clearance</a>
+                            <a class="nav-link lined" href="shop.php?display=clearance">Clearance</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link lined" href="about.php">About</a>
@@ -137,7 +138,7 @@ $comment = new Comment();
     </section> <!-- /mainnav -->
 
     <!--------------------------------------CATEGMENU-------------------------------------------->
-    <nav class="categmenu navbar navbar-expand-md navbar-black bg-light px-3">
+    <nav class="categmenu navbar navbar-expand-md navbar-black bg-light px-5">
 
         <div class="container-fluid justify-content-start">
 

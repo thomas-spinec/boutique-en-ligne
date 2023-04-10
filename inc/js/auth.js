@@ -1,7 +1,7 @@
 // DOM
 document.addEventListener("DOMContentLoaded", function () {
-  // création des variables
-  // récupération pour l'inscription
+  // variables
+  // get section inscription
   const section_insc = document.querySelector("#inscription");
   let form_insc = section_insc.querySelector("form");
   let login_insc = form_insc.querySelector(".login");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnInsc = document.querySelector("#btnInsc");
   const switchConn = section_insc.querySelector("#switchConn");
 
-  // récupération pour la connexion
+  // get section connection
   const section_conn = document.querySelector("#connexion");
   let form_conn = section_conn.querySelector("form");
   let login_conn = form_conn.querySelector(".login");
@@ -18,28 +18,28 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnConn = document.querySelector("#btnConn");
   const switchInsc = section_conn.querySelector("#switchInsc");
 
-  // autres
+  // other variables
   let validation = false;
-
+  // get choice from url
   let str = window.location.href;
   let url = new URL(str);
   let choice = url.searchParams.get("choice");
 
-  // fonctions de display
-  // affichage de la section connexion
+  // display functions
+  // display connection
   function displayConn() {
     section_insc.style.display = "none";
-    section_conn.style.display = "flex";
+    section_conn.style.display = "block";
     document.title = "Connection";
   }
-  // affichage de la section inscription
+  // display inscription
   function displayInsc() {
-    section_insc.style.display = "flex";
+    section_insc.style.display = "block";
     section_conn.style.display = "none";
     document.title = "Register";
   }
 
-  // affichage de la section connexion si choice = conn
+  // display connection if choice = conn
   if (choice === "login") {
     displayConn();
   } else if (choice === "register") {
@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
     displayInsc();
   }
 
-  // fonction du switch de formulaire
-  // switch vers la connexion
+  // function for switch between connection and inscription
+  // switch to connection
   $(switchConn).click(function () {
     // animation
     $(section_insc).hide(1000);
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       $(section_conn).show(1000);
     }, 500);
   });
-  // switch vers l'inscription
+  // switch to inscription
   $(switchInsc).click(function () {
     // animation
     $(section_conn).hide(1000);
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Verif login
   function verifLogin() {
     let loginValue = login_insc.value;
-    // verif s'il y a un login
+    // verif if login is empty
     if (loginValue === "") {
       login_insc.nextElementSibling.innerHTML = "Please enter a login";
       // change border color and background
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // change border color to default
       login_insc.style.borderColor = "initial";
       login_insc.style.backgroundColor = "#fafafa";
-      // verif que le login est disponible
+      // verif if login is available
       let dataLogin = new FormData();
       dataLogin.append("verifLogin", loginValue);
       //   console.log(dataLogin);
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // change border color and background
             login_insc.style.borderColor = "green";
             login_insc.style.backgroundColor = "#fafafa";
-            // suppression de la clé
+            // delete dataLogin key verifLogin
             dataLogin.delete("verifLogin");
             validation = true;
           }
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function verifPassword() {
     let passwordValue = password_insc.value;
 
-    // verif s'il y a un password
+    // verif if password is empty
     if (passwordValue === "") {
       password_insc.nextElementSibling.innerHTML = "Please enter a password";
       // change border color and background
@@ -138,12 +138,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Verif correspondance entre les password
+  // Verif if password and password2 match
   function verifPassword2() {
     let passwordValue = password_insc.value;
     let password2Value = password2.value;
 
-    // verif s'il y a un password
+    // verif if password2 is empty
     if (password2Value === "") {
       password2.nextElementSibling.innerHTML = "Please confirm your password";
       // change border color and background
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // change border color and background to default
       password2.style.borderColor = "initial";
       password2.style.backgroundColor = "#fafafa";
-      // verif que les password correspondent
+      // verif if password and password2 match
       if (passwordValue === password2Value) {
         password2.nextElementSibling.innerHTML = "";
         // change border color and background
@@ -173,12 +173,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //////////////////////////////////////////////////
-  // Function for connexion                  ///////
+  // Function for connection                  ///////
   //////////////////////////////////////////////////
   // Verif login
   function verifLoginConn() {
     let loginValue = login_conn.value;
-    // verif s'il y a un login
+    // verif if login is empty
     if (loginValue === "") {
       login_conn.nextElementSibling.innerHTML = "Please enter a login";
       // change border color and background
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function verifPasswordConn() {
     let passwordValue = password_conn.value;
 
-    // verif s'il y a un password
+    // verif if password is empty
     if (passwordValue === "") {
       password_conn.nextElementSibling.innerHTML =
         "Veuillez rentrer un mot de passe";
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //////////////////////////////////////////////////
-  // ajout des event pour l'inscription       ///////
+  // add event for inscription                 /////     
   //////////////////////////////////////////////////
   // login
   login_insc.addEventListener("blur", verifLogin);
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
           response = response.trim();
           //   console.log(response);
           if (response === "Successfully registered!") {
-            // msg de connexion puis redirection
+            // msg for connection then redirection
             btnInsc.nextElementSibling.innerHTML = "Successfully registered!";
             setTimeout(() => {
               displayConn();
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //////////////////////////////////////////////////
-  // ajout des event pour la connexion        ///////
+  // add event for connection                  /////
   //////////////////////////////////////////////////
   // login
   login_conn.addEventListener("blur", verifLoginConn);
@@ -269,14 +269,14 @@ document.addEventListener("DOMContentLoaded", function () {
           response = response.trim();
           //   console.log(response);
           if (response === "Successfull connection !") {
-            // msg de connexion puis redirection
+            // msg for connection then redirection
             btnConn.nextElementSibling.innerHTML =
               "Successfull connection, you'll be redirected in 2 seconds";
             setTimeout(() => {
               window.location.href = "index.php";
             }, 2000);
           } else if (response === "error") {
-            // msg de mdp incorrect ou login
+            // msg for login or password error
             btnConn.nextElementSibling.innerHTML = "Wrong login or password";
             btnConn.nextElementSibling.style.color = "red";
             btnConn.nextElementSibling.borderColor = "red";
