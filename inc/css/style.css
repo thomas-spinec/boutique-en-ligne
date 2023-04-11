@@ -1,15 +1,16 @@
 /* maintain footer at bottom with push class*/
-.wrapper {
+/* .wrapper {
     width: 100%;
     min-height: 100%;
     background: transparent;
-    margin-bottom: -50px; /* Equal to height of footer */
+    margin-bottom: -50px; 
 }
 .footer, .push {height: 50px;} 
-
+ */
 body{
     font-family: 'Open Sans', sans-serif;
     background-color: #fff;
+    overflow-x : hidden;
 }
 
 main {
@@ -49,6 +50,18 @@ h1.ter {
     color: #E5E5E5;
     margin: -80px 0 0 0;
     z-index: 1!important;
+}
+
+.big {
+    font-size: 35rem;
+    color:rgba(255,255,255,0.6);
+    text-align: center!important;
+}
+
+@media all and (max-width: 768px) {
+    .big {
+        font-size: 20rem;
+    }
 }
 
 h2 {
@@ -91,6 +104,44 @@ h6 {
     margin: 0 0 20px 0;
 }
 
+/* HERO *****************************************************/
+.hero {
+    background-image: url(../img/design/hero_01.jpg);
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.slogan {
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 0.5rem;
+    margin-left: -23%;
+}
+
+.logo_big {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.shop_header {
+    background-image: url(../img/design/hero_02.jpg);
+    background-size: cover;
+    height: 60vh!important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
 /* UTILITIES *****************************************************/
 
 a {
@@ -139,32 +190,6 @@ li > a:hover:after{
     color: #fece55 !important;
 }
 
-/* HERO *****************************************************/
-.hero {
-    background-image: url(../img/design/hero_01.jpg);
-    background-size: cover;
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #fff;
-}
-
-.slogan {
-    font-size: 2rem;
-    color: #fff;
-    letter-spacing: 0.5rem;
-    margin-left: -23%;
-}
-
-.logo_big {
-    width: 100%;
-    height: auto;
-    max-width: 500px;
-    margin: 0 auto;
-}
 
 /* MENUS *************************************************/
 
@@ -186,7 +211,7 @@ form.search {
 
 .topmenu, .categmenu {
     display: block;
-    height: 35px;
+    height: auto;
     width: 100%;
     top: 0;
 }
@@ -221,7 +246,7 @@ form.search {
     height: 400px;
     margin: 0;
 }
-/* product page *************************************************/
+/* PRODUCT page *************************************************/
 
 .product_img {
     width: 100%;
@@ -254,6 +279,7 @@ form.search {
     border: 2px solid black;
     opacity: 1;
 }
+
 /* AUTHENTICATION *************************************************/
 .userAuth {
     background: url(../img/design/hero_05.jpg) no-repeat center center fixed;
@@ -265,11 +291,54 @@ form.search {
     padding: 20px;
     width: 100%;
 }
+
+
+/* SHOP *************************************************/
+.deg {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(255, 255, 255, 9));
+}
+
+.square-button {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(255, 255, 255, 9));
+    border-radius: 0;
+    border: none!important;
+    padding: 0;
+    margin: 0;
+}
+
+.square-button:hover {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+}
+
+.square-button-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    text-align: center;
+    min-width: 220px;
+    min-height: 220px;
+    width: 100%;
+    height: 100%;
+}
+
+.square-button-content h4 {
+    margin-bottom: 10px;
+}
+
+.square-button-content i {
+    font-size: 24px;
+}
+
+
 /* CREDENTIALS ***************************************************/
 .credentials {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
+
 /* FOOTER ********************************************************/
 footer a {
     color: #000!important;

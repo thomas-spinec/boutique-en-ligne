@@ -73,7 +73,7 @@ class Comment extends Model {
         $id_user = htmlspecialchars($id_user);
 
         // request
-        $request = "INSERT INTO comment (subject, comment, date, id_product, id_user) VALUES (:subject, :comment, NOW(), :id_product, :id_user)";
+        $request = "INSERT INTO $this->tablename (subject, comment, date, id_product, id_user) VALUES (:subject, :comment, NOW(), :id_product, :id_user)";
 
         $insert = $this->bdd->prepare($request);
 

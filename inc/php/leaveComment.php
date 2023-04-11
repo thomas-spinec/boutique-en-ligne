@@ -1,7 +1,5 @@
 <?php
 
-use User;
-
 session_start();
 require_once '../class/User.php';
 require_once '../class/Product.php';
@@ -22,12 +20,12 @@ if ($user->isLogged()) {
 
         // Get the data from the form
         $subject = $_POST['subject'];
-        $comment = $_POST['comment'];
+        $commentContent = $_POST['comment'];
         $id_product = $_POST['id_product'];
         // Insert the comment into the database
-        $comment = $comment->addComment($subject, $comment, $id_product, $id_user);
+        $comment = $comment->addComment($subject, $commentContent, $id_product, $id_user);
         // Redirect user to the article page
-        header('Location: ./product.php?id=' . $id_product);
+        header('Location: product.php?id=' . $id_product);
         exit();
     }
 ?>

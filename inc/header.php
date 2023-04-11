@@ -1,7 +1,5 @@
 <?php
 
-use User;
-
 session_start();
 require_once 'class/User.php';
 require_once 'class/Product.php';
@@ -24,10 +22,9 @@ $comment = new Comment();
                 if (isset($_GET['logout'])) {
                     if ($_GET['logout'] == true) {
                         $user->logout();
-                        header('Location: index.php');
                     }
                 }
-                // if user is logged in and is admin
+                // if user is logged in as admin
                 if ($user->isAdmin()) { ?>
 
                     <ul class="navbar-nav flex-row px-3">
@@ -37,14 +34,14 @@ $comment = new Comment();
                         <li class="nav-item">
                             <a class="nav-link" href="admin.php">Admin</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?logout=true">Logout</a>
+                        <li  id="deconnexion" class="nav-item">
+                            <a href="index.php?logout=true">LogOut</a></li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.php">Shop Now</a>
+                            <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png" /> Shop</a> Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.php">Cart</a>
+                            <a class="nav-link" href="cart.php"><img class="menuIcon" src="inc/img/icons/bag.png" /> Cart</a>
                         </li>
                     </ul>
                 <?php
@@ -55,13 +52,13 @@ $comment = new Comment();
                             <a class="nav-link" href="profile.php" id="currentUser"><?= $user->getLogin() ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?logout=true">Logout</a>
+                            <a class="nav-link" href="index.php?logout=true">LogOut</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.php">Shop Now</a>
+                            <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png" /> Shop</a> Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.php">Cart</a>
+                            <a class="nav-link" href="cart.php"><img class="menuIcon" src="inc/img/icons/bag.png" /> Cart</a>
                         </li>
                     </ul>
                 <?php
@@ -74,7 +71,7 @@ $comment = new Comment();
                             <a class="nav-link" href="authentification.php?choice=register"><img class="menuIcon" src="inc/img/icons/join.png" /> JoinUs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png" /> Shop Now</a>
+                            <a class="nav-link" href="shop.php"><img class="menuIcon" src="inc/img/icons/shop.png" /> Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="cart.php"><img class="menuIcon" src="inc/img/icons/bag.png" /> Cart</a>
@@ -101,14 +98,14 @@ $comment = new Comment();
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a id="new_collection" class="nav-link" href="shop.php?display=newCollection">New collection</a>
+                            <a id="new_collection" class="nav-link" href="shop.php?display=newCollection">New Collection</a>
                         </li>
                         <li class="nav-item">
-                            <a id="best_sales" class="nav-link" href="shop.php?display=bestSales">Best sales</a>
+                            <a id="best_sales" class="nav-link" href="shop.php?display=bestSales">Best Sales</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="shop.php">Shop</a>
-                    </li>
+                        </li>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link lined" href="shop.php?display=clearance">Clearance</a>
@@ -144,28 +141,34 @@ $comment = new Comment();
 
             <ul class="navbar-nav flex-row mx-3">
                 <li class="nav-item" class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=accessory">accessory</a>
+                    <a class="nav-link lined" href="shop.php?display=accessory">Accessory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=dress">dress</a>
+                    <a class="nav-link lined" href="shop.php?display=coat">Coat</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=shirt">shirt</a>
+                    <a class="nav-link lined" href="shop.php?display=dress">Dress</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=skirt">skirt</a>
+                    <a class="nav-link lined" href="shop.php?display=Loungewear">Loungewear</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=suit">suit</a>
+                    <a class="nav-link lined" href="shop.php?display=pants">Pants</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=sweater">sweater</a>
+                    <a class="nav-link lined" href="shop.php?display=shirt">Shirt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=trouser">trouser</a>
+                    <a class="nav-link lined" href="shop.php?display=skirt">Skirt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?page=coat">coat</a>
+                    <a class="nav-link lined" href="shop.php?display=suit">Suit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?display=sweater">Sweater</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lined" href="shop.php?display=top">Top</a>
                 </li>
             </ul>
 

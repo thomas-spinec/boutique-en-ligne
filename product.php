@@ -115,15 +115,15 @@
                 $comments = $comment->getComments($id);
                 if ($comments !== null) {
                     foreach ($comments as $c) :
-                        $id = $c['id'];
-                        $login = $user['login'];
+                        $id = $c['id_product'];
+                        $login = $c['author'];
                         $date = $c['date'];
                         $commentary = $c['comment'];
                         $subject = $c['subject'];
                         ?>
                         <div class="comment">
                             <h3><?= $subject ?></h3>
-                            <small class="comment-meta">Publié le <?= $date ?></small>
+                            <small class="comment-meta">Publié le <?= $date ?> par <?= $login?></small>
                             <p><?= $commentary ?></p>
                             <hr>
                         </div>

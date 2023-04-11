@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", event => {
     const allProducts = document.getElementById("allProducts");
-    // limiter la taille des images
-    //allProducts.image.style.maxWidth = "300px";
-    //allProducts.image.style.maxHeight = "500px";
     const bestSales = document.getElementById("best_sales");
-    //bestSales.image.style.maxWidth = "300px";    
-    //bestSales.image.style.maxHeight = "500px";
     const newCollection = document.getElementById("new_collection");
-    //newCollection.image.style.maxWidth = "300px";
-    //newCollection.image.style.maxHeight = "500px";
     const productContainer = document.getElementById("product_container");
-    //productContainer.image.style.maxWidth = "300px";
-    //productContainer.image.style.maxHeight = "500px";
-
 
     $displayMode = "allProducts";
+
+    // define isset function
+    $_GET = event => {
+        let url = new URL(event);
+        let params = new URLSearchParams(url.search);
+        return params.get('displayMode');
+    }
 
     if(isset($_GET['displayMode'])){
         $displayMode = $_GET['displayMode'];

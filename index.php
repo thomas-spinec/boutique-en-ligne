@@ -29,7 +29,7 @@
 
         <div class="slogan">Veni, vedi,</div>
         <img class="logo_big" src="inc/img/design/logo_wt.png" alt="logo">
-        <button class="btn btn-light my-5 d-flex justify-items-center">SHOP NOW</button>
+<a href="./shop.php"><button class="btn btn-light my-5 d-flex justify-items-center">SHOP NOW</button></a>
 
     </section>
         
@@ -41,7 +41,7 @@
             <?php
             $product = new Product();
             $products = $product->getRandomNewCollection(); ?>
-            <a class="mx-auto " href="shop.php?display=newCollection"><button class="btn btn-dark my-5 d-flex justify-items-center ">SEE ALL</button>
+            <a class="mx-auto " href="shop.php?display=newCollection"><button class="btn btn-dark my-5 d-flex justify-items-center ">SEE ALL</button></a>
         </div>
 
         <div class="photo w-100 d-flex my-5 pt-5"> 

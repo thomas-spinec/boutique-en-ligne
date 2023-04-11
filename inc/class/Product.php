@@ -113,7 +113,7 @@ class Product extends Model{
             echo '<div class="d-flex flex-wrap justify-content-between">';
             foreach ($results as $result) { ?>
                 <div class="card col-lg-3 col-md-6 col-sm-12 p-3">
-                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['best_sales'] ?> " style="max-height: 750px; max-width: 500px;">
+                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['best_sales'] ?>" class="img-fluid">
                     <div class="d-flex justify-content-between">
                         <p class="text-center"> <?php echo $result['title'] ?> </p>
                         <p class="text-center"> <?php echo $result['price'] ?> € </p>
@@ -135,7 +135,7 @@ class Product extends Model{
         if (count($results) > 0) {
             foreach ($results as $result) { ?>
                 <div class="card col-lg-3 col-md-6 col-sm-12 p-3">
-                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['new_collection'] ?>">
+                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['new_collection'] ?>" class="img-fluid">
                     <div class="d-flex justify-content-between">
                         <p class="text-center"> <?php echo $result['title'] ?> </p>
                         <p class="text-center"> <?php echo $result['price'] ?> € </p>
@@ -163,7 +163,7 @@ class Product extends Model{
                 $image = $result['image']; ?>
 
                 <!-- card -->
-                <div class="card shadow col-lg-3 col-md-6 col-sm-12 p-3 m-2 justify-content-center">
+                <div class="card shadow col-lg-3 col-md-6 col-sm-12 p-3 justify-content-center">
                     <div class=" position-relative">
                         <h4 class="card-title"><?= $title ?></h4>
                         <img src="inc/img/shop/<?= $image ?>" class="card-img-top" alt="<?= $title ?>">                            

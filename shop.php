@@ -17,9 +17,57 @@
 <body>        
     <?php include 'inc/header.php'; ?>
 
-    <main>
-        <h1>Shop</h1>
-        <h1 class="bis">Shop</h1>
+    <main class="mt-0">
+
+        <section class="shop_header">
+            <p class="w-100 d-flex big m-0">SHOP</p>
+        </section>
+
+        <section class="deg w-100 mx-0">
+            <div class="row grid mx-0 justify-content-between">
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="btn btn-default square-button">
+                    <div class="square-button-content">
+                        <h4>New Collection</h4>
+                        <img src="inc/img/icons/new.png">
+                    </div>
+                    </div>
+                </div>
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="btn btn-default square-button">
+                    <div class="square-button-content">
+                        <h4>Accessory</h4><br>
+                        <img src="inc/img/icons/accessory.png">
+                    </div>
+                    </div>
+                </div>
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="btn btn-default square-button">
+                    <div class="square-button-content">
+                        <h4>Best Sales</h4><br>
+                        <img src="inc/img/icons/bestsales.png">
+                    </div>
+                    </div>
+                </div>
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="btn btn-default square-button">
+                    <div class="square-button-content">
+                        <h4>Clearance</h4><br>
+                        <img src="inc/img/icons/sales.png">
+                    </div>
+                    </div>
+                </div>
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="btn btn-default square-button">
+                    <div class="square-button-content">
+                        <h4>Underwear</h4><br>
+                        <img src="inc/img/icons/underwear.png">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <div id="product_container" class="container d-flex flex-wrap">
             <?php
