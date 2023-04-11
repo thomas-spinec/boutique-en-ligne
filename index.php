@@ -16,40 +16,50 @@
 
 </head>
 <body>
-    
-    <div class="wrapper">
-        
-        <?php include 'inc/header.php'; ?>
+            
+    <?php include 'inc/header.php'; ?>
 
         
-        <section class="hero">
+    <section class="hero">
+        <!-- <video class="w-100" autoplay loop muted>
+            <source src="inc/img/design/shop.mp4" type="video/mp4" />
+            <span class="slogan">Veni, vedi,</span>
+            <h1>Vetix</h1>
+        </video> -->
 
-            <!-- <video class="w-100" autoplay loop muted>
-                <source src="inc/img/design/shop.mp4" type="video/mp4" />
-                <span class="slogan">Veni, vedi,</span>
-                <h1>Vetix</h1>
-            </video> -->
+        <div class="slogan">Veni, vedi,</div>
+        <img class="logo_big" src="inc/img/design/logo_wt.png" alt="logo">
+<a href="./shop.php"><button class="btn btn-light my-5 d-flex justify-items-center">SHOP NOW</button></a>
 
-            <div class="slogan">Veni, vedi,</div>
-            <img class="logo_big" src="inc/img/design/logo_wt.png" alt="logo">
-
-        </section>
+    </section>
         
-        <main class="container">
-
+    <main>
+        <div class="container my-5">
+            <!-- NEW COLLECTION -->
             <h1>New Collection</h1>
             <h1 class="bis">New Collection</h1>
+            <?php
+            $product = new Product();
+            $products = $product->getRandomNewCollection(); ?>
+            <a class="mx-auto " href="shop.php?display=newCollection"><button class="btn btn-dark my-5 d-flex justify-items-center ">SEE ALL</button></a>
+        </div>
 
-        </main>
-
-        <div class="push"></div>
-
-    </div> <!-- /wrapper -->
+        <div class="photo w-100 d-flex my-5 pt-5"> 
+            <span class="text-body-tertiary fs-3 lh-5 col-lg-6 align-content-center my-auto text-center">SPRING <br>COLLECTION</span>
+        </div>
+    
+        <!-- BEST SALES -->
+        <section class="bg-light my-5 py-5">
+            <h1>Best Sales</h1>
+            <h1 class="ter">Best Sales</h1>
+            <?php $product->getRandomBestSales(); ?>
+        </section>
+    </main>
 
     <?php include 'inc/footer.php'; ?>
 
-        <!-- Bootstrap js -->
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

@@ -83,7 +83,7 @@ class User extends Model
         $this->bdd = null;
     }
 
-    // Connexion
+    // Connection
     public function connect($login, $password)
     {
         // Récupérer le login
@@ -144,6 +144,7 @@ class User extends Model
         $this->bdd = null;
     }
 
+    // check if user is admin
     public function isAdmin()
     {
         if ($this->role === "admin") {
@@ -176,47 +177,58 @@ class User extends Model
         return $this->login;
     }
 
+    // get user id
+    public function getUserId()
+    {
+        return $this->id;
+    }
+
+    // get user firstname
     public function getFirstname()
     {
         return $this->firstname;
     }
 
+    // get user lastname
     public function getLastname()
     {
         return $this->lastname;
     }
 
+    // get user address
     public function getAddress()
     {
         return $this->address;
     }
 
+    // get user city
     public function getCity()
     {
         return $this->city;
     }
 
+    // get user country
     public function getCountry()
     {
         return $this->country;
     }
 
+    // get user zip
     public function getZip()
     {
         return $this->zip;
     }
 
+    // get user email
     public function getEmail()
     {
         return $this->email;
     }
 
+    // get user role
     public function getRole()
     {
         return $this->role;
     }
-
-
-    // get one user
 
 }

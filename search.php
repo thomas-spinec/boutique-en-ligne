@@ -43,7 +43,7 @@ $title = "Search : " . htmlspecialchars($_GET['search']); */
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col text-white">Your search :</th>
+                                <th scope="col text-white"><h2 class="py-5">Your search</h2></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +58,7 @@ $title = "Search : " . htmlspecialchars($_GET['search']); */
                             <tr>
                                 <td>
                                     <ul>
-                                        <li>
+                                        <li class="list-unstyled">
                                             <?php foreach ($results as $result): ?>
                                                 <a href="product.php?id=<?= $result['id_product'] ?>"> <?=$result['title'] ?></a>
                                             <?php endforeach; ?>
