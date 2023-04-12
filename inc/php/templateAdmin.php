@@ -75,9 +75,9 @@ elseif(isset($_GET["products"])):
            
                 <th>CATEGORY</th>
 
-                <th>STOCK</th>
+                <th>SIZE</th>
 
-                <th>NOTES</th>
+                <th>STOCK</th>
             </tr>
 
         </thead>
@@ -96,8 +96,10 @@ elseif(isset($_GET["products"])):
                 <th> <p class="delProduct" data-id="<?=$value['id_product']?>">cross</p> <span>crayon</span> <?= $value['title'] ?></th>
                 <th><?= $value['id_product']?></th>
                 <th><?= $value['category']?></th>
-                <th><?= "5"?></th>
-                <th><?= $value['description']?></th>
+                <th><?php 
+                    
+                ?></th>
+                <th><?= $value['stock']?></th>
             </tr>
 
         <?php
@@ -160,9 +162,9 @@ elseif(isset($_GET["addProducts"])):
     <input type="number" name="stock" min="1">
 
     <label for="price">Price</label>
-    <input type="number" name="price" min="1"id="euros">
+    <input type="number" name="priceEuro" min="1"id="euros">
     <span>€</span>
-    <input type="number" name="price" min="0" id="centimes">
+    <input type="number" name="priceCentime" min="0" id="centimes">
 
     <input type="submit" name="add" value="ADD" class="submitAdd">
 </form>

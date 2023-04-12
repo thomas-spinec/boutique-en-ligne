@@ -14,17 +14,25 @@ class Product extends Model
     {
         $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.sales, link_categ.id_product 
         AS id_link_product, link_categ.id_categ, category.id_category, category.name 
-        AS category 
+        AS category, 
+        product_size.id_product AS id_size_product,
+        product_size.id_size, size.id_size, size.size,
         FROM $this->tablename 
         INNER JOIN link_categ 
         ON product.id_product=link_categ.id_product 
         INNER JOIN category 
-        ON link_categ.id_categ=category.id_category";
+        ON link_categ.id_categ=category.id_category
+        INNER JOIN product_size
+        ON product.id_product=product_size.id_product
+        INNER JOIN size
+        ON product_size.id_size=size.id_size
+        ORDER BY product.id_product";
 
         if ($categ != null) {
             $categ = htmlspecialchars($categ);
             $request = $request . " WHERE category.id_category=$categ";
         }
+        
 
         $select = $this->bdd->prepare($request);
 
@@ -33,6 +41,32 @@ class Product extends Model
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
+    }
+
+    public function getStock($idProduct, $idSize){
+
+        $idProduct = htmlspecialchars($idProduct);
+        $idSize = htmlspecialchars($idSize);
+
+        $request = 'SELECT product_size.stock AS stock
+        FROM product_size
+        INNER JOIN $this->tablename
+        ON product.id_product=product_size.id_product
+        INNER JOIN size
+        ON product_size.id_size=size.id_size
+        WHERE product.id_product = :idProduct AND product_size.id_size = :idSize';
+        
+        $select = $this->bdd->prepare($request);
+
+        $select->execute([
+            ":idProduct" => $idProduct,
+            ":idSize" => $idSize,
+        ]);
+
+        $result = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+
     }
 
     public function getInfo($table)
@@ -114,30 +148,52 @@ class Product extends Model
         return $result;
     }
 
-    public function addProduct(){
+    public function addProduct($title, $description, $idCategory, $size, $stock, $priceEuro, $priceCentime, $imgName)
+    {
 
+        $title = htmlspecialchars($title);
+        $description = htmlspecialchars($description);
+        $idCategory = htmlspecialchars($idCategory);
+        $size = htmlspecialchars($size);
+        $stock = htmlspecialchars($stock);
+        $priceEuro = htmlspecialchars($priceEuro);
+        $priceCentime = htmlspecialchars($priceCentime);
+        $imgName = htmlspecialchars($imgName);
 
-    
-        $imageProduct = $_FILES["imageProduct"]["name"];
-        $titleProduct = $_POST["title"];
-        $descriptionProduct =  $_POST['description'];
-        $categoryProduct = $_POST['category'];
-        $sizeProduct = $_POST['size'];
-        $stockProduct = $_POST['stock'];
-        $priceProduct = $_POST['price'];
-        $addProduct = $_POST['addProduct'];
+        // change price into centimes
+        $realPrice = (int)$priceEuro * 100 + $priceCentime;
 
+        $request1 = "INSERT INTO $this->tablename (title, description, image, price) VALUES (:title, :description, :image, :price)";
+        $insert = $this->bdd->prepare($request1);
+        $insert->execute([
+            ":title" => $title,
+            ":description" => $description,
+            ":image" => $imgName,
+            ":price" => $realPrice,
+        ]);
 
+        $lastId = $this->bdd->lastInsertId();
 
+        $request2 = "INSERT INTO link_categ (id_product, id_categ) VALUES (:id_product, :id_categ)";
+        $insert2 = $this->bdd->prepare($request2);
+        $insert2->execute([
+            ":id_product" => $lastId,
+            ":id_categ" => $idCategory,
+        ]);
 
-        $register = "INSERT INTO articles (titre, article, image, id_utilisateur, date) VALUE( ?, ?, ?, ?, NOW())";
-        $prepare = $this->pdo ->prepare($register);
+        $request3 = "INSERT INTO product_size (id_product, id_size, stock) VALUES (:id_product, :id_size, :stock)";
+        $insert3 = $this->bdd->prepare($request3);
+        $insert3->execute([
+            ":id_product" => $lastId,
+            ":id_size" => $size,
+            ":stock" => $stock,
+        ]);
 
-      $prepare->execute([$artTitle, $artText, $artImg, $id]);
-
-
-
-
-}
+        if ($insert && $insert2 && $insert3) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
 
 }
