@@ -97,10 +97,22 @@ elseif (isset($_GET["products"])) :
                         </th>
                         <th><?= $value['id_product'] ?></th>
                         <th><?= $value['category'] ?></th>
-                        <th><?php
+                        <th>
+                            <select name="size" id="">
+                                <?php
+                                // size pour le produit en cours
+                                $sizesProduct = $product->getSize($value['id_product']);
+                                foreach ($sizesProduct as $cols => $valueSize) {
+                                ?>
+                                    <option value="<?= $valueSize['id_size'] ?>"><?= $valueSize['size'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </th>
+                        <!-- On récup la valeur du select au dessus -->
 
-                            ?></th>
-                        <th><?= $value['stock'] ?></th>
+
                     </tr>
 
             <?php

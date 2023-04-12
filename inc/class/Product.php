@@ -12,20 +12,14 @@ class Product extends Model
 
     public function getAll($categ = null)
     {
-        $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.sales, link_categ.id_product 
+        $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.Promotion, link_categ.id_product 
         AS id_link_product, link_categ.id_categ, category.id_category, category.name 
-        AS category, 
-        product_size.id_product AS id_size_product,
-        product_size.id_size, size.id_size, size.size
+        AS category
         FROM $this->tablename 
         INNER JOIN link_categ 
         ON product.id_product=link_categ.id_product 
         INNER JOIN category 
         ON link_categ.id_categ=category.id_category
-        INNER JOIN product_size
-        ON product.id_product=product_size.id_product
-        INNER JOIN size
-        ON product_size.id_size=size.id_size
         ORDER BY product.id_product";
 
         if ($categ != null) {
@@ -62,6 +56,30 @@ class Product extends Model
         $select->execute([
             ":idProduct" => $idProduct,
             ":idSize" => $idSize,
+        ]);
+
+        $result = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function getSize($idProduct)
+    {
+        $idProduct = htmlspecialchars($idProduct);
+
+        $request = "SELECT product_size.id_product AS id_size_product,
+        product_size.id_size, size.id_size, size.size
+        FROM $this->tablename
+        INNER JOIN product_size
+        ON product.id_product=product_size.id_product
+        INNER JOIN size
+        ON product_size.id_size=size.id_size
+        WHERE product.id_product = :idProduct";
+
+        $select = $this->bdd->prepare($request);
+
+        $select->execute([
+            ":idProduct" => $idProduct,
         ]);
 
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
