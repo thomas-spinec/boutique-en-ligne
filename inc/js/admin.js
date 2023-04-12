@@ -182,6 +182,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  display.addEventListener("change", function (e) {
+    e.preventDefault();
+    if (e.target.classList.contains("displayStock")) {
+      const idProduct = e.target.getAttribute("data-id");
+      const idSize = e.target.value;
+      const stock = e.target.parentNode.nextElementSibling;
+      fetch(
+        "inc/php/adminGestion.php?getStock&idProduct=" +
+          idProduct +
+          "&idSize=" +
+          idSize
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+          stock.innerHTML = response["stock"];
+        });
+    }
+  });
+
   gestion.addEventListener("click", function (e) {
     if (e.target.classList.contains("submitAdd")) {
       e.preventDefault();

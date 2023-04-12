@@ -98,7 +98,8 @@ elseif (isset($_GET["products"])) :
                         <th><?= $value['id_product'] ?></th>
                         <th><?= $value['category'] ?></th>
                         <th>
-                            <select name="size" id="">
+                            <select class="displayStock" name="size" data-id="<?= $value['id_product'] ?>">
+                                <option value="" selected disabled>Choisir une taille</option>
                                 <?php
                                 // size pour le produit en cours
                                 $sizesProduct = $product->getSize($value['id_product']);
@@ -110,9 +111,8 @@ elseif (isset($_GET["products"])) :
                                 ?>
                             </select>
                         </th>
-                        <!-- On récup la valeur du select au dessus -->
-
-
+                        <!-- partie qui affichera le stock -->
+                        <th></th>
                     </tr>
 
             <?php

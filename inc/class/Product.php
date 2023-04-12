@@ -45,11 +45,7 @@ class Product extends Model
 
         $request = 'SELECT product_size.stock AS stock
         FROM product_size
-        INNER JOIN $this->tablename
-        ON product.id_product=product_size.id_product
-        INNER JOIN size
-        ON product_size.id_size=size.id_size
-        WHERE product.id_product = :idProduct AND product_size.id_size = :idSize';
+        WHERE product_size.id_product = :idProduct AND product_size.id_size = :idSize';
 
         $select = $this->bdd->prepare($request);
 
@@ -58,7 +54,7 @@ class Product extends Model
             ":idSize" => $idSize,
         ]);
 
-        $result = $select->fetchAll(PDO::FETCH_ASSOC);
+        $result = $select->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }

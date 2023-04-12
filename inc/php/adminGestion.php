@@ -7,35 +7,33 @@ $user = new User();
 $product = new Product();
 
 
-if(isset($_GET['delUser'])){
+if (isset($_GET['delUser'])) {
     $id = $_GET['delUser'];
-    
-    $user->deleteOne($id);
 
+    $user->deleteOne($id);
 }
 
-if(isset($_GET['delProduct'])){
+if (isset($_GET['delProduct'])) {
     $idProduct = $_GET['delProduct'];
 
     $product->deleteProduct($idProduct);
-
 }
 
 
-if(isset($_GET['delCategory'])){
+if (isset($_GET['delCategory'])) {
     $idCategory = $_GET['delCategory'];
     $product->deleteCategory($idCategory);
 }
 
 
-if(isset($_POST['changeRole'])){
+if (isset($_POST['changeRole'])) {
     $newRole = $_POST['role'];
     $id = $_POST['id'];
     $user->changeRole($newRole, $id);
 }
 
 
-if(isset($_POST['addProduct'])){
+if (isset($_POST['addProduct'])) {
 
     var_dump($_POST);
     var_dump($_FILES);
@@ -49,7 +47,7 @@ if(isset($_POST['addProduct'])){
     $priceEuro = $_POST['priceEuro'];
     $priceCentime = $_POST['priceCentime'];
     $imgName = $_FILES["imageProduct"]["name"];
-    if(isset($title) && isset($description) && isset($idCategory) && isset($size) && isset($stock) && isset($priceEuro) && isset($priceCentime) && isset($imgName));
+    if (isset($title) && isset($description) && isset($idCategory) && isset($size) && isset($stock) && isset($priceEuro) && isset($priceCentime) && isset($imgName));
 
 
     $target_dir = "../img/shop/";
@@ -67,17 +65,22 @@ if(isset($_POST['addProduct'])){
         'image/png'
     ];
 
-    if(in_array($type, $allowedType) && $size > 300000){
+    if (in_array($type, $allowedType) && $size > 300000) {
 
         echo "Image too big or type image not allowed";
-    }
-    
-    else{
-        if(move_uploaded_file($_FILES["imageProduct"]['tmp_name'], $target_dir . $fileName)){
+    } else {
+        if (move_uploaded_file($_FILES["imageProduct"]['tmp_name'], $target_dir . $fileName)) {
             echo "The file" . htmlspecialchars(basename($_FILES["imageProduct"]["name"])) . "has been uploaded";
             $product->addProduct($title, $descritpion, $idCategory, $sizeProduct, $stock, $priceEuro, $priceCentime, $imgName);
-        }else{
+        } else {
             echo "Sorry there was an error";
         }
     }
-    }
+}
+
+if (isset($_GET["getStock"])) {
+    $idProduct = $_GET['idProduct'];
+    $idSize = $_GET['idSize'];
+    $stock = $product->getStock($idProduct, $idSize);
+    echo json_encode($stock);
+}
