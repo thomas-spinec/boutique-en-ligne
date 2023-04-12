@@ -34,6 +34,7 @@
                 <a href="" id="users">MEMBER MANAGEMENT</a>
                 <a href="" id="products">PRODUCT MANAGEMENT</a>
                 <a href="" id="categories">CATEGORY MANAGEMENT</a>
+                <a href="" id="sizes">SIZE MANAGEMENT</a>
 
             </div>
 

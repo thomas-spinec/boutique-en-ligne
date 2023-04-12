@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const users = document.querySelector("#users");
   const products = document.querySelector("#products");
   const categories = document.querySelector("#categories");
+  const sizes = document.querySelector("#sizes");
   //SECTION D'AFFICHAGE//
   const display = document.querySelector("#display");
   const gestion = document.querySelector("#gestion");
@@ -60,9 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //PRODUCTS//
   function displayProducts(categ) {
-if(categ === undefined){
-  categ = "";
-}
+    if (categ === undefined) {
+      categ = "";
+    }
 
     display.innerHTML = "";
     gestion.innerHTML = "";
@@ -200,15 +201,12 @@ if(categ === undefined){
       )
         .then((response) => response.json())
         .then((response) => {
-          console.log(response);
           stock.innerHTML = response["stock"];
         });
-    }
-    else if(e.target.classList.contains("filterCateg")){
+    } else if (e.target.classList.contains("filterCateg")) {
       const idCategory = e.target.value;
       displayProducts(idCategory);
     }
-
   });
 
   gestion.addEventListener("click", function (e) {
@@ -253,7 +251,6 @@ if(categ === undefined){
     }
   });
 
-
   //CATEGORIES//
 
   categories.addEventListener("click", function (e) {
@@ -267,5 +264,15 @@ if(categ === undefined){
       const idCategory = e.target.getAttribute("data-id");
       deleteCategory(idCategory);
     }
+  });
+
+  // Size (en plus, sera supp)//
+  sizes.addEventListener("click", function (e) {
+    e.preventDefault();
+    fetch("inc/php/adminGestion.php?sizes")
+      .then((response) => response.text())
+      .then((response) => {
+        console.log(response);
+      });
   });
 });

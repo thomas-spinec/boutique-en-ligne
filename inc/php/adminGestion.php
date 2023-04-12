@@ -84,3 +84,8 @@ if (isset($_GET["getStock"])) {
     $stock = $product->getStock($idProduct, $idSize);
     echo json_encode($stock);
 }
+
+
+if (isset($_GET["sizes"])) {
+    $product->addSize();
+}

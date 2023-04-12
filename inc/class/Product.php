@@ -208,4 +208,50 @@ class Product extends Model
             echo "error";
         }
     }
+
+    public function addSize()
+    {
+        // boucle avec une requete pour ajouter une taille et un stock pour chaque produit
+        $products = $this->getAll();
+        foreach ($products as $cols => $value) {
+            $idProduct = $value['id_product'];
+            $idProduct2 = $value['id_product'];
+            // si le produit a déjà cette taille, on l'update
+            $verif = "SELECT * FROM product_size WHERE id_product = :idProduct AND id_size = 4 OR id_product = :idProduct2 AND id_size = 3";
+            $select = $this->bdd->prepare($verif);
+            $select->execute([
+                ":idProduct" => $idProduct,
+                ":idProduct2" => $idProduct2,
+            ]);
+            // on compte le nombre de ligne et s'il y en a une, on update
+            $count = $select->rowCount();
+            if ($count > 0) {
+                $request = "UPDATE product_size SET stock = 20 WHERE id_product = :idProduct AND id_size = 4 OR id_product = :idProduct2 AND id_size = 3";
+                $update = $this->bdd->prepare($request);
+                $update->execute([
+                    ":idProduct" => $idProduct,
+                    ":idProduct2" => $idProduct2,
+                ]);
+                if ($update) {
+                    echo "update ok_";
+                } else {
+                    echo "error";
+                }
+            } else {
+                // sinon on insert
+                $request = "INSERT INTO `product_size` (`id_size`, `id_product`, `stock`) VALUES ('4', :idProduct, '20'), ('3', :idProduct2, '20')";
+                $insert = $this->bdd->prepare($request);
+                $insert->execute([
+                    ":idProduct" => $idProduct,
+                    ":idProduct2" => $idProduct2,
+                ]);
+
+                if ($insert) {
+                    echo "ok";
+                } else {
+                    echo "error";
+                }
+            }
+        }
+    }
 }
