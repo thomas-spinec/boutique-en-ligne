@@ -16,7 +16,7 @@ class Product extends Model
         AS id_link_product, link_categ.id_categ, category.id_category, category.name 
         AS category, 
         product_size.id_product AS id_size_product,
-        product_size.id_size, size.id_size, size.size,
+        product_size.id_size, size.id_size, size.size
         FROM $this->tablename 
         INNER JOIN link_categ 
         ON product.id_product=link_categ.id_product 
@@ -32,7 +32,7 @@ class Product extends Model
             $categ = htmlspecialchars($categ);
             $request = $request . " WHERE category.id_category=$categ";
         }
-        
+
 
         $select = $this->bdd->prepare($request);
 
@@ -43,7 +43,8 @@ class Product extends Model
         return $result;
     }
 
-    public function getStock($idProduct, $idSize){
+    public function getStock($idProduct, $idSize)
+    {
 
         $idProduct = htmlspecialchars($idProduct);
         $idSize = htmlspecialchars($idSize);
@@ -55,7 +56,7 @@ class Product extends Model
         INNER JOIN size
         ON product_size.id_size=size.id_size
         WHERE product.id_product = :idProduct AND product_size.id_size = :idSize';
-        
+
         $select = $this->bdd->prepare($request);
 
         $select->execute([
@@ -66,7 +67,6 @@ class Product extends Model
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
-
     }
 
     public function getInfo($table)
@@ -195,5 +195,4 @@ class Product extends Model
             echo "error";
         }
     }
-
 }

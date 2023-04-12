@@ -70,6 +70,17 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((form) => (gestion.innerHTML = form));
   }
 
+  function addSelectSize(sizeNb, div) {
+    console.log(sizeNb);
+    console.log(div);
+    fetch("inc/php/templateAdmin.php?" + sizeNb)
+      .then((response) => response.text())
+      .then((response) => {
+        // rajouter la response à la suite de target via son parent, puis supprimer le target
+        div.innerHTML += response;
+      });
+  }
+
   function deleteProduct(id) {
     fetch("inc/php/adminGestion.php?delProduct=" + id)
       .then((response) => response.text())
@@ -175,6 +186,41 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target.classList.contains("submitAdd")) {
       e.preventDefault();
       addProduct();
+    }
+    // ajout d'une taille
+    else if (e.target.classList.contains("addSize")) {
+      e.preventDefault();
+      const target = e.target;
+      // récupération du parent de target
+      const div = target.parentNode;
+      const sizeNb = e.target.getAttribute("data-id");
+      div.removeChild(target);
+      addSelectSize(sizeNb, div);
+    }
+  });
+
+  // si on sélectionne une taille sur un select, on ne doit pas pouvoir sélectionner la même taille sur les autres selects
+  gestion.addEventListener("change", function (e) {
+    if (e.target.classList.contains("selectSize")) {
+      const target = e.target;
+      const div = target.parentNode;
+      const selectSize = div.querySelectorAll(".selectSize");
+      const size = [];
+      // on récupère la valeur de chaque select dans des variables différentes
+      for (let i = 0; i < selectSize.length; i++) {
+        size[i] = selectSize[i].value;
+      }
+      // on parcourt les options de chaque select et on les désactive si la valeur de l'option est dans le tableau size
+      for (let i = 0; i < selectSize.length; i++) {
+        const options = selectSize[i].querySelectorAll("option");
+        for (let j = 0; j < options.length; j++) {
+          if (size.includes(options[j].value)) {
+            options[j].disabled = true;
+          } else {
+            options[j].disabled = false;
+          }
+        }
+      }
     }
   });
 
