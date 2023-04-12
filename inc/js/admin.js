@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //SECTION D'AFFICHAGE//
   const display = document.querySelector("#display");
   const gestion = document.querySelector("#gestion");
+  const filterCateg = document.querySelector('#filterCateg');
   // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
   // USERS//
@@ -59,10 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //PRODUCTS//
-  function displayProducts() {
+  function displayProducts(categ) {
+if(categ === undefined){
+  categ = "";
+}
+
     display.innerHTML = "";
     gestion.innerHTML = "";
-    fetch("inc/php/templateAdmin.php?products")
+    fetch("inc/php/templateAdmin.php?products&categ=" + categ)
       .then((response) => response.text())
       .then((table) => (display.innerHTML = table));
     fetch("inc/php/templateAdmin.php?addProducts")
@@ -244,6 +249,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  filterCateg.addEventListener('change', function(e){
+    e.preventDefault();
+    console.log("change detected");
+
+  } )
   //CATEGORIES//
 
   categories.addEventListener("click", function (e) {

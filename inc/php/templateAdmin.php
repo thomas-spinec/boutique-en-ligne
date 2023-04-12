@@ -62,15 +62,25 @@ if (isset($_GET["users"])) :
 elseif (isset($_GET["products"])) :
     require_once "../class/Product.php";
     $product = new Product();
-    $products = $product->getAll();
-    $tableSize = 'size';
+    if($_GET['categ'] != ""){
+        $products = $product->getAll($_GET['categ']);
+    }
+    else{
+        $products = $product->getAll();
+    }
     $tableCategory = 'category';
-    $sizes = $product->getInfo($tableSize);
     $categories = $product->getInfo($tableCategory);
-    var_dump($categories);
+    // var_dump($categories);
 
     // $idProduct = $product['id_product'];
 ?>
+    <select id="filterCateg">
+        <?php foreach ($categories as $cols => $value) {
+        ?>
+            <option value="<?= $value['id_category'] ?>"><?= $value['name'] ?></option>
+        <?php
+        } ?>
+    </select>
     <table>
         <thead>
             <tr>
@@ -88,13 +98,6 @@ elseif (isset($_GET["products"])) :
         </thead>
         <tbody>
 
-            <select id="filterCateg">
-                <?php foreach ($categories as $cols => $value) {
-                ?>
-                    <option value="<?= $value['id_category'] ?>"><?= $value['name'] ?></option>
-                <?php
-                } ?>
-            </select>
 
             <?php
             if (empty($products)) {
