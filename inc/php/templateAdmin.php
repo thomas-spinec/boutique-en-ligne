@@ -74,7 +74,9 @@ elseif (isset($_GET["products"])) :
 
     // $idProduct = $product['id_product'];
 ?>
-    <select id="filterCateg">
+    <select class="filterCateg">
+        <option value="" selected>Category</option>
+
         <?php foreach ($categories as $cols => $value) {
         ?>
             <option value="<?= $value['id_category'] ?>"><?= $value['name'] ?></option>

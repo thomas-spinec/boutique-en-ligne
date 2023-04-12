@@ -19,8 +19,7 @@ class Product extends Model
         INNER JOIN link_categ 
         ON product.id_product=link_categ.id_product 
         INNER JOIN category 
-        ON link_categ.id_categ=category.id_category
-        ORDER BY product.id_product";
+        ON link_categ.id_categ=category.id_category";
 
         if ($categ != null) {
             $categ = htmlspecialchars($categ);

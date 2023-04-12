@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //SECTION D'AFFICHAGE//
   const display = document.querySelector("#display");
   const gestion = document.querySelector("#gestion");
-  const filterCateg = document.querySelector('#filterCateg');
   // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
   // USERS//
@@ -205,6 +204,11 @@ if(categ === undefined){
           stock.innerHTML = response["stock"];
         });
     }
+    else if(e.target.classList.contains("filterCateg")){
+      const idCategory = e.target.value;
+      displayProducts(idCategory);
+    }
+
   });
 
   gestion.addEventListener("click", function (e) {
@@ -249,11 +253,7 @@ if(categ === undefined){
     }
   });
 
-  filterCateg.addEventListener('change', function(e){
-    e.preventDefault();
-    console.log("change detected");
 
-  } )
   //CATEGORIES//
 
   categories.addEventListener("click", function (e) {
