@@ -20,7 +20,7 @@ class Product extends Model
         INNER JOIN category 
         ON link_categ.id_categ=category.id_category";
 
-        if ($categ != null) {
+            if ($categ != null) {
             $categ = htmlspecialchars($categ);
             $request = $request . " WHERE category.id_category=$categ";
         }
