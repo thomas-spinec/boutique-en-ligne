@@ -1,39 +1,44 @@
-document.addEventListener("DOMContentLoaded", event => {
-    const allProducts = document.getElementById("allProducts");
-    const bestSales = document.getElementById("best_sales");
-    const newCollection = document.getElementById("new_collection");
-    const productContainer = document.getElementById("product_container");
+document.addEventListener("DOMContentLoaded", function(){
+    let productsContainer = document.getElementById("products_container");
+    let links = document.querySelectorAll('.category_link');
 
-    $displayMode = "allProducts";
+    let url = new URL(window.location.href);
+    let idCateg = url.searchParams.get("category_id");
 
-    // define isset function
-    $_GET = event => {
-        let url = new URL(event);
-        let params = new URLSearchParams(url.search);
-        return params.get('displayMode');
+    // FUNCTIONS
+    function getAllProducts(){
+        fetch("inc/php/getProductsByCategory.php")
+        .then(response => response.text())
+        .then(data => {
+            productsContainer.innerHTML = data;
+        });
     }
 
-    if(isset($_GET['displayMode'])){
-        $displayMode = $_GET['displayMode'];
+    function getProductsByCategory(idCateg){
+        fetch("inc/php/getProductsByCategory.php?category_id="+idCateg)
+        .then(response => response.text())
+        .then(data => {
+            productsContainer.innerHTML = data;
+        });
     }
 
-    if($displayMode == "allProducts"){
-        allProducts.classList.add("active");
-        bestSales.classList.remove("active");
-        newCollection.classList.remove("active");
-        productContainer.innerHTML = "allProducts";
-    }else if($displayMode == "best_sales"){
-        allProducts.classList.remove("active");
-        bestSales.classList.add("active");
-        newCollection.classList.remove("active");
-        productContainer.innerHTML = "best_sales";
-    }else if($displayMode == "new_collection"){
-        allProducts.classList.remove("active");
-        bestSales.classList.remove("active");
-        newCollection.classList.add("active");
-        productContainer.innerHTML = "new_collection";
+    // EVENTS
+
+    // Get all products on page load
+    if(idCateg == null){
+        getAllProducts();
+    }
+    else{
+        getProductsByCategory(idCateg);
     }
 
+    links.forEach(link => {
+        link.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log(e.target);
+            let idCateg = e.target.getAttribute('data-id');
+            getProductsByCategory(idCateg);
+        });
+    });
 
-    
-}); //end DOMContentLoaded
+});

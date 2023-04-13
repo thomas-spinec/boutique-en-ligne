@@ -19,75 +19,60 @@
 
     <main class="mt-0">
 
-        <section class="shop_header">
-            <p class="w-100 d-flex big m-0">SHOP</p>
+        <section class="shop_header d-flex text-center">
+            <p class=" shop_title big">SHOP</p>
         </section>
 
-        <section class="deg w-100 mx-0">
-            <div class="row grid mx-0 justify-content-between">
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <section class="gradient text-center w-100 m-0">
+            <div class="row grid text-center justify-content-between m-0">
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <div class="btn btn-default square-button">
-                    <div class="square-button-content">
-                        <h4>New Collection</h4>
-                        <img src="inc/img/icons/new.png">
-                    </div>
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="7"><img src="inc/img/icons/new.png" alt="New Collection" data-id="7"></a>
+                        </div>
                     </div>
                 </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <div class="btn btn-default square-button">
-                    <div class="square-button-content">
-                        <h4>Accessory</h4><br>
-                        <img src="inc/img/icons/accessory.png">
-                    </div>
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="1"><img src="inc/img/icons/accessory.png" alt="Accessory" data-id="1"></a>
+                        </div>
                     </div>
                 </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <div class="btn btn-default square-button">
-                    <div class="square-button-content">
-                        <h4>Best Sales</h4><br>
-                        <img src="inc/img/icons/bestsales.png">
-                    </div>
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="2"><img src="inc/img/icons/bestsales.png" alt="Best Sellers" data-id="2"></a>
+                        </div>
                     </div>
                 </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <div class="btn btn-default square-button">
-                    <div class="square-button-content">
-                        <h4>Clearance</h4><br>
-                        <img src="inc/img/icons/sales.png">
-                    </div>
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="8"><img src="inc/img/icons/sales.png" alt="Promotion" data-id="8"></a>
+                        </div>
                     </div>
                 </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <div class="btn btn-default square-button">
-                    <div class="square-button-content">
-                        <h4>Underwear</h4><br>
-                        <img src="inc/img/icons/underwear.png">
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="6"><img src="inc/img/icons/underwear.png" alt="Loungewear" data-id="6"></a>
+                        </div>
                     </div>
+                </div>
+                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <div class="btn btn-default square-button">
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="9"><img src="inc/img/icons/sportswear.png" alt="Sportswear" data-id="9"></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <div id="product_container" class="container d-flex flex-wrap">
-            <?php
-            $displayMode = 'allProducts'; // Default display mode
-            
-            if (isset($_GET['display'])) {
-                $displayMode = $_GET['display'];
-            }
-            
-            switch ($displayMode) {
-                case 'bestSales':
-                    $products = $product->getRandomBestSales();
-                    break;
-                case 'newCollection':
-                    $products = $product->getRandomNewCollection();
-                    break;
-                default:
-                    $products = $product->getAllProducts();
-            }
-            ?>
+        <div id="products_container" class="container d-flex flex-wrap">
+
         </div>
 
 

@@ -97,7 +97,7 @@
         <section class="bg-light my-5 py-5">
             <h1>Best Sales</h1>
             <h1 class="ter">Best Sales</h1>
-            <?php $product->getRandomBestSales(); ?>
+            <?php $product->getRandomBestSellers(4); ?>
         </section>
         
         <?php $comment = new Comment(); ?>

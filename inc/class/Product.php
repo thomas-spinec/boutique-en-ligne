@@ -103,53 +103,9 @@ class Product extends Model{
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
-    public function getRandomBestSales() {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, best_sales FROM $this->tablename ORDER BY RAND() LIMIT 4");
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
     
-        if (count($results) > 0) {
-            echo '<div class="d-flex flex-wrap justify-content-between">';
-            foreach ($results as $result) { ?>
-                <div class="card col-lg-3 col-md-6 col-sm-12 p-3">
-                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['best_sales'] ?>" class="img-fluid">
-                    <div class="d-flex justify-content-between">
-                        <p class="text-center"> <?php echo $result['title'] ?> </p>
-                        <p class="text-center"> <?php echo $result['price'] ?> € </p>
-                    </div>
-                    <button type="button" class="btn btn-outline-dark "><a class="text-decoration-none text-black" href="./product.php?id=<?php echo $result['id_product'] ?>">SEE MORE</a></button>
-                </div>
-            <?php }
-        } else {
-            echo 'Actually no best sales';
-        }
-    }
-
-    public function getRandomNewCollection() {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, new_collection FROM $this->tablename ORDER BY RAND() LIMIT 4");
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-    
-        echo '<div class="d-flex flex-wrap justify-content-between">';
-        if (count($results) > 0) {
-            foreach ($results as $result) { ?>
-                <div class="card col-lg-3 col-md-6 col-sm-12 p-3">
-                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['new_collection'] ?>" class="img-fluid">
-                    <div class="d-flex justify-content-between">
-                        <p class="text-center"> <?php echo $result['title'] ?> </p>
-                        <p class="text-center"> <?php echo $result['price'] ?> € </p>
-                    </div>
-                    <button type="button" class="btn btn-outline-dark "><a class="text-decoration-none text-black" href="./product.php?id=<?php echo $result['id_product'] ?>">SEE MORE</a></button>
-                </div>
-            <?php }
-        } else {
-            echo 'Coming soon';
-        }
-    }
-
     public function getAllProducts() {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, sales FROM $this->tablename");
+        $query = $this->bdd->prepare("SELECT id_product, title, image, price, promotion FROM $this->tablename");
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
     
@@ -176,7 +132,7 @@ class Product extends Model{
                             </div>
                             <div class="d-flex">
                                 <!-- shop -->
-                                <a href="product.php?id=<?= $id ?>" class="btn"><i class="fas fa-shopping-cart"> Shop Now</i></a>
+                                <a href="product.php?id=<?= $id ?>" class="btn"><i class="fas fa-shopping-cart"> See</i></a>
                                 <!-- price -->
                                 <p class="card-text text-white my-auto"><?= $price ?>€</p>
                             </div>
@@ -190,4 +146,131 @@ class Product extends Model{
         }
     }
 
+    public function getRandomBestSellers($limit) {
+        $query = $this->bdd->prepare("SELECT id_product, title, image, price, best_sellers 
+        FROM $this->tablename 
+        WHERE best_sellers = 1
+        ORDER BY RAND() 
+        LIMIT " . intval($limit));
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        // si il y a des résultats
+        if (count($results) > 0) {
+            return $results;
+        } else {
+
+            $results = 'No best sellers';
+            return $results;
+        }
+    }
+
+    public function getRandomNewCollection($limit) {
+        $query = $this->bdd->prepare("SELECT id_product, title, image, price, new_collection 
+        FROM $this->tablename
+        WHERE new_collection = 1
+        ORDER BY RAND() 
+        LIMIT " . intval($limit));
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+        echo '<div class="d-flex flex-wrap justify-content-between my-5">';
+        if (count($results) > 0) {
+            foreach ($results as $result) { ?>
+                <div class="card col-lg-3 col-md-6 col-sm-12 p-3">
+                    <img src="./inc/img/shop/<?php echo $result['image'] ?>" alt="<?php echo $result['new_collection'] ?>" class="img-fluid">
+                    <div class="d-flex justify-content-between">
+                        <p class="text-center"> <?php echo $result['title'] ?> </p>
+                        <p class="text-center"> <?php echo $result['price'] ?> € </p>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark "><a class="text-decoration-none text-black" href="./product.php?id=<?php echo $result['id_product'] ?>">SEE MORE</a></button>
+                </div>
+            <?php }
+        } else {
+            echo 'Coming soon';
+        }
+    }
+
+    public function getAllPromotionProducts(){
+        $query = $this->bdd->prepare("SELECT id_product, title, image, price, promotion, promotion_percentage 
+        FROM $this->tablename
+        WHERE promotion_percentage = :promotion_percentage AND promotion = 1 ORDER BY promotion_percentage DESC");
+        $query->execute([':promotion_percentage' => 1]);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (count($results) > 0) { ?>
+            <div class="d-flex flex-wrap justify-content-between">
+            <?php
+            foreach ($results as $result) { 
+                $id = $result['id_product'];
+                $title = $result['title'];
+                $image = $result['image']; 
+                $price = $result['price'];
+                $percentage = $result['promotion_percentage'];
+                $newPrice = $price - ($price * $percentage)?>
+
+                <!-- card -->
+                <div class="card shadow col-lg-3 col-md-6 col-sm-12 p-3 justify-content-center">
+                    <div class=" position-relative">
+                        <h4 class="card-title"><?= $title ?></h4>
+                        <img src="inc/img/shop/<?= $image ?>" class="card-img-top" alt="<?= $title ?>">                            
+                        <div class="w-100 d-flex px-3 justify-content-between bg-dark position-absolute bottom-0">
+                            <!-- love -->
+                            <div class="d-flex ">
+                                <a href="#" class="my-auto px-2"><i class="fas fa-heart"></i></a>
+                                <!-- see -->
+                                <a href="#" class="my-auto px-2 pt-1"><i class="fas fa-search"></i></a>
+                            </div>
+                            <div class="d-flex">
+                                <!-- shop -->
+                                <a href="product.php?id=<?= $id ?>" class="btn"><i class="fas fa-shopping-cart"> See</i></a>
+                                <!-- price -->
+                                <p class="card-text text-white my-auto"><?= '<p class="text-decoration-line-through">' . $price . '€</style>' . $percentage . '% off' . $newPrice ?> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /card -->
+                <?php
+            } 
+        }  else {
+            echo 'No promotion products for now, check back soon';
+        }
+    }
+
+    public function getCategory($id)
+    {
+        $request = "SELECT * FROM $this WHERE id_category = :id";
+        $select = $this->bdd->prepare($request);
+        $select->execute([
+            ':id' => $id
+        ]);
+        $result = $select->fetch();
+        $this->bdd = null;
+        return $result;
+    }
+
+    public function getProductsByCategory($id) {
+        $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.promotion, link_categ.id_product 
+        AS id_link_product, link_categ.id_categ, category.id_category, category.name 
+        AS category 
+        FROM product 
+        INNER JOIN link_categ 
+        ON product.id_product=link_categ.id_product 
+        INNER JOIN category 
+        ON link_categ.id_categ=category.id_category
+        WHERE category.id_category = :id";
+        $select = $this->bdd->prepare($request);
+        $select->execute([
+            ':id' => $id
+        ]);
+        $results = $select->fetchAll(PDO::FETCH_ASSOC);
+        $this->bdd = null;
+            // si il y a des résultats
+            if (count($results) > 0) {
+                return $results;
+            } else {
+    
+                $results = 'No products in this category';
+                return $results;
+            }
+
+    }
 }

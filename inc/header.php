@@ -98,30 +98,30 @@ $comment = new Comment();
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a id="new_collection" class="nav-link" href="shop.php?display=newCollection">New Collection</a>
+                            <a class="nav-link category_link" href="" data-id="7">New Collection</a>
                         </li>
                         <li class="nav-item">
-                            <a id="best_sales" class="nav-link" href="shop.php?display=bestSales">Best Sales</a>
+                            <a class="nav-link category_link" href="" data-id="2">Best Sellers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.php">Shop</a>
+                            <a class="nav-link category_link" href="shop.php">Shop</a>
                         </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link lined" href="shop.php?display=clearance">Clearance</a>
+                            <a class="nav-link category_link" href="" data-id="8">Promotion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link lined" href="about.php">About</a>
+                            <a class="nav-link category_link" href="about.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link lined" href="contact.php">Contact</a>
+                            <a class="nav-link category_link" href="contact.php">Contact</a>
                         </li>
                     </ul>
                 </div> <!-- /collapse -->
             </div> <!-- /container-fluid -->
         </nav>
 
-        <!-- Serach bar -->
+        <!-- Search bar -->
         <div class="d-flex">
             <div class="col-lg-11 col-md-1 mx-auto">
                 <form class="d-flex search" method="get" action="search.php">
@@ -140,35 +140,29 @@ $comment = new Comment();
         <div class="container-fluid justify-content-start">
 
             <ul class="navbar-nav flex-row mx-3">
-                <li class="nav-item" class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=accessory">Accessory</a>
+                <li class="nav-item" class="nav-item category_link">
+                    <a class="nav-link" href="" data-id="1">Accessory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=coat">Coat</a>
+                    <a class="nav-link category_link" href="" data-id="3">Bottoms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=dress">Dress</a>
+                    <a class="nav-link category_link" href="" data-id="4">Coat</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=Loungewear">Loungewear</a>
+                    <a class="nav-link category_link" href="" data-id="5" >Dress</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=pants">Pants</a>
+                    <a class="nav-link category_link" href="" data-id="6">Loungewear</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=shirt">Shirt</a>
+                    <a class="nav-link category_link" href="" data-id="9">Sportswear</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=skirt">Skirt</a>
+                    <a class="nav-link category_link" href="" data-id="10">Suits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=suit">Suit</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=sweater">Sweater</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link lined" href="shop.php?display=top">Top</a>
+                    <a class="nav-link category_link" href="" data-id="11">Tops</a>
                 </li>
             </ul>
 
@@ -177,3 +171,5 @@ $comment = new Comment();
     </nav>
 
 </header>
+
+

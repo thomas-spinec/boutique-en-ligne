@@ -40,7 +40,7 @@
             <h1 class="bis">New Collection</h1>
             <?php
             $product = new Product();
-            $products = $product->getRandomNewCollection(); ?>
+            $products = $product->getRandomNewCollection(4); ?>
             <a class="mx-auto " href="shop.php?display=newCollection"><button class="btn btn-dark my-5 d-flex justify-items-center ">SEE ALL</button></a>
         </div>
 
@@ -52,7 +52,7 @@
         <section class="bg-light my-5 py-5">
             <h1>Best Sales</h1>
             <h1 class="ter">Best Sales</h1>
-            <?php $product->getRandomBestSales(); ?>
+            <?php $product->getRandomBestSellers(4); ?>
         </section>
     </main>
 
