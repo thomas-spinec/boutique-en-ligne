@@ -127,7 +127,7 @@
             <section class="bg-grey py-5 m-5">
                 <h1>New Collection</h1>
                 <h1 class="ter">New Collection</h1>
-                <?php $product->getRandomNewCollection(); ?>
+                <?php $product->getRandomNewCollection(4); ?>
             </section>
             
         </main>
