@@ -12,7 +12,7 @@ class Product extends Model
 
     public function getAll($categ = null)
     {
-        $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.promotion, link_categ.id_categ, category.id_category, category.name 
+        $request = "SELECT product.id_product, product.title, product.description, product.image, product.image_1, product.image_2, product.price, product.promotion, product.promotion_percentage, link_categ.id_categ, category.id_category, category.name 
         AS category
         FROM $this->tablename 
         INNER JOIN link_categ 
@@ -20,7 +20,7 @@ class Product extends Model
         INNER JOIN category 
         ON link_categ.id_categ=category.id_category";
 
-            if ($categ != null) {
+        if ($categ != null) {
             $categ = htmlspecialchars($categ);
             $request = $request . " WHERE category.id_category=$categ";
         }
@@ -32,7 +32,12 @@ class Product extends Model
 
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            $result = "Nothing to show here !";
+            return $result;
+        }
     }
 
     public function getStock($idProduct, $idSize)
@@ -207,8 +212,8 @@ class Product extends Model
 
         //if we have others sizes we link them
 
-        if(isset($product["size2"])){
-            
+        if (isset($product["size2"])) {
+
             $requestSize = "INSERT INTO product_size (id_product, id_size, stock) VALUES (:id_product, :id_size, :stock)";
             $insertSize = $this->bdd->prepare($requestSize);
             $insertSize->execute([
@@ -216,11 +221,10 @@ class Product extends Model
                 ":id_size" => $product['size2'],
                 ":stock" => $product['stock2'],
             ]);
-            
         }
 
-        if(isset($product["size3"])){
-            
+        if (isset($product["size3"])) {
+
             $requestSize = "INSERT INTO product_size (id_product, id_size, stock) VALUES (:id_product, :id_size, :stock)";
             $insertSize = $this->bdd->prepare($requestSize);
             $insertSize->execute([
@@ -228,10 +232,9 @@ class Product extends Model
                 ":id_size" => $product['size3'],
                 ":stock" => $product['stock3'],
             ]);
-            
         }
-        if(isset($product["size4"])){
-            
+        if (isset($product["size4"])) {
+
             $requestSize = "INSERT INTO product_size (id_product, id_size, stock) VALUES (:id_product, :id_size, :stock)";
             $insertSize = $this->bdd->prepare($requestSize);
             $insertSize->execute([
@@ -239,10 +242,9 @@ class Product extends Model
                 ":id_size" => $product['size4'],
                 ":stock" => $product['stock4'],
             ]);
-            
         }
-        if(isset($product["size5"])){
-            
+        if (isset($product["size5"])) {
+
             $requestSize = "INSERT INTO product_size (id_product, id_size, stock) VALUES (:id_product, :id_size, :stock)";
             $insertSize = $this->bdd->prepare($requestSize);
             $insertSize->execute([
@@ -250,11 +252,10 @@ class Product extends Model
                 ":id_size" => $product['size5'],
                 ":stock" => $product['stock5'],
             ]);
-            
         }
 
-        if(isset($product["size6"])){
-            
+        if (isset($product["size6"])) {
+
             $requestSize = "INSERT INTO product_size (id_product, id_size, stock) VALUES (:id_product, :id_size, :stock)";
             $insertSize = $this->bdd->prepare($requestSize);
             $insertSize->execute([
@@ -262,26 +263,25 @@ class Product extends Model
                 ":id_size" => $product['size6'],
                 ":stock" => $product['stock6'],
             ]);
-            
         }
 
         // img2
-        if(isset($product['imgName_1'])){
+        if (isset($product['imgName_1'])) {
             $requestImg = "UPDATE $this->tablename SET `image_1`= :imgName WHERE id_product = :lastId";
             $insertImg = $this->bdd->prepare($requestImg);
             $insertImg->execute([
-                ":imgName"=>$product['imgName_1'],
-                ":lastId"=>$lastId,
+                ":imgName" => $product['imgName_1'],
+                ":lastId" => $lastId,
             ]);
         }
 
         //img3
-        if(isset($product['imgName_2'])){
+        if (isset($product['imgName_2'])) {
             $requestImg = "UPDATE $this->tablename SET `image_2`= :imgName WHERE id_product = :lastId";
             $insertImg = $this->bdd->prepare($requestImg);
             $insertImg->execute([
-                ":imgName"=>$product['imgName_2'],
-                ":lastId"=>$lastId,
+                ":imgName" => $product['imgName_2'],
+                ":lastId" => $lastId,
             ]);
         }
 
