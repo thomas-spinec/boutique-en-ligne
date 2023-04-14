@@ -158,7 +158,13 @@ elseif (isset($_GET["addProducts"])) :
         <input type="text" name="description">
 
         <label for="imageProduct">photo</label>
-        <input type="file" name="imageProduct">
+        <input type="file" name="imageProduct" required >
+
+        <label for="imageProduct_1">photo 2</label>
+        <input type="file" name="imageProduct_1">
+        
+        <label for="imageProduct_2">photo 3</label>
+        <input type="file" name="imageProduct_2">
 
         <label for="category">Category</label>
         <select name="category">
@@ -172,7 +178,7 @@ elseif (isset($_GET["addProducts"])) :
             ?>
         </select>
 
-        <div class="size">
+        <div class="sizeDiv">
             <label for="size">Size</label>
             <select class="selectSize" name="size">
                 <option value="" disabled selected>Size</option>

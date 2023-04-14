@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.text())
       .then((response) => {
-        console.table(response);
+        console.log(response);
       });
   }
 
@@ -242,9 +242,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const options = selectSize[i].querySelectorAll("option");
         for (let j = 0; j < options.length; j++) {
           if (size.includes(options[j].value)) {
-            options[j].disabled = true;
+            options[j].hidden = true;
           } else {
-            options[j].disabled = false;
+            options[j].hidden = false;
           }
         }
       }
