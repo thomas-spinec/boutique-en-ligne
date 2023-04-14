@@ -12,8 +12,7 @@ class Product extends Model
 
     public function getAll($categ = null)
     {
-        $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.Promotion, link_categ.id_product 
-        AS id_link_product, link_categ.id_categ, category.id_category, category.name 
+        $request = "SELECT product.id_product, product.title, product.description, product.image, product.price, product.promotion, link_categ.id_categ, category.id_category, category.name 
         AS category
         FROM $this->tablename 
         INNER JOIN link_categ 

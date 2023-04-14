@@ -1,9 +1,17 @@
 <?php
 session_start();
+require_once "../class/User.php";
+require_once "../class/Product.php";
+$user = new User();
+$users = $user->getAll();
+$product = new Product();
+$tableSize = 'size';
+$sizes = $product->getInfo($tableSize);
+$tableCategory = 'category';
+$categories = $product->getInfo($tableCategory);
+
+// GESTION DES UTILISATEURS --------------------------------
 if (isset($_GET["users"])) :
-    require_once "../class/User.php";
-    $user = new User();
-    $users = $user->getAll();
 ?>
 
     <table>
@@ -60,16 +68,11 @@ if (isset($_GET["users"])) :
 
 <?php
 elseif (isset($_GET["products"])) :
-    require_once "../class/Product.php";
-    $product = new Product();
-    if($_GET['categ'] != ""){
+    if ($_GET['categ'] != "") {
         $products = $product->getAll($_GET['categ']);
-    }
-    else{
+    } else {
         $products = $product->getAll();
     }
-    $tableCategory = 'category';
-    $categories = $product->getInfo($tableCategory);
     // var_dump($categories);
 
     // $idProduct = $product['id_product'];
@@ -144,12 +147,6 @@ elseif (isset($_GET["products"])) :
 
 <?php
 elseif (isset($_GET["addProducts"])) :
-    require_once "../class/Product.php";
-    $product = new Product();
-    $tableSize = 'size';
-    $tableCategory = 'category';
-    $sizes = $product->getInfo($tableSize);
-    $categories = $product->getInfo($tableCategory);
 ?>
 
     <form method="POST" id="formProduct">
@@ -203,12 +200,8 @@ elseif (isset($_GET["addProducts"])) :
     </form>
 
 <?php
-// ajout d'une taille
+// ajout d'une taille --------------------------------------------
 elseif (isset($_GET["size2"])) :
-    require_once "../class/Product.php";
-    $product = new Product();
-    $tableSize = 'size';
-    $sizes = $product->getInfo($tableSize);
 ?>
     <label for="size2">Size</label>
     <select class="selectSize" name="size2">
@@ -229,10 +222,6 @@ elseif (isset($_GET["size2"])) :
 
 <?php
 elseif (isset($_GET["size3"])) :
-    require_once "../class/Product.php";
-    $product = new Product();
-    $tableSize = 'size';
-    $sizes = $product->getInfo($tableSize);
 ?>
     <label for="size3">Size</label>
     <select class="selectSize" name="size3">
@@ -249,12 +238,70 @@ elseif (isset($_GET["size3"])) :
     <label for="stock3">Stock</label>
     <input type="number" name="stock3" min="1">
 
+    <button data-id="size4" class="addSize"><span>+</span>add a new size </button>
+
 <?php
+elseif (isset($_GET["size4"])) :
+
+?>
+    <label for="size4">Size</label>
+    <select class="selectSize" name="size4">
+        <option value="" disabled selected>Size</option>
+        <?php
+        foreach ($sizes as $cols => $value) {
+        ?>
+            <option value="<?= $value['id_size'] ?>"><?= $value['size'] ?></option>
+        <?php
+        }
+        ?>
+    </select>
+
+    <label for="stock4">Stock</label>
+    <input type="number" name="stock4" min="1">
+
+    <button data-id="size5" class="addSize"><span>+</span>add a new size </button>
+
+<?php
+elseif (isset($_GET["size5"])) :
+?>
+    <label for="size5">Size</label>
+    <select class="selectSize" name="size5">
+        <option value="" disabled selected>Size</option>
+        <?php
+        foreach ($sizes as $cols => $value) {
+        ?>
+            <option value="<?= $value['id_size'] ?>"><?= $value['size'] ?></option>
+        <?php
+        }
+        ?>
+    </select>
+
+    <label for="stock5">Stock</label>
+    <input type="number" name="stock5" min="1">
+
+    <button data-id="size6" class="addSize"><span>+</span>add a new size </button>
+
+<?php
+elseif (isset($_GET["size6"])) :
+?>
+    <label for="size6">Size</label>
+    <select class="selectSize" name="size6">
+        <option value="" disabled selected>Size</option>
+        <?php
+        foreach ($sizes as $cols => $value) {
+        ?>
+            <option value="<?= $value['id_size'] ?>"><?= $value['size'] ?></option>
+        <?php
+        }
+        ?>
+    </select>
+
+    <label for="stock6">Stock</label>
+    <input type="number" name="stock6" min="1">
+
+<?php
+// GESTION DES CATEGORIES --------------------------------------------
 elseif (isset($_GET["categories"])) :
-    require_once "../class/Product.php";
-    $product = new Product();
-    $tableCategory = 'category';
-    $categories = $product->getInfo($tableCategory);
 ?>
     <table>
         <thead>
@@ -285,7 +332,6 @@ elseif (isset($_GET["categories"])) :
     </table>
 <?php
 elseif (isset($_GET["addCategories"])) :
-
 ?>
 
     <form method="POST" id="addCategory">
