@@ -86,4 +86,23 @@ abstract class Model
         }
     }
 
+    //Delete one category from table
+    protected function deleteCategory($idCategory)
+    {
+        $idCategory = htmlspecialchars($idCategory);
+
+        $request = "DELETE FROM category WHERE id_category = :id";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idCategory,
+        ]);
+
+        if ($delete) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
 }

@@ -338,4 +338,37 @@ class User extends Model
             $this->bdd = null;
         }
 
+        public function getAll()
+    {
+       return parent::getAll();
+    }
+
+    public function deleteOne($id){
+
+        echo parent::deleteOne($id);
+
+
+    }
+
+    public function changeRole($newRole, $id){
+
+        $newRole = htmlspecialchars($newRole);
+        $id = htmlspecialchars($id);
+        $request = "UPDATE $this->tablename SET `role` = :role WHERE id_user=:id";
+
+        $updateRole = $this->bdd->prepare($request);
+
+        $updateRole->execute([
+             ":role" =>$newRole,
+             ":id" => $id,
+        ]);
+
+        if($updateRole){
+            echo "ok";
+        }
+        else{
+            echo "error";
+        }
+
+    }
 }
