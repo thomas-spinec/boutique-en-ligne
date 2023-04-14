@@ -7,12 +7,17 @@
     <title>Shop</title>
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
+    <!-- jQuery 3.6.4 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Lightbox2 2.11.3 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
     <script src="inc/js/menu.js"></script>
+    <script src="inc/js/search.js"></script>
 </head>
 <body>        
     <?php include 'inc/header.php'; ?>
@@ -82,6 +87,14 @@
 
     <!-- Bootstrap js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Lightbox2 2.11.3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+    </script>
 
 </body>
 </html>

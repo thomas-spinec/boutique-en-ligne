@@ -98,23 +98,23 @@ $comment = new Comment();
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link category_link" href="" data-id="7">New Collection</a>
+                            <a class="nav-link" href="shop.php?category_id=7" data-id="7">New Collection</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category_link" href="" data-id="2">Best Sellers</a>
+                            <a class="nav-link" href="shop.php?category_id=2" data-id="2">Best Sellers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category_link" href="shop.php">Shop</a>
+                            <a class="nav-link" href="shop.php">Shop</a>
                         </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category_link" href="" data-id="8">Promotion</a>
+                            <a class="nav-link" href="shop.php?category_id=8" data-id="8">Promotion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category_link" href="about.php">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link category_link" href="contact.php">Contact</a>
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                     </ul>
                 </div> <!-- /collapse -->
@@ -140,29 +140,29 @@ $comment = new Comment();
         <div class="container-fluid justify-content-start">
 
             <ul class="navbar-nav flex-row mx-3">
-                <li class="nav-item" class="nav-item category_link">
-                    <a class="nav-link" href="" data-id="1">Accessory</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="shop.php?category_id=1" data-id="1">Accessory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="3">Bottoms</a>
+                    <a class="nav-link" href="shop.php?category_id=3" data-id="3">Bottoms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="4">Coat</a>
+                    <a class="nav-link" href="shop.php?category_id=4" data-id="4">Coat</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="5" >Dress</a>
+                    <a class="nav-link" href="shop.php?category_id=5" data-id="5" >Dress</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="6">Loungewear</a>
+                    <a class="nav-link" href="shop.php?category_id=6" data-id="6">Loungewear</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="9">Sportswear</a>
+                    <a class="nav-link" href="shop.php?category_id=9" data-id="9">Sportswear</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="10">Suits</a>
+                    <a class="nav-link" href="shop.php?category_id=10" data-id="10">Suits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link category_link" href="" data-id="11">Tops</a>
+                    <a class="nav-link" href="shop.php?category_id=11" data-id="11">Tops</a>
                 </li>
             </ul>
 

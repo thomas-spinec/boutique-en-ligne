@@ -166,6 +166,8 @@ button:hover a
     background-color: #f5f5f5;
 }
 
+del {color: tomato;}
+
 /* LIST ****************************************************/
 
 ul a:hover{
