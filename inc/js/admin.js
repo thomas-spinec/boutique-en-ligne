@@ -553,6 +553,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // close the popUp
+  popUp.addEventListener("click", function (e) {
+    if (e.target.classList.contains("closePopUp")) {
+      popUp.innerHTML = "";
+    }
+  });
+
   // Size (en plus, sera supp)//
   sizes.addEventListener("click", function (e) {
     e.preventDefault();
