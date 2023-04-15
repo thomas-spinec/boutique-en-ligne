@@ -40,11 +40,12 @@
 
             <section id="display"></section>
             <span></span>
+            <section id="popUp"></section>
             <section id="gestion"></section>
 
-    </main>
+        </main>
 
-    <div class="push"></div>
+        <div class="push"></div>
 
     </div> <!-- /wrapper -->
 
