@@ -1,12 +1,13 @@
 <?php
 require_once "Model.php";
-class Product extends Model{
+class Product extends Model
+{
     protected $bdd;
     protected $tablename = "product";
-    
+
     public function __construct()
     {
-            parent::__construct();
+        parent::__construct();
     }
 
     public function getAll($categ = null)
@@ -19,7 +20,7 @@ class Product extends Model{
         INNER JOIN category 
         ON link_categ.id_categ=category.id_category";
 
-            if ($categ != null) {
+        if ($categ != null) {
             $categ = htmlspecialchars($categ);
             $request = $request . " WHERE category.id_category=$categ";
         }
@@ -37,7 +38,6 @@ class Product extends Model{
             $result = "Nothing to show here !";
             return $result;
         }
-
     }
 
     public function getStock($idProduct, $idSize)
@@ -85,21 +85,59 @@ class Product extends Model{
 
         return $result;
     }
-    
+
 
     public function getInfo($table)
-    {   
+    {
         $table = htmlspecialchars($table);
         $this->tablename = $table;
         $result = parent::getAll();
         $this->tablename = "product";
         return $result;
-
     }
 
-    public function deleteProduct($id){
+    public function deleteProduct($idProduct)
+    {
+        $idProduct = htmlspecialchars($idProduct);
 
-        echo parent::deleteProduct($id);
+        // SELECT the images to delete
+        $request = "SELECT image, image_1, image_2 FROM $this->tablename WHERE id_product = :id ";
+
+        $select = $this->bdd->prepare($request);
+
+        $select->execute([
+            ":id" => $idProduct,
+        ]);
+
+        $result = $select->fetch(PDO::FETCH_ASSOC);
+
+        $image = $result["image"];
+        $image_1 = $result["image_1"];
+        $image_2 = $result["image_2"];
+        // delete the images
+        unlink("../img/shop/$image");
+        // si l'image n'est pas null, on la supprime
+        if ($image_1 != null) {
+            unlink("../img/shop/$image_1");
+        }
+        if ($image_2 != null) {
+            unlink("../img/shop/$image_2");
+        }
+
+        // delete the product
+        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
+
+        $delete = $this->bdd->prepare($request);
+
+        $delete->execute([
+            ":id" => $idProduct,
+        ]);
+
+        if ($delete) {
+            return "ok";
+        } else {
+            return "error";
+        }
     }
 
     public function deleteCategory($idCategory)
@@ -123,7 +161,8 @@ class Product extends Model{
 
 
 
-    public function completion() {
+    public function completion()
+    {
 
         $get = $this->bdd->prepare("SELECT id_product, title FROM $this->tablename");
         $get->execute();
@@ -134,36 +173,40 @@ class Product extends Model{
         echo $myJSON;
     }
 
-    public function searchProducts($search) {
+    public function searchProducts($search)
+    {
         $search = htmlspecialchars($search) . "%";
-    
+
         $query = $this->bdd->prepare("SELECT id_product, title FROM product WHERE title LIKE :search LIMIT 0,20;");
         $query->execute([':search' => $search]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    
+
         // return the search results
         return $result;
     }
 
-    public function getProductInfo($id) {
+    public function getProductInfo($id)
+    {
         $query = $this->bdd->prepare("SELECT * FROM $this->tablename WHERE id_product = :id");
         $query->execute([':id' => $id]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
-    
-    public function updateProduct($id, $title, $description, $image, $price, $sales, $categ) {
+
+    public function updateProduct($id, $title, $description, $image, $price, $sales, $categ)
+    {
         $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, price = :price, sales = :sales WHERE id_product = :id");
         $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':price' => $price, ':sales' => $sales]);
         $query = $this->bdd->prepare("UPDATE link_categ SET id_categ = :categ WHERE id_product = :id");
         $query->execute([':id' => $id, ':categ' => $categ]);
     }
 
-    public function getCategoryName($id) {
+    public function getCategoryName($id)
+    {
         $query = $this->bdd->prepare("SELECT name FROM category INNER JOIN link_categ ON category.id_category = link_categ.id_categ WHERE link_categ.id_product = :id");
         $query->execute([':id' => $id]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($result) {
             return $result['name'];
         } else {
@@ -171,14 +214,16 @@ class Product extends Model{
         }
     }
 
-    public function getProductImages($id) {
+    public function getProductImages($id)
+    {
         $query = $this->bdd->prepare("SELECT image, image_1, image_2 FROM product WHERE id_product = :id ORDER BY image ASC");
         $query->execute([':id' => $id]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getRandomBestSellers($limit) {
+    public function getRandomBestSellers($limit)
+    {
         $query = $this->bdd->prepare("SELECT id_product, title, image, price, best_sellers 
         FROM $this->tablename 
         WHERE best_sellers = 1
@@ -196,7 +241,8 @@ class Product extends Model{
         }
     }
 
-    public function getRandomNewCollection($limit) {
+    public function getRandomNewCollection($limit)
+    {
         $query = $this->bdd->prepare("SELECT id_product, title, image, price, new_collection 
         FROM $this->tablename
         WHERE new_collection = 1
@@ -213,8 +259,9 @@ class Product extends Model{
         }
     }
 
-    public function getCategory($id) {
-        $request = "SELECT * FROM $this WHERE id_category = :id";
+    public function getCategory($id)
+    {
+        $request = "SELECT * FROM category WHERE id_category = :id";
         $select = $this->bdd->prepare($request);
         $select->execute([
             ':id' => $id
@@ -353,6 +400,7 @@ class Product extends Model{
         }
     }
 
+    // sera effacée
     public function addSize()
     {
         // boucle avec une requete pour ajouter une taille et un stock pour chaque produit
@@ -398,8 +446,201 @@ class Product extends Model{
             }
         }
     }
+    // sera effacée
 
-    public function addCategories(){
-        
+    public function updateStock($idProduct, $idSize, $newStock)
+    {
+        //htmlspecialchars
+        $idProduct = htmlspecialchars($idProduct);
+        $idSize = htmlspecialchars($idSize);
+        $newStock = htmlspecialchars($newStock);
+
+        $request = "UPDATE product_size SET stock = :newStock WHERE id_product = :idProduct AND id_size = :idSize";
+
+        $update = $this->bdd->prepare($request);
+        $update->execute([
+            ":newStock" => $newStock,
+            ":idProduct" => $idProduct,
+            ":idSize" => $idSize,
+        ]);
+
+        if ($update) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function addStock($idProduct, $idSize, $newStock)
+    {
+        //htmlspecialchars
+        $idProduct = htmlspecialchars($idProduct);
+        $idSize = htmlspecialchars($idSize);
+        $newStock = htmlspecialchars($newStock);
+
+        $request = "INSERT INTO `product_size` (`id_size`, `id_product`, `stock`) VALUES (:idSize, :idProduct, :stock)";
+        $insert = $this->bdd->prepare($request);
+        $insert->execute([
+            ":idSize" => $idSize,
+            ":idProduct" => $idProduct,
+            ":stock" => $newStock,
+        ]);
+
+        if ($insert) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function addNewCollection($idProduct, $request)
+    {
+        $idProduct = htmlspecialchars($idProduct);
+        $request = htmlspecialchars($request);
+        if ($request == "add") {
+            $update = "UPDATE $this->tablename SET `new_collection`= 1 WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($update);
+            $update->execute([
+                ":idProduct" => $idProduct,
+            ]);
+
+
+            $query = "INSERT INTO `link_categ` (`id_product`, `id_categ`) VALUES (:idProduct, '7')";
+            $query = $this->bdd->prepare($query);
+            $query->execute([
+                ":idProduct" => $idProduct,
+            ]);
+        } elseif ($request == "del") {
+            $update = "UPDATE $this->tablename SET `new_collection`= 0 WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($update);
+            $update->execute([
+                ":idProduct" => $idProduct,
+            ]);
+
+            $query = "DELETE FROM `link_categ` WHERE id_product = :idProduct AND id_categ = 7";
+            $query = $this->bdd->prepare($query);
+            $query->execute([
+                ":idProduct" => $idProduct,
+            ]);
+        }
+
+        if ($update && $query) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function addBestSeller($idProduct, $request)
+    {
+        $idProduct = htmlspecialchars($idProduct);
+        $request = htmlspecialchars($request);
+        if ($request == "add") {
+            $update = "UPDATE $this->tablename SET `best_sellers`= 1 WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($update);
+            $update->execute([
+                ":idProduct" => $idProduct,
+            ]);
+
+            $query = "INSERT INTO `link_categ` (`id_product`, `id_categ`) VALUES (:idProduct, '2')";
+            $query = $this->bdd->prepare($query);
+            $query->execute([
+                ":idProduct" => $idProduct,
+            ]);
+        } elseif ($request == "del") {
+            $update = "UPDATE $this->tablename SET `best_sellers`= 0 WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($update);
+            $update->execute([
+                ":idProduct" => $idProduct,
+            ]);
+
+            $query = "DELETE FROM `link_categ` WHERE id_product = :idProduct AND id_categ = 2";
+            $query = $this->bdd->prepare($query);
+            $query->execute([
+                ":idProduct" => $idProduct,
+            ]);
+        }
+
+        if ($update && $query) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function addPromotion($idProduct, $percentage)
+    {
+        $idProduct = htmlspecialchars($idProduct);
+        $percentage = htmlspecialchars($percentage);
+
+        if ($percentage == 0) {
+            $update = "UPDATE $this->tablename SET `promotion`= 0 WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($update);
+            $update->execute([
+                ":idProduct" => $idProduct,
+            ]);
+
+            $query = "DELETE FROM `link_categ` WHERE id_product = :idProduct AND id_categ = 8";
+            $query = $this->bdd->prepare($query);
+            $query->execute([
+                ":idProduct" => $idProduct,
+            ]);
+        } else {
+            $update = "UPDATE $this->tablename SET `promotion`= 1, `promotion_percentage`=:promo WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($update);
+            $update->execute([
+                ":promo" => $percentage,
+                ":idProduct" => $idProduct,
+            ]);
+
+            $query = "INSERT INTO `link_categ` (`id_product`, `id_categ`) VALUES (:idProduct, '8')";
+            $query = $this->bdd->prepare($query);
+            $query->execute([
+                ":idProduct" => $idProduct,
+            ]);
+        }
+
+        if ($update && $query) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+
+    public function addCategory($newCategory)
+    {
+        $newCategory = htmlspecialchars($newCategory);
+
+        $request = "INSERT INTO `category` (`name`) VALUES (:newCategory)";
+        $insert = $this->bdd->prepare($request);
+        $insert->execute([
+            ":newCategory" => $newCategory,
+        ]);
+
+        if ($insert) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function updateCategory($idCategory, $newName)
+    {
+        $idCategory = htmlspecialchars($idCategory);
+        $newName = htmlspecialchars($newName);
+
+        $request = "UPDATE category SET name = :newCategory WHERE id_category = :idCategory";
+        $update = $this->bdd->prepare($request);
+        $update->execute([
+            ":newCategory" => $newName,
+            ":idCategory" => $idCategory,
+        ]);
+
+        if ($update) {
+            echo "ok";
+        } else {
+            echo "error";
+        }
     }
 }
