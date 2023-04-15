@@ -7,30 +7,73 @@ $user = new User();
 $product = new Product();
 
 
+// USER ---------------------------------------------
 if (isset($_GET['delUser'])) {
     $id = $_GET['delUser'];
 
     $user->deleteOne($id);
 }
 
-if (isset($_GET['delProduct'])) {
-    $idProduct = $_GET['delProduct'];
-
-    $product->deleteProduct($idProduct);
-}
-
-
-if (isset($_GET['delCategory'])) {
-    $idCategory = $_GET['delCategory'];
-    $product->deleteCategory($idCategory);
-}
-
-
 if (isset($_POST['changeRole'])) {
     $newRole = $_POST['role'];
     $id = $_POST['id'];
     $user->changeRole($newRole, $id);
 }
+
+// PRODUCT ---------------------------------------------
+
+if (isset($_GET['delProduct'])) {
+    $idProduct = $_GET['delProduct'];
+
+    echo $product->deleteProduct($idProduct);
+}
+
+if (isset($_POST['updateStock'])) {
+    $idProduct = $_POST['idProduct'];
+    $idSize = $_POST['idSize'];
+    $newStock = $_POST['stock'];
+
+    $product->updateStock($idProduct, $idSize, $newStock);
+}
+
+if (isset($_POST['addStock'])) {
+    $idProduct = $_POST['idProduct'];
+    $idSize = $_POST['idSize'];
+    $newStock = $_POST['stock'];
+
+    $product->addStock($idProduct, $idSize, $newStock);
+}
+
+if (isset($_POST['addNewCollection'])) {
+    if ($_POST['addNewCollection'] == 'add') {
+        $request = 'add';
+        $idProduct = $_POST['idProduct'];
+        $product->addNewCollection($idProduct, $request);
+    } elseif ($_POST['addNewCollection'] == 'del') {
+        $request = 'del';
+        $idProduct = $_POST['idProduct'];
+        $product->addNewCollection($idProduct, $request);
+    }
+}
+
+if (isset($_POST['addBestSeller'])) {
+    if ($_POST['addBestSeller'] == 'add') {
+        $request = 'add';
+        $idProduct = $_POST['idProduct'];
+        $product->addBestSeller($idProduct, $request);
+    } elseif ($_POST['addBestSeller'] == 'del') {
+        $request = 'del';
+        $idProduct = $_POST['idProduct'];
+        $product->addBestSeller($idProduct, $request);
+    }
+}
+
+if (isset($_POST['addPromotion'])) {
+    $idProduct = $_POST['idProduct'];
+    $percentage = $_POST['promotion'];
+    $product->addPromotion($idProduct, $percentage);
+}
+
 
 
 if (isset($_POST['addProduct'])) {
@@ -77,15 +120,13 @@ if (isset($_POST['addProduct'])) {
 
             echo "Image too big or type image not allowed";
         } else {
-            if (move_uploaded_file($_FILES["imageProduct"]['tmp_name'], $target_dir . $fileName)) {
-                echo "The file" . htmlspecialchars(basename($_FILES["imageProduct"]["name"])) . "has been uploaded";
-            } else {
+            if (!move_uploaded_file($_FILES["imageProduct"]['tmp_name'], $target_dir . $fileName)) {
                 echo "Sorry there was an error";
             }
         }
 
         // 2eme images -----------------------------------------
-        if (isset($_FILES['imageProduct_1'])) {
+        if ($_FILES['imageProduct_1']['name'] != "") {
             $fileName_1 = $_FILES["imageProduct_1"]["name"];
 
             $type_1 = $_FILES["imageProduct_1"]["type"];
@@ -95,9 +136,7 @@ if (isset($_POST['addProduct'])) {
 
                 echo "Image too big or type image not allowed";
             } else {
-                if (move_uploaded_file($_FILES["imageProduct_1"]['tmp_name'], $target_dir . $fileName_1)) {
-                    echo "The file" . htmlspecialchars(basename($_FILES["imageProduct_1"]["name"])) . "has been uploaded";
-                } else {
+                if (!move_uploaded_file($_FILES["imageProduct_1"]['tmp_name'], $target_dir . $fileName_1)) {
                     echo "Sorry there was an error";
                 }
             }
@@ -106,7 +145,7 @@ if (isset($_POST['addProduct'])) {
 
         // 3eme -----------------------------------------------------------------
 
-        if (isset($_FILES['imageProduct_2'])) {
+        if ($_FILES['imageProduct_2']["name"] != "") {
             $fileName_2 = $_FILES["imageProduct_2"]["name"];
 
             $type_2 = $_FILES["imageProduct_2"]["type"];
@@ -116,9 +155,7 @@ if (isset($_POST['addProduct'])) {
 
                 echo "Image too big or type image not allowed";
             } else {
-                if (move_uploaded_file($_FILES["imageProduct_2"]['tmp_name'], $target_dir . $fileName_2)) {
-                    echo "The file" . htmlspecialchars(basename($_FILES["imageProduct_2"]["name"])) . "has been uploaded";
-                } else {
+                if (!move_uploaded_file($_FILES["imageProduct_2"]['tmp_name'], $target_dir . $fileName_2)) {
                     echo "Sorry there was an error";
                 }
             }
@@ -165,8 +202,9 @@ if (isset($_POST['addProduct'])) {
 
         // once img are uploaded
         $product->addProduct($arrayProduct);
+    } else {
+        echo "You must fill all the fields";
     }
-    echo "error";
 }
 
 if (isset($_GET["getStock"])) {
@@ -181,7 +219,21 @@ if (isset($_GET["sizes"])) {
     $product->addSize();
 }
 
-if (isset($_POST['addCategories'])) {
-    $newCategories = $_POST['categories'];
-    $product->addCategories($newCategories);
+// CATEGORY -------------------------------------------------
+
+if (isset($_GET['delCategory'])) {
+    $idCategory = $_GET['delCategory'];
+    $product->deleteCategory($idCategory);
+}
+
+
+if (isset($_POST['addCategory'])) {
+    $newCategory = $_POST['category'];
+    $product->addCategory($newCategory);
+}
+
+if (isset($_POST["updateCategory"])) {
+    $idCategory = $_POST['id_category'];
+    $newName = $_POST['category'];
+    $product->updateCategory($idCategory, $newName);
 }

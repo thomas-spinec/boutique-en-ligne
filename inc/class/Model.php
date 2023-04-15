@@ -57,31 +57,9 @@ abstract class Model
             ":id" => $id,
         ]);
 
-        if($delete){
+        if ($delete) {
             return "ok";
-        }
-        else{
-            return "error";
-        }
-    }
-
-    //Delete one product from table//
-    protected function deleteProduct($idProduct)
-    {
-        $idProduct = htmlspecialchars($idProduct);
-
-        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idProduct,
-        ]);
-
-        if($delete){
-            return "ok";
-        }
-        else{
+        } else {
             return "error";
         }
     }
