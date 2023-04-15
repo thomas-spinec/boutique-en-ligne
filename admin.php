@@ -42,11 +42,9 @@
             <span></span>
             <section id="gestion"></section>
 
-    </div> <!-- /container -->
+        </main>
 
-    </main>
-
-    <div class="push"></div>
+        <div class="push"></div>
 
     </div> <!-- /wrapper -->
 
