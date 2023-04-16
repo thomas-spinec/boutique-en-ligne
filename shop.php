@@ -24,62 +24,60 @@
 
     <main class="mt-0">
 
-        <section class="shop_header d-flex text-center">
-            <p class=" shop_title big">SHOP</p>
+        <section class="shop_header">
+            <p class="shop_title big">SHOP</p>
         </section>
 
-        <section class="gradient text-center w-100 m-0">
-            <div class="row grid text-center justify-content-between m-0">
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="btn btn-default square-button">
+        <!-- Icons -->
+        <section class="bg-shopmenu text-center justify-content-between w-100 px-5 py-4 mb-5">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
-                            <a class="category_link" href="" data-id="7"><img src="inc/img/icons/new.png" alt="New Collection" data-id="7"></a>
+                            <a class="category_link" href="" data-id="1"><img class="img-fluid" src="inc/img/icons/accessory.png" alt="Accessory" data-id="1"></a>
                         </div>
                     </div>
-                </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="btn btn-default square-button">
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
-                            <a class="category_link" href="" data-id="1"><img src="inc/img/icons/accessory.png" alt="Accessory" data-id="1"></a>
+                            <a class="category_link" href="" data-id="4"><img class="img-fluid" src="inc/img/icons/coat.png" alt="Coat" data-id="4"></a>
                         </div>
                     </div>
-                </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="btn btn-default square-button">
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
-                            <a class="category_link" href="" data-id="2"><img src="inc/img/icons/bestsales.png" alt="Best Sellers" data-id="2"></a>
+                            <a class="category_link" href="" data-id="5"><img class="img-fluid" src="inc/img/icons/dress.png" alt="Dress" data-id="5"></a>
                         </div>
                     </div>
-                </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="btn btn-default square-button">
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
-                            <a class="category_link" href="" data-id="8"><img src="inc/img/icons/sales.png" alt="Promotion" data-id="8"></a>
+                            <a class="category_link" href="" data-id="3"><img class="img-fluid" src="inc/img/icons/pants.png" alt="Bottoms" data-id="3"></a>
                         </div>
                     </div>
-                </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="btn btn-default square-button">
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="9"><img class="img-fluid" src="inc/img/icons/sportswear.png" alt="Sportswear" data-id="9"></a>
+                        </div>
+                    </div>
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="10"><img class="img-fluid" src="inc/img/icons/suit.png" alt="Suit" data-id="10"></a>
+                        </div>
+                    </div>
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
+                        <div class="square-button-content">
+                            <a class="category_link" href="" data-id="11"><img class="img-fluid" src="inc/img/icons/top.png" alt="Tops" data-id="11"></a>
+                        </div>
+                    </div>
+                    <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
                             <a class="category_link" href="" data-id="6"><img src="inc/img/icons/underwear.png" alt="Loungewear" data-id="6"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="g-col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="btn btn-default square-button">
-                        <div class="square-button-content">
-                            <a class="category_link" href="" data-id="9"><img src="inc/img/icons/sportswear.png" alt="Sportswear" data-id="9"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <div id="products_container" class="container d-flex flex-wrap">
-
-        </div>
-
+        <!-- Products fetch container -->
+        <div id="products_container" class="container d-flex flex-wrap my-5"> </div>
 
     </main>
 

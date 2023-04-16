@@ -13,9 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
     <script type="text/javascript" src="inc/js/search.js"></script>
+    <script type="text/javascript" src="inc/js/cart.js"></script>
 
 </head>
-<body>
+<body>  
 
     <?php include 'inc/header.php'; ?>
 
@@ -50,7 +51,11 @@
                 <div class="small mb-5">Category: <?php echo $category; ?></div>
                 <h2 class="display-5 fw-bolder my-5"><?php echo $product_info['title'] ?></h2>
                 <div class="fs-5 mb-5">
-                    <p class="">Quantity : <input type="number" name="quantity" id="quantity" min="1" max="10" value="1"></p>
+                    <!-- Quantity -->
+                    <p class="">Quantity : 
+                    <input type="number" name="quantity" id="quantity" min="1" max="10" value="1"></p>
+                    <!-- Size -->
+
                     <p class="">Size : 
                         <select name="size" id="size">
                             <option value="XS">XS</option>
@@ -64,12 +69,19 @@
                     <p class="lead"><?php echo $product_info['description'] ?></p>
                 </div>
 
+                <!-------------------------- ADD TO CART ------------------------------>
                 <div class="d-flex mb-5">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                    <button id="add_to_wishlist" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
+                        <i class="fas fa-heart me-1"></i>
+                        Add to wishlist
+
+                    <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
                         <i class="fas fa-shopping-cart me-1"></i>
                         Add to cart
                     </button>
                 </div>
+                <!----------------------------------------------------------------------->
+
                 <div class="d-flex mt-5 justify-content-around">
                     <i class="fab fa-2x fa-cc-visa"></i>
                     <i class="fab fa-2x fa-cc-mastercard"></i>
@@ -93,13 +105,15 @@
             </div>
         </div>
 
-        
+        <!-------------------------- BEST SELLERS ------------------------------>
         <section class="bg-light my-5 py-5">
             <h1>Best Sales</h1>
             <h1 class="ter">Best Sales</h1>
             <?php $product->getRandomBestSellers(4); ?>
         </section>
-        
+
+        <!-------------------------- COMMENTS ------------------------------>
+
         <?php $comment = new Comment(); ?>
         
         <section class="container bg-light border radius p-2">

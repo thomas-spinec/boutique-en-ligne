@@ -64,6 +64,12 @@ document.addEventListener("DOMContentLoaded", event => {
             
         }
     }
+
+    const hideLists = () => {
+        matchList.innerHTML = '';
+        matchList2.innerHTML = '';
+    };
+    
     // Ecoute l'évènement keyup
     search.addEventListener("keyup", () => searchProduct(search.value))
 
@@ -72,6 +78,12 @@ document.addEventListener("DOMContentLoaded", event => {
     search.addEventListener("keydown", event => {
         if (event.keyCode === 13) {
             window.location.href = "search.php?search=" + search.value;
+        }
+    });
+
+    search.addEventListener("blur", () => {
+        if (search.value.trim() === '') {
+            hideLists();
         }
     });
 

@@ -111,7 +111,7 @@ class Product extends Model{
     }
 
     public function getRandomBestSellers($limit) {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, best_sellers 
+        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, best_sellers 
         FROM $this->tablename 
         WHERE best_sellers = 1
         ORDER BY RAND() 
@@ -129,7 +129,7 @@ class Product extends Model{
     }
 
     public function getRandomNewCollection($limit) {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, new_collection 
+        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, new_collection 
         FROM $this->tablename
         WHERE new_collection = 1
         ORDER BY RAND() 
