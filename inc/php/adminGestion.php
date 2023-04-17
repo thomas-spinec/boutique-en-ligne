@@ -217,6 +217,7 @@ if (isset($_GET["getStock"])) {
 
 if (isset($_GET["sizes"])) {
     $product->addSize();
+    // $product->correctPrice();
 }
 
 // CATEGORY -------------------------------------------------

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="inc/css/style.css">    
+    <link rel="stylesheet" href="inc/css/style.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
@@ -16,7 +17,8 @@
     <script type="text/javascript" src="inc/js/cart.js"></script>
 
 </head>
-<body>  
+
+<body>
 
     <?php include 'inc/header.php'; ?>
 
@@ -33,17 +35,16 @@
                 <img class="product_img" src="inc/img/shop/<?= $product_info['image'] ?>" alt="<?= $product_info['title'] ?> ">
                 <div class="thumbnails">
                     <img class="thumbnail" src="inc/img/shop/<?= $product_info['image'] ?>" data-full-image="inc/img/shop/<?= $product_info['image'] ?>">
-                    <?php 
+                    <?php
                     if ($product_info['image_1'] != "") { ?>
                         <img class="thumbnail" src="inc/img/shop/<?= $product_info['image_1'] ?>" data-full-image="inc/img/shop/<?= $product_info['image_1'] ?>">
-                    <?php } 
+                    <?php }
                     if ($product_info['image_2'] != "") { ?>
                         <img class="thumbnail" src="inc/img/shop/<?= $product_info['image_2'] ?>" data-full-image="inc/img/shop/<?= $product_info['image_2'] ?>">
-                    <?php } 
-                    else { ?>
+                    <?php } else { ?>
                         <img class="thumbnail" src="inc/img/shop/default.png" data-full-image="inc/img/shop/<?= $product_info['image'] ?>">
                     <?php } ?>
-                    
+
                 </div>
             </div>
 
@@ -52,11 +53,12 @@
                 <h2 class="display-5 fw-bolder my-5"><?php echo $product_info['title'] ?></h2>
                 <div class="fs-5 mb-5">
                     <!-- Quantity -->
-                    <p class="">Quantity : 
-                    <input type="number" name="quantity" id="quantity" min="1" max="10" value="1"></p>
+                    <p class="">Quantity :
+                        <input type="number" name="quantity" id="quantity" min="1" max="10" value="1">
+                    </p>
                     <!-- Size -->
 
-                    <p class="">Size : 
+                    <p class="">Size :
                         <select name="size" id="size">
                             <option value="XS">XS</option>
                             <option value="S">S</option>
@@ -64,8 +66,9 @@
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                             <option value="XXL">XXL</option>
-                        </select></p>
-                    <h3 class="py-5"><?php echo $product_info['price']; ?>€</h3>
+                        </select>
+                    </p>
+                    <h3 class="py-5"><?php echo $product_info['price'] / 100; ?>€</h3>
                     <p class="lead"><?php echo $product_info['description'] ?></p>
                 </div>
 
@@ -75,10 +78,10 @@
                         <i class="fas fa-heart me-1"></i>
                         Add to wishlist
 
-                    <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
-                        <i class="fas fa-shopping-cart me-1"></i>
-                        Add to cart
-                    </button>
+                        <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Add to cart
+                        </button>
                 </div>
                 <!----------------------------------------------------------------------->
 
@@ -95,9 +98,9 @@
             <hr class="my-5">
             <div class="col-md-6">
                 <h3>Informations</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Fusce tempor id sapien in sollicitudin. Cras ut ex quis nibh g
-                ravida facilisis. Proin tincidunt ante ac ipsum eleifend mattis.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Fusce tempor id sapien in sollicitudin. Cras ut ex quis nibh g
+                    ravida facilisis. Proin tincidunt ante ac ipsum eleifend mattis.</p>
             </div>
             <div class="col-md-6">
                 <h3>Shipping</h3>
@@ -115,7 +118,7 @@
         <!-------------------------- COMMENTS ------------------------------>
 
         <?php $comment = new Comment(); ?>
-        
+
         <section class="container bg-light border radius p-2">
             <h1>Comments</h1>
             <h1 class="ter">Comments</h1>
@@ -134,14 +137,14 @@
                         $date = $c['date'];
                         $commentary = $c['comment'];
                         $subject = $c['subject'];
-                        ?>
+            ?>
                         <div class="comment">
                             <h3><?= $subject ?></h3>
-                            <small class="comment-meta">Publié le <?= $date ?> par <?= $login?></small>
+                            <small class="comment-meta">Publié le <?= $date ?> par <?= $login ?></small>
                             <p><?= $commentary ?></p>
                             <hr>
                         </div>
-                        <?php
+            <?php
                     endforeach;
                 } else {
                     echo '<p>There is no Comment for this product, be the first !</p>';
@@ -160,7 +163,7 @@
             } else {
 
                 $id_product = $_GET['id'];
-                ?>
+            ?>
                 <form action="./inc/php/leaveComment.php" method="post" class="m-auto">
                     <input type="hidden" name="id_product" value="<?= $id_product ?>">
                     <input type="subject" class="" name="subject" placeholder="Subject">
@@ -168,7 +171,7 @@
                     <textarea name="comment" cols="40" rows="10"></textarea>
                     <input type="submit" class="" name="submit" value="SEND">
                 </form>
-                <?php
+            <?php
             }
             ?>
         </section>
@@ -183,14 +186,15 @@
     <script>
         const thumbnails = document.querySelectorAll('.thumbnail');
         const mainImage = document.querySelector('.product_img');
-        
+
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', () => {
-            const fullImage = thumbnail.dataset.fullImage;
-            mainImage.src = fullImage;
+                const fullImage = thumbnail.dataset.fullImage;
+                mainImage.src = fullImage;
             });
         });
     </script>
 
 </body>
+
 </html>

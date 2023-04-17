@@ -192,8 +192,9 @@ class Product extends Model
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
-    
-    public function updateProduct($id, $title, $description, $image, $image1, $image2, $price, $sales, $categ) {
+
+    public function updateProduct($id, $title, $description, $image, $image1, $image2, $price, $sales, $categ)
+    {
         $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, image_1 = :image_1, image_2 = :image_2, price = :price, sales = :sales WHERE id_product = :id");
         $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':image_1' => $image1, ':image_2' => $image2, ':price' => $price, ':sales' => $sales]);
 
@@ -222,7 +223,8 @@ class Product extends Model
         return $result;
     }
 
-    public function getRandomBestSellers($limit) {
+    public function getRandomBestSellers($limit)
+    {
         $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, best_sellers 
 
         FROM $this->tablename 
@@ -241,7 +243,8 @@ class Product extends Model
         }
     }
 
-    public function getRandomNewCollection($limit) {
+    public function getRandomNewCollection($limit)
+    {
         $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, new_collection 
 
         FROM $this->tablename
@@ -425,7 +428,7 @@ class Product extends Model
                     ":idProduct2" => $idProduct2,
                 ]);
                 if ($update) {
-                    echo "update ok_";
+                    echo "update ok";
                 } else {
                     echo "error";
                 }
@@ -443,6 +446,27 @@ class Product extends Model
                 } else {
                     echo "error";
                 }
+            }
+        }
+    }
+
+    public function correctPrice()
+    {
+        $products = $this->getAll();
+        foreach ($products as $product) {
+            $idProduct = $product['id_product'];
+            $price = $product['price'];
+            $price = $price * 100;
+            $request = "UPDATE $this->tablename SET price = :price WHERE id_product = :idProduct";
+            $update = $this->bdd->prepare($request);
+            $update->execute([
+                ":price" => $price,
+                ":idProduct" => $idProduct,
+            ]);
+            if ($update) {
+                echo "ok";
+            } else {
+                echo "error";
             }
         }
     }
