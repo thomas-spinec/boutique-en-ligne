@@ -62,7 +62,7 @@
                 <p>This is an e-shop training group project as part of the RNCP5 developer training for "La Plateforme", Marseille, FRANCE.</p>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 text-center">
-                <h4 class="text-center"><a href="https://thomas-spinec.students-laplateforme.io/" target="_blank" title="Portfolio de Thomas"><p class="lead">Code source</p></a></h4>       
+                <h4 class="text-center"><a href="https://github.com/Thomas-spinec/boutique-en-ligne/" target="_blank" title="Portfolio de Thomas"><p class="lead">Code source</p></a></h4>       
                 <span>Made with <i class="fas fa-heart mt-5"></i> & <i class="fas fa-mug-hot">&nbsp;&nbsp;by :</i></span>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
