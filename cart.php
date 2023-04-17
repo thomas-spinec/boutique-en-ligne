@@ -35,11 +35,44 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div>
                                             <p class="mb-1">Shopping cart</p>
-                                            <p class="mb-0">You have 4 items in your cart</p>
+                                            <p class="mb-0">You have x items in your cart</p>
                                         </div>
                                     </div>
 
+                                    
                                     <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img src="inc/img/shop/dress_01.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h5>title</h5>
+                                                        <p class="small mb-0">description</p>
+                                                        <p>Size: M</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div style="width: 50px;">
+                                                        <div class="form-outline">
+                                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div style="width: 80px;">
+                                                        <h5 class="mb-0">900€</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
@@ -133,39 +166,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="inc/img/shop/dress_01.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>title</h5>
-                                                        <p class="small mb-0">description</p>
-                                                        <p>Size: M</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <div class="form-outline">
-                                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">900€</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> -->
 
                                 </div> <!-- end of col-lg-8 -->
 
