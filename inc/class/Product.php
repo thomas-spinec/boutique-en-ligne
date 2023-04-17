@@ -84,9 +84,9 @@ class Product extends Model{
         return $result;
     }
     
-    public function updateProduct($id, $title, $description, $image, $price, $sales, $categ) {
-        $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, price = :price, sales = :sales WHERE id_product = :id");
-        $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':price' => $price, ':sales' => $sales]);
+    public function updateProduct($id, $title, $description, $image, $image1, $image2, $price, $sales, $categ) {
+        $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, image_1 = :image_1, image_2 = :image_2, price = :price, sales = :sales WHERE id_product = :id");
+        $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':image_1' => $image1, ':image_2' => $image2, ':price' => $price, ':sales' => $sales]);
         $query = $this->bdd->prepare("UPDATE link_categ SET id_categ = :categ WHERE id_product = :id");
         $query->execute([':id' => $id, ':categ' => $categ]);
     }

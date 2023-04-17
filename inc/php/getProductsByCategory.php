@@ -16,7 +16,7 @@ if ($products === 'Nothing to show here !'){
     echo $products;
 } else{
         ?>
-        <div class="d-flex flex-wrap justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center gap">
             <?php
             foreach ($products as $result) : 
                 $id = $result['id_product'];
@@ -29,11 +29,10 @@ if ($products === 'Nothing to show here !'){
                 $percentage = $result['promotion_percentage'];
                 $newPrice = $price - ($price * $percentage / 100);
                 ?>
-
                 <!-- card -->
-                <div class="card shadow col-lg-3 col-md-6 col-sm-12 p-3 justify-content-center">
-                    <div class="position-relative mb-5">
-                        <h4 class="card-title"><?= $title ?></h4>
+                <div class="card shadow col-lg-3 col-md-6 col-sm-12 justify-content-center my-5">
+                    <div class="position-relative">
+                        <h4 class="card-title text-center p-2"><?= $title ?></h4>
                         <?php $images = [$image, $image1, $image2]; ?>
                         <?php foreach ($images as $index => $image) : ?>
                             <?php if (!empty($image) && $index === 0) : ?>
@@ -47,22 +46,24 @@ if ($products === 'Nothing to show here !'){
                         <div class="bottom-menu bg-dark position-absolute w-100">
                             <div class="d-flex justify-content-between px-3">
                                 <div class="d-flex">
-                                <!-- love -->
-                                <a href="#" class="my-auto px-2"><i class="fas fa-heart"></i></a>
-                                <!-- shop -->
-                                <a href="product.php?id=<?= $id ?>" class="btn"><i class="fas fa-search"></i></a>
+                                    <!-- love -->
+                                    <a id="favorite" href="#" class="my-auto px-2"><i class="fas fa-heart"></i></a>
+                                    <!-- shop -->
+                                    <a href="product.php?id=<?= $id ?>" class="btn"><i class="fas fa-search"></i></a>
                                 </div>
-                                <!-- price -->
-                                <?php if ($promotion == 1) : ?>
-                                <?php $newPrice = $price - ($price * $percentage / 100); ?>
-                                <p class="card-text text-white my-auto"><?= '<del>' . $price . '€</del> &nbsp;-' . $percentage . '% &nbsp;' . $newPrice . '€'?></p>
-                                <?php else : ?>
-                                <p class="card-text text-white my-auto"><?= $price ?>€</p>
-                                <?php endif; ?>
+                                <div class="d-flex">
+                                    <!-- price -->
+                                    <?php if ($promotion == 1) : ?>
+                                    <?php $newPrice = $price - ($price * $percentage / 100); ?>
+                                    <p class="card-text text-white my-auto"><?= '<del>' . $price . '€</del> &nbsp;-' . $percentage . '% &nbsp;' . $newPrice . '€'?></p>
+                                    <?php else : ?>
+                                    <p class="card-text text-white my-auto"><?= $price ?>€</p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div> <!-- /card -->
+                </div>
 
             <?php endforeach; ?>
         </div>

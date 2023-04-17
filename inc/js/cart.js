@@ -100,4 +100,11 @@ document.getElementById("add_to_cart").addEventListener("click", function() {
 
 });
 
+// add to wishlist
+document.getElementById("favorite").addEventListener("click", function() {
+    // get the product id
+    $product = getProductInfo($id);
+
+});
+
 loadCart();
