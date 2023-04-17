@@ -1,110 +1,54 @@
-let cart = {
-    items: [],
-    total: 0
-};
+document.addEventListener("DOMContentLoaded", function(){
 
-// Define a function to show or hide the size input depending on the product category (eg. accessory)
-function toggleSizeInput($product) {
-    let sizeInput = document.getElementById("size");
-    if ($product.category == 1) {
-        sizeInput.style.display = "none";
-    } else {
-        sizeInput.style.display = "block";
-    }
-}
+const cart = document.querySelector('#add_to_cart');
 
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
 
-function loadCart() {
-    cart = JSON.parse(localStorage.getItem('cart')) || {
-        items: [],
-        total: 0
-    };
-}
+//-------------------Functions-------------------------
 
-function addItem(id, name, price, qty = 1) {
-    // Check if item already exists in the cart
-    let item = cart.items.find(item => item.id === id);
-    if($product['category'] == 1){
-        $size = "N/A";
-    }
-    
-    if (item) {
-        // Increase quantity of existing item
-        item.qty += qty;
-    } else {
-        // Add new item to cart list
-        cart.items.push({ id, name, price, qty });
-    }
-    
-    // Update cart total
-    cart.total += price * qty;
-    
-    // Save cart to localStorage
-    saveCart();
-}
+function addToCart(id_product, quantity, size){
 
-function removeItem(id) {
-    // Find item in the cart
-    let item = cart.items.find(item => item.id === id);
-    
-    if (item) {
-        // Update cart total
-        cart.total -= item.qty * item.price;
-        
-        // Remove item from cart list
-        cart.items = cart.items.filter(item => item.id !== id);
-        
-        // Save cart to localStorage
-        saveCart();
-    }
-}
+    let data = new FormData();
+    data.append("id", id_product);
+    data.append("quantity", quantity);
+    data.append("size", size);
+    data.append("addToCart", "ok");
 
-// Event listeners
-document.getElementById("add_to_cart").addEventListener("click", function() {
-    // get the size input
-    let sizeInput = document.getElementById("size");
-    let size = sizeInput.value;
-    // get the quantity input
-    let qtyInput = document.getElementById("quantity");
-    let qty = qtyInput.value;
-    // Create a JSON object with the order data
-    $id = $_GET['id_product'];
-    $name = $_GET['name'];
-    $price = $_GET['price'];
-
-    let orderData = {
-        "size": size,
-        "quantity": qty,
-        "id_product": $id,
-        "name": $name,
-        "price": $price
-    };
-    // Send an HTTP POST request to the server-side endpoint using fetch()
-    fetch('inc/php/process-order.php', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
+    fetch("inc/php/process-order.php",{
+        method: "POST",
+        body: data,
     })
-    .then(response => response.json())
-    .then(data => {
-        // Handle response data from the server
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
 
-});
 
-// add to wishlist
-document.getElementById("favorite").addEventListener("click", function() {
-    // get the product id
-    $product = getProductInfo($id);
+}
 
-});
 
-loadCart();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
