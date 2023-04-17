@@ -55,7 +55,7 @@ h1.bis {
     font-weight: 300!important;
     text-align: center;
     color: #eae9e9;
-    margin: -80px 0 0 0;
+    margin: -80px 0 50px 0;
     z-index: 1!important;
 }
 h1.ter {
@@ -63,7 +63,7 @@ h1.ter {
     font-weight: 300!important;
     text-align: center;
     color: #E5E5E5;
-    margin: -80px 0 0 0;
+    margin: -80px 0 50px 0;
     z-index: 1!important;
 }
 
@@ -119,6 +119,11 @@ h6 {
     margin: 0 0 20px 0;
 }
 
+.sticky-top.scrolled {
+    top: 0;
+    transition: top 0.3s ease-in-out;
+}
+
 /* HERO *****************************************************/
 .hero {
     background-image: url(../img/design/hero_01.jpg);
@@ -132,6 +137,17 @@ h6 {
     color: #fff;
 }
 
+.hero_profile {
+    background-image: url(../img/design/hero_06.jpg);
+    background-size: cover;
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
 .slogan {
     font-size: 2rem;
     color: #fff;
@@ -165,9 +181,14 @@ button:hover a
 .bg-grey {
     background-color: #f5f5f5;
 }
-
+.bg-shopmenu {
+    background-color: #BFBFBF;
+}
 del {color: tomato;}
 
+.col-lg {
+    width: 12.5%;
+}
 /* LIST ****************************************************/
 
 ul a:hover{
@@ -199,21 +220,19 @@ li > a:hover:after{
 
 
 /* MENUS *************************************************/
-
-.menuIcon {
-    color: #d9b420;
-    display: inline;
-    vertical-align: bottom;
-}
-
+.navbar-brand{
+    margin-top: -15px;
+} 
 form.search {
     position: relative;
     background-color:transparent!important;
-    height: 35px;
-
+    height: 20px;
+    width: 100%;
 }
+
 .fa-search {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    color: #000;
 }
 
 .topmenu, .categmenu {
@@ -242,16 +261,48 @@ form.search {
 .mainmenu a {
     color: #000!important;
 }
-
 .switch {
     cursor: pointer;
 }
+
 /* INDEX *************************************************/
 .photo {
     background: url(../img/design/hero_03.jpg) fixed center center;
     width: 100%;
     height: 400px;
     margin: 0;
+}
+.btn-black {
+    --bs-btn-color: #fff!important;
+    --bs-btn-bg: #000!important;
+    --bs-btn-border-color: #000;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #424649;
+    --bs-btn-hover-border-color: #373b3e;
+    --bs-btn-focus-shadow-rgb: 66,70,73;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #000!important;
+    --bs-btn-active-border-color: #373b3e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #000;
+    --bs-btn-disabled-border-color: #000;
+}
+.btn-white {
+    --bs-btn-color: #000!important;
+    --bs-btn-bg: #fff!important;
+    --bs-btn-border-color: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #424649;
+    --bs-btn-hover-border-color: #373b3e;
+    --bs-btn-focus-shadow-rgb: 66,70,73;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #fff!important;
+    --bs-btn-active-border-color: #373b3e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #fff;
+    --bs-btn-disabled-border-color: #fff;
 }
 /* PRODUCT page *************************************************/
 
@@ -304,8 +355,9 @@ form.search {
 
 .shop_header {
     background-image: url(../img/design/hero_02.jpg);
+    background-position: center center;
     background-size: cover;
-    height: 60vh!important;
+    height: 80vh!important;
     width: 100%;
     text-align: center;
     color: rgba(255, 255, 255, 0.4);
@@ -315,9 +367,13 @@ form.search {
     font-size: 10rem;
     color: rgba(255, 255, 255, 0.511);
     letter-spacing: 0.5rem;
-
 }
 
+.my-card{
+    margin: 10px;
+}
+
+/* menu icons */
 .gradient {
     background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(255, 255, 255, 9));
 }
@@ -326,52 +382,82 @@ section.gradient h4 {
     color: #fff;
 }
 .square-button {
-    background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(255, 255, 255, 9));
     border-radius: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.146), rgba(255, 255, 255, 9));
     border: none!important;
+    min-width: 100px;
+    min-height: 100px;
     padding: 0;
     margin: 0;
 }
 
 .square-button:hover {
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 9), rgba(255, 255, 255, 5));
 }
 
 .square-button-content {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
-    height: 100%;
-    text-align: center;
-    min-width: 210px;
-    min-height: 210px;
     width: 100%;
     height: 100%;
-}
 
-.square-button-content h4 {
-    margin-bottom: 10px;
-}
-
-.square-button-content i {
-    font-size: 15px;
+    text-align: center;
+    padding: 10px;
 }
 
 .square-button-content img {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    text-align: center;
 }
 
-@media all and (max-width: 985px) {
-    .square-button-content img {
-        width: 60px;
-        height: 60px;
-    }
-    .square-button-content h4 {
-        font-size: 12px!important;
-    }
+/* PROFILE *************************************************/
+input.login, input.password {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #cacaca;
+}
+input.login:focus, input.password:focus {
+    border: solid 1px #cacaca!important;
+}   
+input.login::placeholder {
+    color: #cacaca;
+    opacity: 1;
+}
+input.login:-ms-input-placeholder {
+    color: #cacaca;
+}
+
+/*Panel tabs*/
+.tab {
+    overflow: hidden; 
+    background-color: transparent;
+    border-bottom: 1px solid #cacaca;
+}
+.tabcontent {
+    display: none; 
+    border-top: none;
+}
+.tab button {
+    background-color: inherit; 
+    float: left; 
+    border: none;
+    outline: none; 
+    cursor: pointer; 
+    padding: 14px 20px; 
+    transition: 0.3s;
+}
+.tab button:hover, .tab .active {
+    background-color: #000;
+    color: #d9b420;
+}
+.tablinks button{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #cacaca;
 }
 
 /* CREDITS ***************************************************/

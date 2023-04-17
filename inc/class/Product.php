@@ -192,11 +192,11 @@ class Product extends Model
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    
+    public function updateProduct($id, $title, $description, $image, $image1, $image2, $price, $sales, $categ) {
+        $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, image_1 = :image_1, image_2 = :image_2, price = :price, sales = :sales WHERE id_product = :id");
+        $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':image_1' => $image1, ':image_2' => $image2, ':price' => $price, ':sales' => $sales]);
 
-    public function updateProduct($id, $title, $description, $image, $price, $sales, $categ)
-    {
-        $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, price = :price, sales = :sales WHERE id_product = :id");
-        $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':price' => $price, ':sales' => $sales]);
         $query = $this->bdd->prepare("UPDATE link_categ SET id_categ = :categ WHERE id_product = :id");
         $query->execute([':id' => $id, ':categ' => $categ]);
     }
@@ -222,9 +222,9 @@ class Product extends Model
         return $result;
     }
 
-    public function getRandomBestSellers($limit)
-    {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, best_sellers 
+    public function getRandomBestSellers($limit) {
+        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, best_sellers 
+
         FROM $this->tablename 
         WHERE best_sellers = 1
         ORDER BY RAND() 
@@ -241,9 +241,9 @@ class Product extends Model
         }
     }
 
-    public function getRandomNewCollection($limit)
-    {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, price, new_collection 
+    public function getRandomNewCollection($limit) {
+        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, new_collection 
+
         FROM $this->tablename
         WHERE new_collection = 1
         ORDER BY RAND() 

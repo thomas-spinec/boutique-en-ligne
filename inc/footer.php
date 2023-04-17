@@ -53,9 +53,7 @@
             <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fab fa-facebook text-white"></i></a></li>
         </ul>
     </div>
-</footer>
-
-<!------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------->
     <!-- CREDITS -->
     <div class="w-100 bg-light text-dark p-5">
         <div class="row">
@@ -75,11 +73,17 @@
                     </li>
                     <li>
                         <a class="btn text-dark" href="https://jeremy-nowak.students-laplateforme.io/" target="_blank" title="Portfolio de Jeremy"><img class="px-2" src="./inc/img/design/logo-jeremy.png" width="35px"> <a class="btn" href="https://github.com/jeremy-nowak/" target="_blank" title="GitHub"><i class="fab fa-github text-dark"></i></a>Jeremy Nowak</a>
-                    </li>
-                    <li>
-                        <a class="btn text-dark" href="https://thomas-spinec.students-laplateforme.io/" target="_blank" title="Portfolio de Thomas"><img class="px-2" src="./inc/img/design/logo-thomas.png" width="35px"> <a class="btn" href="https://github.com/Thomas-spinec/" target="_blank" title="GitHub"><i class="fab fa-github text-dark"></i></a>Thomas Spinec</a>
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                        <li>
+                            <a class="btn text-dark" href="https://thomas-spinec.students-laplateforme.io/" target="_blank" title="Portfolio de Thomas"><img class="px-2" src="./inc/img/design/logo-thomas.png" width="35px"> <a class="btn" href="https://github.com/Thomas-spinec/" target="_blank" title="GitHub"><i class="fab fa-github text-dark"></i></a>Thomas Spinec</a>
+                            </li>
+                        </ul>
+                    </div>
         </div> <!-- /row -->
+        <!-- The scroll to top feature -->
+        <div class="scroll-top-wrapper ">
+            <span class="scroll-top-inner"><i class="fa fa-2x fa-arrow-circle-up"></i></span>
+        </div>
     </div> <!-- /container -->
+    
+</footer>
