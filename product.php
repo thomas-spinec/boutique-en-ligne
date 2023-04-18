@@ -169,18 +169,33 @@
                         echo '<p>You must logIn or register, to leave a comment.</p>';
                     } else {
 
-                $id_product = $_GET['id'];
-            ?>
-                <form action="./inc/php/leaveComment.php" method="post" class="m-auto">
-                    <input type="hidden" name="id_product" value="<?= $id_product ?>">
-                    <input type="subject" class="" name="subject" placeholder="Subject">
-                    <label for="comment">Your comment :</label>
-                    <textarea name="comment" cols="40" rows="10"></textarea>
-                    <input type="submit" class="" name="submit" value="SEND">
-                </form>
-            <?php
-            }
-            ?>
+                        $id_product = $_GET['id'];
+                        ?>
+                        <form action="./inc/php/leaveComment.php" method="post" class="needs-validation bg-light p-3 rounded">
+                            <input type="hidden" name="id_product" value="<?= $id_product ?>">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="comment">Subject</label>
+                                    <input type="subject" class="" name="subject" placeholder="Subject">
+                                    Please enter a subject for your comment.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="comment">Comment :</label>
+                                    <textarea class="form-control" name="comment" rows="5" required></textarea>
+                                    <div class="invalid-feedback">
+                                    Please enter your comment.
+                                </div>
+                            </div>
+                            <button class="btn btn-dark" type="submit">SEND</button>
+
+                        </form>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
         </section>
 
     </main>
