@@ -8,14 +8,15 @@
     <title>Admin</title>
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
+    <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/admin.js"></script>
-    <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -26,9 +27,24 @@
 
         <?php include 'inc/header.php'; ?>
 
-        <main class="container">
-
+        <main class="container mt-2">
+        
+            
             <h1>Admin</h1>
+            <h1 class="bis">Admin</h1>
+            <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
+            
+            <div class="tab admin">
+            <button class="tablinks" onclick="openTab(event, 'member')">MEMBER MANAGEMENT</button>
+            <button class="tablinks" onclick="openTab(event, 'product')">PRODUCT MANAGEMENT</button>
+            <button class="tablinks" onclick="openTab(event, 'category')">CATEGORY MANAGEMENT</button>
+            <button class="tablinks" onclick="openTab(event, 'size')">SIZE MANAGEMENT</button>
+        </div>
+
+        <!-- Tab infos -->
+        <div id="infos" class="tabcontent p-5">
+
+        </div>
 
             <div class="admin">
                 <a href="" id="users">MEMBER MANAGEMENT</a>

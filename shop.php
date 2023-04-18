@@ -16,8 +16,10 @@
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
+    <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/menu.js"></script>
     <script src="inc/js/search.js"></script>
+    <script src="inc/js/wishlist.js"></script>
 </head>
 <body>        
     <?php include 'inc/header.php'; ?>
@@ -77,7 +79,7 @@
         </section>
 
         <!-- Products fetch container -->
-        <div id="products_container" class="container d-flex flex-wrap my-5"> </div>
+        <div id="products_container" class="container d-flex flex-wrap my-5 love"> </div>
 
     </main>
 

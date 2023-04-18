@@ -13,8 +13,11 @@
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
+    <script src="inc/js/scrollToTop.js"></script>
     <script type="text/javascript" src="inc/js/search.js"></script>
     <script type="text/javascript" src="inc/js/cart.js"></script>
+    <script src="inc/js/whishlist.js"></script>
+    <script src="inc/js/features.js"></script>
 
 </head>
 
@@ -74,8 +77,8 @@
 
                 <!-------------------------- ADD TO CART ------------------------------>
                 <div class="d-flex mb-5">
-                    <button id="add_to_wishlist" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
-                        <i class="fas fa-heart me-1"></i>
+                    <button id="add_to_wishlist" class="heart btn btn-outline-dark flex-shrink-0 mx-1" type="button">
+                        <i class="heart fas fa-heart me-1"></i>
                         Add to wishlist
 
                         <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
@@ -109,10 +112,12 @@
         </div>
 
         <!-------------------------- BEST SELLERS ------------------------------>
-        <section class="bg-light my-5 py-5">
-            <h1>Best Sales</h1>
-            <h1 class="ter">Best Sales</h1>
-            <?php $product->getRandomBestSellers(4); ?>
+        <!-- BEST SELLERS -->
+        <section class="container overflow-hidden">
+            <h1>Best Sellers</h1>
+            <h1 class="ter">Best Sellers</h1>
+            <div id="best_sellers" class="row my-5 gx-4">
+            </div>
         </section>
 
         <!-------------------------- COMMENTS ------------------------------>
@@ -157,10 +162,12 @@
         <!-- Leave a comment -->
         <section class="container">
             <h2>Leave a comment</h2>
-            <?php
-            if (!$user->isLogged()) {
-                echo '<p>You must logIn or register, to leave a comment.</p>';
-            } else {
+            <div class="row">
+                <div class="col">
+                    <?php
+                    if (!$user->isLogged()) {
+                        echo '<p>You must logIn or register, to leave a comment.</p>';
+                    } else {
 
                 $id_product = $_GET['id'];
             ?>

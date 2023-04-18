@@ -667,4 +667,24 @@ class Product extends Model
             echo "error";
         }
     }
+
+    public function getRandomCateg($categ, $limit)
+    {
+        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage 
+
+        FROM $this->tablename 
+        WHERE $categ = 1
+        ORDER BY RAND() 
+        LIMIT " . intval($limit));
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        // si il y a des résultats
+        if (count($results) > 0) {
+            return $results;
+        } else {
+
+            $results = 'Nothing to show here!';
+            return $results;
+        }
+    }
 }
