@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // FUNCTIONS
     function getAllProducts(){
-        fetch("inc/php/getProductsByCategory.php")
+        fetch("inc/php/getProductsByCategory.php?category_id")
         .then(response => response.text())
         .then(data => {
             productsContainer.innerHTML = data;

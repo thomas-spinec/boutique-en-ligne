@@ -14,7 +14,9 @@
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
+    <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/profil.js"></script>
+
     <script>
         function openTab(evt, information) {
         let i, tabcontent, tablinks;
@@ -34,8 +36,14 @@
     <?php include 'inc/header.php'; ?>
 
     <?php
-    if(!$user->isLogged()){
-       /*  header('Location: index.php'); */
+    if ($user->isLogged()) {
+        $userId = $_SESSION['user']['id'];
+        // get whishlist products for the user
+        $wishlist_items = $wishlist->getWishlistItems($userId);
+        var_dump($wishlist_items);
+    } else {
+        header('Location: login.php');
+        exit();
     }
     ?>
 
@@ -52,6 +60,7 @@
             <button class="tablinks" onclick="openTab(event, 'orders')">Orders</button>
             <button class="tablinks" onclick="openTab(event, 'login')">Change Login</button>
             <button class="tablinks" onclick="openTab(event, 'password')">Change Password</button>
+            <button class="tablinks" onclick="openTab(event, 'whishlist')">WhishList</button>
         </div>
 
         <!-- Tab infos -->
@@ -151,6 +160,28 @@
                     </form>
                 </div> <!-- /col -->
             </div> <!-- /row -->
+        </div>
+
+        <!-- Tab wishlist -->
+        <div id="whishlist" class="tabcontent p-5">    
+            <h3>My Wishlist</h3>
+            <div class="row wrap justify-content-between">
+                <?php if (count($wishlist_items) > 0): ?>
+                    <?php foreach ($wishlist_items as $item): ?>
+                        <div class="col">
+                            <a href="product.php?id=<?= $item['id_product'] ?>">
+                            <p><?= $item['date'] ?></p>
+                            <?= $item['title'] ?></a>
+                            <img src="inc/img/shop/<?=$item['image'] ?>" alt="<?= $item['title'] ?>">
+                            <p><?= $item['price']/100 ?>€</p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col text-center">
+                        <p>Your wishlist is empty!</p>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
 
     </main>
