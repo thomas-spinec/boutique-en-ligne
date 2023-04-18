@@ -21,6 +21,10 @@
     include 'inc/header.php';
     require_once "inc/class/Cart.php"; 
     $cart = new Cart();
+
+    $id = $user->getUserId();
+    $total = $cart->getCart($id);
+    var_dump($total[0]['total']);
     
     ?>
 
