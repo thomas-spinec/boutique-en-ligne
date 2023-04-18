@@ -17,7 +17,7 @@ class Cart extends Model{
         $id = htmlspecialchars($id);
         $request = "SELECT $this->tablename.total,
         date, state,
-        detail.id_product, detail.total AS total_product, detail.quantity
+        detail.id_product, detail.total AS total_product, detail.quantity, detail.size
         FROM $this->tablename
         INNER JOIN detail ON detail.id_order = shop_order.id_order 
         WHERE $this->tablename.id_user = :id_user";
@@ -69,6 +69,7 @@ class Cart extends Model{
             }
         }
     }
+
     public function createDetail($id_order, $id_product,  $quantity, $size, $total){
 
         $id_order = htmlspecialchars($id_order);
@@ -101,7 +102,7 @@ class Cart extends Model{
                 return "ok";
             }
             else{
-                return "error update cart";
+                return "error";
             }
         }
         else{
@@ -121,16 +122,44 @@ class Cart extends Model{
 
             }
             else{
-                return "error insert cart";
+                return "error";
             }
         }
 
+        
         
 
 
     }
 
+    public function updateTotal($id_order) 
+    {
+        $request = "SELECT total AS totalProduct FROM detail WHERE id_order=:id_order";
+        $select = $this->bdd->prepare($request);
+        $select->execute([
+            ":id_order"=>$id_order,
+        ]);
 
+        $select = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        $totalOrder = 0;
+
+        foreach($select as $product){
+            $totalOrder = $totalOrder + $product['totalProduct'];
+        }
+
+        $request2 = "UPDATE $this->tablename SET `total` = $totalOrder WHERE id_order = :id_order";
+        $update = $this->bdd->prepare($request2);
+        $update->execute([
+            ":id_order"=>$id_order,
+        ]);
+
+        if($update){
+            echo "ok";
+        } else {
+            echo "error";
+        }
+    }
 
 
 

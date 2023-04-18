@@ -7,30 +7,52 @@ require_once "../class/Cart.php";
 $user = new User();
 $product = new Product();
 $cart = new Cart();
-$id = $user->getUserId();
 
+$id = $user->getUserId();
 
 if(isset($_GET["cart"]))
 {
-    
-    $carts = $cart->getCart($id);
-    var_dump($carts);
 
-    foreach ($carts as $order) {
+    // $displaTitle = $product->getProductInfo($displayCart[0]["id_product"]);
+    $carts = $cart->getCart($id);
+    $count = count($carts);
+
+    ?>
+
+    <h5 class="mb-3"><a href="#!" class="text-body"><i
+                                        class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+    <hr>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <p class="mb-1">Shopping cart</p>
+            <p class="mb-0">You have <?= $count ?> items in your cart</p>
+        </div>
+    </div>
+<?php
+    if (empty($carts)){
+        die();
+    }
+    foreach ($carts as $order ) {
+
         $id_pro = $order['id_product'];
         $item = $product->getProductInfo($id_pro);
-        var_dump($item);
+        $size = $order["size"];   
+
         ?>
         <div class="card mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
                         <div>
-                            <img src="inc/img/shop/<?= $item['image']?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                            <img src="inc/img/shop/<?=$item['image']?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                         </div>
                         <div class="ms-3">
                             <h5><?= $item['title']?></h5>
-                            <p>Size: M</p>
+                            <p>Prix unitaire: <?=$item['price']?></p>
+                            <p>Size: <?= $size?></p>
+                            <?php
+                            ?>
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
@@ -51,27 +73,26 @@ if(isset($_GET["cart"]))
                 </div>
             </div>
         </div>
+        
     <?php
     }
 }
 
-if(isset($_GET["addToCart"])){
+if(isset($_POST["addToCart"])){
+    $id_product = $_POST["id"];
+    $quantity = $_POST["quantity"];
+    $size = $_POST["size"];
 
-    // $id_product = $_POST["id"];
-    // $quantity = $_POST["quantity"];
-    // $size = $post["size"];
-    $id_product = 44;
-    $quantity = 2;
-    $size = "XS";
-
-    $id_order=$cart->cartVerify($id);
+    $id_order = $cart->cartVerify($id);
     $item = $product->getProductInfo($id_product);
-    var_dump($item);
+
     $total = $item["price"]*$quantity;
 
-    var_dump($total);
-    $result= $cart->createDetail($id_order, $id_product, $quantity, $size, $total);
-    echo $result;
+
+    $result = $cart->createDetail($id_order, $id_product, $quantity, $size, $total);
+    if($result === "ok"){
+        $cart->updateTotal($id_order);
+    } ;
 }
 
 
