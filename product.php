@@ -79,6 +79,7 @@
                         <i class="fas fa-shopping-cart me-1"></i>
                         Add to cart
                     </button>
+                    <span></span>
                 </div>
                 <!----------------------------------------------------------------------->
 

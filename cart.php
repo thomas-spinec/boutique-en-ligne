@@ -16,7 +16,16 @@
 </head>
 <body>
         
-    <?php include 'inc/header.php'; ?>
+    <?php 
+    include 'inc/header.php';
+    require_once "inc/class/Cart.php"; 
+    $cart = new Cart();
+
+    $id = $user->getUserId();
+    $total = $cart->getCart($id);
+    var_dump($total[0]['total']);
+    
+    ?>
 
     <section class="h-100 h-custom" style="background-color: #eee;">
         <div class="container py-5 h-100">
@@ -27,147 +36,7 @@
 
                             <div class="row">
 
-                                <div class="col-lg-7">
-                                    <h5 class="mb-3"><a href="#!" class="text-body"><i
-                                        class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
-                                    <hr>
-
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <div>
-                                            <p class="mb-1">Shopping cart</p>
-                                            <p class="mb-0">You have x items in your cart</p>
-                                        </div>
-                                    </div>
-
-                                    
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="inc/img/shop/dress_01.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>title</h5>
-                                                        <p class="small mb-0">description</p>
-                                                        <p>Size: M</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <div class="form-outline">
-                                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">900€</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="inc/img/shop/dress_01.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>title</h5>
-                                                        <p class="small mb-0">description</p>
-                                                        <p>Size: M</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <div class="form-outline">
-                                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">900€</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="inc/img/shop/dress_01.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>title</h5>
-                                                        <p class="small mb-0">description</p>
-                                                        <p>Size: M</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <div class="form-outline">
-                                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">900€</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="inc/img/shop/dress_01.jpg" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>title</h5>
-                                                        <p class="small mb-0">description</p>
-                                                        <p>Size: M</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <div class="form-outline">
-                                                            <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">900€</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
+                                <div class="productsCart col-lg-7">
                                 </div> <!-- end of col-lg-8 -->
 
                                 <!-- Card details -->
@@ -223,22 +92,22 @@
 
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Subtotal</p>
-                                                <p class="mb-2">798.00€</p>
+                                                <p class="mb-2"><?= $total[0]['total']?>€</p>
                                             </div>
 
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Shipping</p>
-                                                <p class="mb-2">20.00€</p>
+                                                <p class="mb-2">00.00€</p>
                                             </div>
 
                                             <div class="d-flex justify-content-between mb-4">
                                                 <p class="mb-2">Total(Incl. taxes)</p>
-                                                <p class="mb-2">4818.00€</p>
+                                                <p class="mb-2"><?= $total[0]['total']?>€</p>
                                             </div>
 
                                             <button type="button" class="btn btn-info btn-block btn-lg">
                                                 <div class="d-flex justify-content-between">
-                                                    <span>4818.00€ </span>
+                                                    <span><?= $total[0]['total']?>€ </span>
                                                     <span>&nbsp; Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </button>
