@@ -1,110 +1,149 @@
-let cart = {
-    items: [],
-    total: 0
-};
+document.addEventListener("DOMContentLoaded", function () {
+  const pageTitle = document.querySelector("head title").innerHTML;
 
-// Define a function to show or hide the size input depending on the product category (eg. accessory)
-function toggleSizeInput($product) {
-    let sizeInput = document.getElementById("size");
-    if ($product.category == 1) {
-        sizeInput.style.display = "none";
-    } else {
-        sizeInput.style.display = "block";
+  if (pageTitle == "Product") {
+    const cart = document.querySelector("#add_to_cart");
+    const str = window.location.href;
+    const url = new URL(str);
+    const id_product = url.searchParams.get("id");
+    const quantityInput = document.querySelector("#quantity");
+    const sizeSelect = document.querySelector("#size");
+
+    //-------------------Functions-------------------------
+
+    function addToCart(id_product, quantity, size) {
+      let data = new FormData();
+      data.append("id", id_product);
+      data.append("quantity", quantity);
+      data.append("size", size);
+      data.append("addToCart", "ok");
+
+      fetch("inc/php/process-order.php", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          data = data.trim();
+          if (data === "ok") {
+            history.back();
+          } else {
+            cart.nextElementSibling.innerHTML =
+              "There was an error, please retry later";
+          }
+        });
     }
-}
 
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
+    //-------------------Calls-------------------------
 
-function loadCart() {
-    cart = JSON.parse(localStorage.getItem('cart')) || {
-        items: [],
-        total: 0
-    };
-}
+    cart.addEventListener("click", function (e) {
+      e.preventDefault();
+      quantity = quantityInput.value;
+      size = sizeSelect.value;
 
-function addItem(id, name, price, qty = 1) {
-    // Check if item already exists in the cart
-    let item = cart.items.find(item => item.id === id);
-    if($product['category'] == 1){
-        $size = "N/A";
+      addToCart(id_product, quantity, size);
+    });
+  }
+
+  if (pageTitle == "Cart") {
+    const divCart = document.querySelector(".productsCart");
+    const divPay = document.querySelector(".pay");
+
+    //-------------------Functions-------------------------
+    function displayCart() {
+      fetch("inc/php/process-order.php?cart")
+        .then((response) => response.text())
+        .then((data) => {
+          divCart.innerHTML = data;
+        });
+
+      fetch("inc/php/process-order.php?pay")
+        .then((response) => response.text())
+        .then((data) => {
+          divPay.innerHTML = data;
+        });
     }
-    
-    if (item) {
-        // Increase quantity of existing item
-        item.qty += qty;
-    } else {
-        // Add new item to cart list
-        cart.items.push({ id, name, price, qty });
+
+    function delFromCart(id_product, size, id_order) {
+      let data = new FormData();
+      data.append("id", id_product);
+      data.append("size", size);
+      data.append("id_order", id_order);
+      data.append("delFromCart", "ok");
+
+      fetch("inc/php/process-order.php", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          data = data.trim();
+
+          if (data === "ok") {
+            displayCart();
+          } else {
+            alert("There was an error, please retry later");
+          }
+        });
     }
-    
-    // Update cart total
-    cart.total += price * qty;
-    
-    // Save cart to localStorage
-    saveCart();
-}
 
-function removeItem(id) {
-    // Find item in the cart
-    let item = cart.items.find(item => item.id === id);
-    
-    if (item) {
-        // Update cart total
-        cart.total -= item.qty * item.price;
-        
-        // Remove item from cart list
-        cart.items = cart.items.filter(item => item.id !== id);
-        
-        // Save cart to localStorage
-        saveCart();
+    function updateQuantity(id_product, size_product, id_order, quantity){
+        let data = new FormData();
+
+        data.append("id", id_product);
+        data.append("size", size_product);
+        data.append("id_order", id_order);
+        data.append("quantity", quantity)
+        data.append("updateProduct", "ok");
+
+        fetch("inc/php/process-order.php",{
+            method: "POST",
+            body: data,
+        })
+        .then((response)=>response.text())
+        .then((data)=>{
+            data = data.trim();
+            if (data === "ok") {
+                displayCart();
+              } else {
+                alert("There was an error, please retry later");
+              }
+        })
+
+
+
     }
-}
+    //-------------------Calls-------------------------
 
-// Event listeners
-document.getElementById("add_to_cart").addEventListener("click", function() {
-    // get the size input
-    let sizeInput = document.getElementById("size");
-    let size = sizeInput.value;
-    // get the quantity input
-    let qtyInput = document.getElementById("quantity");
-    let qty = qtyInput.value;
-    // Create a JSON object with the order data
-    $id = $_GET['id_product'];
-    $name = $_GET['name'];
-    $price = $_GET['price'];
+    displayCart();
 
-    let orderData = {
-        "size": size,
-        "quantity": qty,
-        "id_product": $id,
-        "name": $name,
-        "price": $price
-    };
-    // Send an HTTP POST request to the server-side endpoint using fetch()
-    fetch('inc/php/process-order.php', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle response data from the server
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    divCart.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      if (e.target.id == "delProduct") {
+        let delProduct = e.target;
+        const id_product = delProduct.getAttribute("data-id");
+        const size_product = delProduct.getAttribute("data-size");
+        const order_product = delProduct.getAttribute("data-order");
+
+        delFromCart(id_product, size_product, order_product);
+      }
     });
 
+    divCart.addEventListener("change", function(e){
+        e.preventDefault();
+
+        if(e.target.classList.contains("quantity")){
+            const quantity = e.target.value
+            const id_product = e.target.getAttribute("data-id");
+            const size_product = e.target.getAttribute("data-size");
+            const order_product = e.target.getAttribute("data-order");
+
+            updateQuantity(id_product ,size_product, order_product, quantity)
+
+
+        }
+    })
+
+  }
 });
-
-// add to wishlist
-document.getElementById("favorite").addEventListener("click", function() {
-    // get the product id
-    $product = getProductInfo($id);
-
-});
-
-loadCart();

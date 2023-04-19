@@ -81,10 +81,11 @@
                         <i class="heart fas fa-heart me-1"></i>
                         Add to wishlist
 
-                        <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
-                            <i class="fas fa-shopping-cart me-1"></i>
-                            Add to cart
-                        </button>
+                    <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
+                        <i class="fas fa-shopping-cart me-1"></i>
+                        Add to cart
+                    </button>
+                    <span></span>
                 </div>
                 <!----------------------------------------------------------------------->
 
