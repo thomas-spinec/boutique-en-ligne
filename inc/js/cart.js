@@ -1,17 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   const pageTitle = document.querySelector("head title").innerHTML;
 
-    const pageTitle = document.querySelector('head title').innerHTML;
+  if (pageTitle == "Product") {
+    const cart = document.querySelector("#add_to_cart");
+    const str = window.location.href;
+    const url = new URL(str);
+    const id_product = url.searchParams.get("id");
+    const quantityInput = document.querySelector("#quantity");
+    const sizeSelect = document.querySelector("#size");
 
-    if(pageTitle == "Product"){
-        const cart = document.querySelector('#add_to_cart');
-        const str = window.location.href;
-        const url = new URL(str);
-        const id_product = url.searchParams.get('id');
-        const quantityInput = document.querySelector("#quantity")
-        const sizeSelect = document.querySelector("#size");
-        
-        //-------------------Functions-------------------------
+    //-------------------Functions-------------------------
 
     function addToCart(id_product, quantity, size) {
       let data = new FormData();
