@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //SECTION D'AFFICHAGE//
   const display = document.querySelector("#display");
   const gestion = document.querySelector("#gestion");
-  const popUp = document.querySelector("#popUp");
+  const popUp = document.querySelector(".popup-container");
   // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
   // USERS//
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           displayUsers();
         } else {
-          display.nextElementSibling.innerHTML = "Error during suppression";
+          display.nextElementSibling.innerHTML = "Error while deleting";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           displayUsers();
         } else {
-          display.nextElementSibling.innerHTML = "Error role didn't changed";
+          display.nextElementSibling.innerHTML = "Error, role didn't change";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           displayProducts();
         } else {
-          display.nextElementSibling.innerHTML = "Error during suppression";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -107,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function changeProduct(id) {
     popUp.innerHTML = "";
+    //display true pour popUp
+    popUp.style.display = "block";
     fetch("inc/php/templateAdmin.php?changeProduct=" + id)
       .then((response) => response.text())
       .then((response) => {
@@ -130,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           changeProduct(idProduct);
         } else {
-          display.nextElementSibling.innerHTML = "Error during update";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -162,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           changeProduct(idProduct);
         } else {
-          display.nextElementSibling.innerHTML = "Error during update";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -184,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           changeProduct(idProduct);
         } else {
-          display.nextElementSibling.innerHTML = "Error during update";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -206,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           changeProduct(idProduct);
         } else {
-          display.nextElementSibling.innerHTML = "Error during update";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -229,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           changeProduct(idProduct);
         } else {
-          display.nextElementSibling.innerHTML = "Error during update";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -289,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           displayCategories();
         } else {
-          display.nextElementSibling.innerHTML = "Error during suppression";
+          display.nextElementSibling.innerHTML = "error while deleting";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -312,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response === "ok") {
           displayCategories();
         } else {
-          display.nextElementSibling.innerHTML = "Error during update";
+          display.nextElementSibling.innerHTML = "Error while updating";
           setTimeout(() => {
             display.nextElementSibling.innerHTML = "";
           }, "2000");
@@ -387,6 +389,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // update product
     else if (e.target.classList.contains("changeProduct")) {
+      console.log("click");
       const idProduct = e.target.getAttribute("data-id");
       changeProduct(idProduct);
     }
@@ -410,6 +413,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     } else if (e.target.classList.contains("filterCateg")) {
       const idCategory = e.target.value;
+      console.log(idCategory);
       displayProducts(idCategory);
     }
   });
@@ -425,9 +429,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const target = e.target;
       // récupération du parent de target
       const div = target.parentNode;
+      const parent = div.parentNode;
       const sizeNb = e.target.getAttribute("data-id");
-      div.removeChild(target);
-      addSelectSize(sizeNb, div);
+      div.remove();
+      addSelectSize(sizeNb, parent);
     }
   });
 
@@ -557,6 +562,7 @@ document.addEventListener("DOMContentLoaded", function () {
   popUp.addEventListener("click", function (e) {
     if (e.target.classList.contains("closePopUp")) {
       popUp.innerHTML = "";
+      popUp.style.display = "none";
     }
   });
 

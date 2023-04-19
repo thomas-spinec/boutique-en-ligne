@@ -4,6 +4,8 @@
 /* HERO
 /* UTILITIES
 /* LIST
+/* FORMS
+/* POPUP
 /* MENUS
 /* INDEX
 /* PRODUCT page
@@ -50,7 +52,6 @@ h1 {
     z-index: 2!important;
 }
 h1.bis {
-    color: #000;
     font-size: 100px!important;
     font-weight: 300!important;
     text-align: center;
@@ -138,7 +139,7 @@ h6 {
 }
 
 .hero_profile {
-    background-image: url(../img/design/hero_06.jpg);
+    background-image: url(../img/design/hero_02.jpg);
     background-size: cover;
     height: 60vh;
     width: 100%;
@@ -148,6 +149,14 @@ h6 {
     flex-direction: column;
     color: #fff;
 }
+
+.shop_hero {
+    height: 30vh!important;
+    width: 100%;
+    text-align: center;
+
+}
+
 .slogan {
     font-size: 2rem;
     color: #fff;
@@ -189,6 +198,21 @@ del {color: tomato;}
 .col-lg {
     width: 12.5%;
 }
+
+.red {
+    color: tomato!important;
+}
+
+
+/* Styles for clicked heart icon */
+.heart {
+    color: #d9b420;
+}
+
+.heart.clicked {
+    color: white;
+}
+
 /* LIST ****************************************************/
 
 ul a:hover{
@@ -218,6 +242,65 @@ li > a:hover:after{
     color: #fece55 !important;
 }
 
+/* FORMS *************************************************/
+#catchRole option:hover {
+    background-color: grey;
+}
+
+#catchRole {
+    width: 100px;
+    border: 1px thin solid #d9b420!important;
+    padding: 3px;
+    vertical-align: middle;
+}
+
+input.text-right {
+    text-align: right!important;
+}
+/* POPUP *************************************************/
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998; /* Empêche la popup d'être masquée par d'autres éléments */
+}
+.popup {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+.closePopUp {
+    position: absolute;
+    right: 10px;
+    color: #ff0000;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    z-index: 9999;
+}
+.closePopUp:hover,
+.closePopUp:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup-content {
+    margin-top: 20px;
+}
+
 
 /* MENUS *************************************************/
 .navbar-brand{
@@ -232,7 +315,7 @@ form.search {
 
 .fa-search {
     margin-bottom: 6px;
-    color: #000;
+    color:#ccc;
 }
 
 .topmenu, .categmenu {
@@ -338,6 +421,14 @@ form.search {
     opacity: 1;
 }
 
+/* COMMENTS *******************************************************/
+textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* inclure la bordure dans la largeur totale */
+}
+
+
 /* AUTHENTICATION *************************************************/
 .userAuth {
     background: url(../img/design/hero_05.jpg) no-repeat center center fixed;
@@ -352,16 +443,6 @@ form.search {
 
 
 /* SHOP *************************************************/
-
-.shop_header {
-    background-image: url(../img/design/hero_02.jpg);
-    background-position: center center;
-    background-size: cover;
-    height: 80vh!important;
-    width: 100%;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.4);
-}
 
 .shop_title {
     font-size: 10rem;
@@ -469,6 +550,43 @@ input.login:-ms-input-placeholder {
 /* FOOTER ********************************************************/
 footer a {
     color: #000!important;
+}
+/* SCROLL TO TOP *************************************************/
+.scroll-top-wrapper {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+	overflow: hidden;
+	text-align: center;
+	z-index: 99999999;
+    background-color: #777777;
+	color: #eeeeee;
+	width: 50px;
+	height: 48px;
+	line-height: 48px;
+	right: 30px;
+	bottom: 30px;
+	padding-top: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.scroll-top-wrapper:hover {
+	background-color: #888888;
+}
+.scroll-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+	opacity: 1.0;
+}
+.scroll-top-wrapper i.fa {
+	line-height: inherit;
 }
 
 /* MEDIA QUERIES *************************************************/
