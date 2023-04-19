@@ -78,11 +78,12 @@ class Cart extends Model{
         $size = htmlspecialchars($size);
         $total = htmlspecialchars($total);
 
-        $request = "SELECT * FROM detail WHERE id_order = :id_order AND id_product = :id_product";
+        $request = "SELECT * FROM detail WHERE id_order = :id_order AND id_product = :id_product AND size = :size";
         $select = $this->bdd->prepare($request);
         $select->execute([
             ":id_order"=>$id_order,
-            ":id_product"=>$id_product
+            ":id_product"=>$id_product,
+            ":size"=>$size,
         ]);
         $result = $select->fetch(PDO::FETCH_ASSOC);
         if($result){
@@ -90,13 +91,14 @@ class Cart extends Model{
             $quantity = $quantity + $result["quantity"];
             $total = $total + $result['total'];
 
-            $request2 = "UPDATE detail SET total=:total, quantity=:quantity WHERE id_order = :id_order AND id_product = :id_product";
+            $request2 = "UPDATE detail SET total=:total, quantity=:quantity WHERE id_order = :id_order AND id_product = :id_product AND size = :size";
             $update = $this->bdd->prepare($request2);
             $update->execute([
                 ":total"=>$total,
                 ":quantity"=>$quantity,
                 ":id_order"=>$id_order,
-                "id_product"=>$id_product
+                "id_product"=>$id_product,
+                ":size"=>$size,
             ]);
             if($update){
                 return "ok";
@@ -162,6 +164,51 @@ class Cart extends Model{
     }
 
 
+    public function deleteProduct($id_product, $id_order, $size){
+
+        $request = "DELETE FROM detail WHERE id_product = :id_product AND id_order = :id_order AND size = :size"; 
+        $delete = $this->bdd->prepare($request);
+        $delete->execute([
+            ":id_product"=>$id_product,
+            "id_order"=>$id_order,
+            ":size"=>$size,
+        ]);
+
+        if($delete){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+    }
+    
+    public function updateQuantity($id_product, $size_order, $id_order, $quantity, $total){
+
+        $id_product = htmlspecialchars($id_product);
+        $size_order = htmlspecialchars($size_order);
+        $id_order = htmlspecialchars($id_order);
+        $quantity = htmlspecialchars($quantity);
+        $total = htmlspecialchars($total);
+
+
+        $request = "UPDATE detail SET quantity = :quantity ,total = :total WHERE id_product = :id_product AND size = :size AND id_order = :id_order";
+
+        $update = $this->bdd->prepare($request);
+
+        $update->execute([
+            ":quantity" => $quantity,
+            ":total" => $total,
+            ":id_product" => $id_product,
+            ":size" => $size_order,
+            "id_order" => $id_order
+        ]);
+        if($update){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+    }
 
 
 
