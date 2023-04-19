@@ -27,8 +27,8 @@
     <main class="container mb-4">
 
         <!--Section heading-->
-        <h1 class="h1-responsive">Contact us</h1>
-        <h1 class="h1-responsive bis">Contact us</h1>
+        <h1 class="h1-responsive sm-fs-2">Contact us</h1>
+        <h1 class="h1-responsive bis sm-fs-1">Contact us</h1>
         <!--Section description-->
         <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
             a matter of hours to help you.</p>

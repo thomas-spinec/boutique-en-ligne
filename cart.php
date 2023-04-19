@@ -21,6 +21,8 @@
 
     <section class="h-100 h-custom" style="background-color: #eee;">
         <div class="container py-5 h-100">
+            <h1>Cart</h1>
+            <h1 class="ter">Cart</h1>
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
                     <div class="card">

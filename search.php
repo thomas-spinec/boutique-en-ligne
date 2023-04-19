@@ -2,14 +2,6 @@
 
 require_once './inc/class/Product.php';
 $product = new Product();
-
-/* $search =  htmlspecialchars($_GET['search']) . "%";
-
-$query = $this->bdd->prepare("SELECT title FROM product WHERE title LIKE :search LIMIT 0,20;");
-$query->execute([':search' => $search]);
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
-$title = "Search : " . htmlspecialchars($_GET['search']); */
-
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +32,7 @@ $title = "Search : " . htmlspecialchars($_GET['search']); */
 
                 <div class="col-md-6 m-auto">
 
-                    <table class="table table-hover">
+                    <table class="table table-hover bg-light">
                         <thead>
                             <tr>
                                 <th scope="col text-white"><h2 class="py-5">Your search</h2></th>

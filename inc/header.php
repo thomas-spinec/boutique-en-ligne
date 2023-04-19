@@ -17,7 +17,7 @@ $wishlist = new Wishlist();
     <!--------------------------------------TOPMENU---------------------------------------------->
     <nav class="topmenu navbar navbar-black bg-dark d-flex justify-content-between">
         <div class="align-content-center">
-            <ul class="list-unstyled d-flex ">
+            <ul class="list-unstyled d-flex">
                 <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fab fa-twitter text-white"></i></a></li>
                 <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fab fa-instagram text-white"></i></a></li>
                 <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fab fa-facebook text-white"></i></a></li>
@@ -92,7 +92,7 @@ $wishlist = new Wishlist();
     </nav> <!-- /menu-top -->
 
     <!--------------------------------------MAINMENU---------------------------------------------->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top mainmenu justify-content-end px-3">
+    <nav class="sticky-top mainmenu navbar navbar-expand-md navbar-light bg-light justify-content-end px-3">
         <!-- logo -->
         <a class="navbar-brand" href="index.php"><img src="inc/img/design/logo_bk.png" alt="logo" height="40px"></a>
         <!-- search bar -->
@@ -125,7 +125,7 @@ $wishlist = new Wishlist();
                     <a class="nav-link" href="shop.php?category_id=8" data-id="8">Promotion</a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link" href="contact.php">Contact</a>

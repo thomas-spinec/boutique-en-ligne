@@ -26,12 +26,13 @@
 
     <main class="mt-0">
 
-        <section class="shop_header">
-            <p class="shop_title big">SHOP</p>
+        <section class="shop_hero">
+            <h1>SHOP</h1>
+            <h1 class="bis">SHOP</h1>
         </section>
 
         <!-- Icons -->
-        <section class="bg-shopmenu text-center justify-content-between w-100 px-5 py-4 mb-5">
+        <section class="bg-shopmenu shadow text-center justify-content-between w-100 px-5 py-4 mb-5">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
@@ -77,7 +78,8 @@
                 </div>
             </div>
         </section>
-
+        
+        <div class="title"></div>
         <!-- Products fetch container -->
         <div id="products_container" class="container d-flex flex-wrap my-5 love"> </div>
 

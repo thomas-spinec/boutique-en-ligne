@@ -17,7 +17,7 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/profil.js"></script>
 
-    <script>
+    <script> /* Tabs script */
         function openTab(evt, information) {
         let i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -40,19 +40,19 @@
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
         $wishlist_items = $wishlist->getWishlistItems($userId);
-        var_dump($wishlist_items);
     } else {
         header('Location: login.php');
         exit();
     }
     ?>
 
-    <div class="hero_profile"><div class="bg-dark h-100 w-100 opacity-50"></div></div>
+    <div class="hero_profile">        
+        <h1 class="h1-responsive text-dark">Profile</h1>
+        <h1 class="h1-responsive bis opacity-25">Profile</h1>
+    </div>
 
     <main class="container bg-light p-5">
 
-        <h1 class="h1-responsive">Profile</h1>
-        <h1 class="h1-responsive bis">Profile</h1>
         <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
 
         <div class="tab">

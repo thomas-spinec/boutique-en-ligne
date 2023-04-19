@@ -23,14 +23,18 @@ if (isset($_GET['category_id'])):
     if (!empty($_GET['category_id'])){
         $categoryId = $_GET['category_id'];
         $products = $Product->getAll($categoryId);
+        $Categ = $Product->getCategory($categoryId);
+        $nameCateg = $Categ['name'];
     } else {
         $products = $Product->getAll();
+        $nameCateg = "All";
     }
     if ($products === 'Nothing to show here !'){
         echo $products;
     } else{
         ?>
         <div class="container overflow-hidden">
+            <h1><?= $nameCateg?></h1>
             <div class="row my-5 gx-4">
                 <?php
                 foreach ($products as $result) : 
