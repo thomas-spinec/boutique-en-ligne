@@ -40,6 +40,7 @@
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
         $wishlist_items = $wishlist->getWishlistItems($userId);
+        var_dump($wishlist_items);
     } else {
         header('Location: login.php');
         exit();

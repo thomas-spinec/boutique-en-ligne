@@ -9,6 +9,7 @@ $user = new User();
 $product = new Product();
 $comment = new Comment();
 $wishlist = new Wishlist();
+$wishlist = new Wishlist();
 ?>
 
 
@@ -125,7 +126,7 @@ $wishlist = new Wishlist();
                     <a class="nav-link" href="shop.php?category_id=8" data-id="8">Promotion</a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="about.php">About</a>
+                    <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link" href="contact.php">Contact</a>
