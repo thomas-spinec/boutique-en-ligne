@@ -20,7 +20,7 @@ class Cart extends Model{
         detail.id_product, detail.total AS total_product, detail.quantity, detail.size
         FROM $this->tablename
         INNER JOIN detail ON detail.id_order = shop_order.id_order 
-        WHERE $this->tablename.id_user = :id_user";
+        WHERE $this->tablename.id_user = :id_user AND $this->tablename.state = 'cart'";
 
         $select = $this->bdd->prepare($request);
 

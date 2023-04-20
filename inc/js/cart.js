@@ -110,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
               }
         })
 
+        
+
 
 
     }
@@ -146,5 +148,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
+    divPay.addEventListener("click", function(e){
+      e.preventDefault();
+      if(e.target.classList.contains("cart-empty")){
+        alert("Your cart is empty!")
+      }
+      else if(e.target.classList.contains("pay-btn")){
+        
+        fetch("")
+      }
+    })
+
   }
+
+
+
 });
