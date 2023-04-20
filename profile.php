@@ -37,10 +37,25 @@
 
     <?php
     if ($user->isLogged()) {
+        require_once "inc/class/User.php";
+        $user = new User();
+
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
+
         $wishlist_items = $wishlist->getWishlistItems($userId);
-        var_dump($wishlist_items);
+        $login = $user->getLogin();
+        $firstName = $user->getFirstname();
+        $lastName = $user->getLastname();
+        $email = $user->getEmail();
+        $adress = $user->getAddress();
+        $zip = $user->getZip();
+        $city = $user->getCity();
+        $country = $user->getCountry();
+
+
+
+
     } else {
         header('Location: login.php');
         exit();
@@ -68,16 +83,16 @@
         <div id="infos" class="tabcontent p-5">
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Login: <?php $user->getLogin(); ?></p>
-                    <p class="text-muted">First Name: <?php $user->getFirstName(); ?></p>
-                    <p class="text-muted">Last Name: <?php $user->getLastName(); ?></p>
-                    <p class="text-muted">E-mail: <?php $user->getEmail(); ?></p>
+                    <p class="text-muted">Login: <?= $login ?></p>
+                    <p class="text-muted">First Name: <?= $firstName ?></p>
+                    <p class="text-muted">Last Name: <?= $lastName ?></p>
+                    <p class="text-muted">E-mail: <?= $email ?></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <P class="text-muted">Address: <?php $user->getAddress(); ?></p>
-                    <p class="text-muted">ZipCode: <?php $user->getZip(); ?></p>
-                    <p class="text-muted">City: <?php $user->getCity(); ?></P>
-                    <p class="text-muted">Country: <?php $user->getCountry(); ?></p>
+                    <P class="text-muted">Address: <?= $adress ?></p>
+                    <p class="text-muted">ZipCode: <?= $zip ?></p>
+                    <p class="text-muted">City: <?= $city ?></P>
+                    <p class="text-muted">Country: <?= $country ?></p>
                 </div>
             </div>
         </div>
@@ -111,7 +126,7 @@
                         <div class="col">
                             <div class="row">
                                 <label for="login">login</label>
-                                <input type="text" name="login" class="login" value="<?= $login ?>" required>
+                                <input type="text" name="login" class="login" value="<?= $login ?>" required> 
                                 <p></p>
                             </div>
                             <div class="row">

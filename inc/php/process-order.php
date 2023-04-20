@@ -47,7 +47,7 @@ if(isset($_GET["cart"]))
                         <div>
                             <img src="inc/img/shop/<?=$item['image']?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                         </div>
-                        <div class="ms-3">
+                        <div class="ms-3" id="article">
                             <h5><?= $item['title']?></h5>
                             <p>Prix unitaire: <?=$item['price']?></p>
                             <p>Size: <?= $size?></p>
