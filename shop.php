@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
     <script src="inc/js/scrollToTop.js"></script>
+    <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/menu.js"></script>
     <script src="inc/js/search.js"></script>
     <script src="inc/js/wishlist.js"></script>
@@ -32,7 +33,7 @@
         </section>
 
         <!-- Icons -->
-        <section class="bg-shopmenu shadow text-center justify-content-between w-100 px-5 py-4 mb-5">
+        <section class="bg-shopmenu shadow text-center justify-content-between w-100 px-5 py-2 mb-0">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">

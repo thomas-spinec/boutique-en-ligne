@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
     <script src="inc/js/scrollToTop.js"></script>
+    <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/search.js"></script>
 </head>
 

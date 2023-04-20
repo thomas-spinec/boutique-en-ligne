@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
     <script src="inc/js/scrollToTop.js"></script>
+    <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/admin.js"></script>
+    
     <script> /* Tabs script */
         function openTab(evt, information) {
         let i, tabcontent, tablinks;
@@ -56,10 +58,10 @@
             </div>
 
             <!-- Tabs content -->
-            <div id="member" class="tabcontent pt-5"> </div>
-            <div id="product" class="tabcontent pt-5"> </div>
-            <div id="category" class="tabcontent pt-5"> </div>
-            <div id="size" class="tabcontent pt-5"> </div>
+            <div id="member" class="tabcontent pt-3"> </div>
+            <div id="product" class="tabcontent pt-3"> </div>
+            <div id="category" class="tabcontent pt-3"> </div>
+            <div id="size" class="tabcontent pt-3"> </div>
 
             <section id="gestion"></section>
             <section id="display"></section>
