@@ -137,8 +137,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const size_product = e.target.getAttribute("data-size");
         const order_product = e.target.getAttribute("data-order");
 
-        updateQuantity(id_product, size_product, order_product, quantity);
+            updateQuantity(id_product ,size_product, order_product, quantity)
+
+
+        }
+    })
+
+    divPay.addEventListener("click", function(e){
+      e.preventDefault();
+      if(e.target.classList.contains("cart-empty")){
+        alert("Your cart is empty!")
       }
-    });
+      else if(e.target.classList.contains("pay-btn")){
+        
+        fetch("")
+      }
+    })
+
   }
+
+
+
 });
