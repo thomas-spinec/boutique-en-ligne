@@ -118,14 +118,14 @@ h6 {
     margin: 0 0 20px 0;
 }
 
-.sticky-top.scrolled {
+/* .sticky-top.scrolled {
     top: 0;
     transition: top 0.3s ease-in-out;
-}
+} */
 /* STICKY *****************************************************/
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
-    position: fixed;
+    position: fixed!important;
     top: 0;
     width: 100%
 }
@@ -214,11 +214,15 @@ del {color: tomato;}
 
 /* Styles for clicked heart icon */
 .heart {
-    color: #d9b420;
+    color: white;
+}
+
+.heart-bk {
+    color: black;
 }
 
 .heart.clicked {
-    color: white;
+    color: #d9b420;
 }
 
 /* LIST ****************************************************/

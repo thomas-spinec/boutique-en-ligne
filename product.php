@@ -8,22 +8,33 @@
     <title>Product</title>
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
+    <!-- jQuery 3.6.4 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
+    <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
-    <script type="text/javascript" src="inc/js/search.js"></script>
-    <script type="text/javascript" src="inc/js/cart.js"></script>
-    <script src="inc/js/whishlist.js"></script>
+    <script src="inc/js/search.js"></script>
+    <script src="inc/js/cart.js"></script>
+    <script src="inc/js/wishlist.js"></script>
     <script src="inc/js/features.js"></script>
+
 
 </head>
 
 <body>
 
-    <?php include 'inc/header.php'; ?>
+    <?php
+    include 'inc/header.php'; 
+    
+    if (!$user->isLogged()){
+        header('Location: login.php');
+        exit();
+    }
+    ?>
 
     <main class="container px-5 px-lg-5 mx-5 my-5">
         <?php
@@ -76,15 +87,14 @@
                 </div>
 
                 <!-------------------------- ADD TO CART ------------------------------>
-                <div class="d-flex mb-5">
-                    <button id="add_to_wishlist" class="heart btn btn-outline-dark flex-shrink-0 mx-1" type="button">
-                        <i class="heart fas fa-heart me-1"></i>
-                        Add to wishlist
+                <div class="love d-flex mb-5">
+                    <i class="heart heart-bk fas fa-heart me-1 align-content-center" data-id="<?= $id?>">Add to wishlist</i>
+                        
 
-                        <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
-                            <i class="fas fa-shopping-cart me-1"></i>
-                            Add to cart
-                        </button>
+                    <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
+                        <i class="fas fa-shopping-cart me-1"></i>
+                        Add to cart
+                    </button>
                 </div>
                 <!----------------------------------------------------------------------->
 

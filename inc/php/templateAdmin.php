@@ -165,7 +165,7 @@ elseif (isset($_GET["changeProduct"])) :
     $category = $product->getCategoryName($id);
     $size = $product->getSize($id);
     $title = $product_info['title'];
-    $price = $product_info['price'];
+    $price = $product_info['price'] / 100;
     $image = $product_info['image'];
     $image1 = $product_info['image_1'];
     $image2 = $product_info['image_2'];
