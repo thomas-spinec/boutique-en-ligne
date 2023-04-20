@@ -84,15 +84,13 @@ h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 40px!important;
     font-weight: 300!important;
-    text-align: center;
     margin: 0 0 20px 0;
 }
 
 h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 34px!important;
-    font-weight: 300!important;
-    text-align: left!important;
+    font-weight: 100!important;
     margin: 0 0 20px 0;
 }
 
@@ -120,9 +118,21 @@ h6 {
     margin: 0 0 20px 0;
 }
 
-.sticky-top.scrolled {
+/* .sticky-top.scrolled {
     top: 0;
     transition: top 0.3s ease-in-out;
+} */
+/* STICKY *****************************************************/
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed!important;
+    top: 0;
+    width: 100%
+}
+
+  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 80px;
 }
 
 /* HERO *****************************************************/
@@ -181,10 +191,12 @@ a {
 }
 a:hover, a:active, a:focus {
     color: #000!important;
+    cursor: pointer;
 }
 button:hover a
 {
     color: #FFF!important;
+    cursor: pointer;
 }
 
 .bg-grey {
@@ -195,10 +207,6 @@ button:hover a
 }
 del {color: tomato;}
 
-.col-lg {
-    width: 12.5%;
-}
-
 .red {
     color: tomato!important;
 }
@@ -206,11 +214,15 @@ del {color: tomato;}
 
 /* Styles for clicked heart icon */
 .heart {
-    color: #d9b420;
+    color: white;
+}
+
+.heart-bk {
+    color: black;
 }
 
 .heart.clicked {
-    color: white;
+    color: #d9b420;
 }
 
 /* LIST ****************************************************/
@@ -253,47 +265,50 @@ li > a:hover:after{
     padding: 3px;
     vertical-align: middle;
 }
-
+/* input du prix */
 input.text-right {
     text-align: right!important;
 }
 /* POPUP *************************************************/
 .popup-container {
     position: fixed;
+    justify-content: center;
+    align-items: center;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    background-color: rgba(0, 0, 0, 0.7); 
     display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9998; /* Empêche la popup d'être masquée par d'autres éléments */
+    z-index: 9998;
 }
 .popup {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    max-width: 80%;
+    max-width: 90%;
     max-height: 80%;
+    margin: auto;
     overflow-y: auto;
 }
 .closePopUp {
     position: absolute;
+    top: 10px;
     right: 10px;
-    color: #ff0000;
-    font-size: 1.5em;
-    font-weight: bold;
+    color: #000;
     text-align: center;
-    line-height: 30px;
     cursor: pointer;
     z-index: 9999;
+    transition: all 0.3s ease-in-out;
 }
 .closePopUp:hover,
 .closePopUp:focus {
-    color: #000;
+    color: gold;
     text-decoration: none;
+    cursor: pointer;
+}
+svg {
     cursor: pointer;
 }
 
