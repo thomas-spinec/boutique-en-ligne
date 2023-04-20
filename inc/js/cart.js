@@ -119,10 +119,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (e.target.id == "delProduct") {
         let delProduct = e.target;
+        let article = document.querySelector('#article');
         const id_product = delProduct.getAttribute("data-id");
         const size_product = delProduct.getAttribute("data-size");
         const order_product = delProduct.getAttribute("data-order");
-
+        article.classList.toggle("fade");
         delFromCart(id_product, size_product, order_product);
       }
     });
