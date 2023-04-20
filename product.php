@@ -87,6 +87,7 @@
                 </div>
 
                 <!-------------------------- ADD TO CART ------------------------------>
+
                 <div class="love d-flex mb-5">
                     <i class="heart heart-bk fas fa-heart me-1 align-content-center" data-id="<?= $id?>">Add to wishlist</i>
                         
@@ -95,6 +96,9 @@
                         <i class="fas fa-shopping-cart me-1"></i>
                         Add to cart
                     </button>
+
+                    <span></span>
+
                 </div>
                 <!----------------------------------------------------------------------->
 
