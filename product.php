@@ -1,3 +1,6 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,14 +30,7 @@
 
 <body>
 
-    <?php
-    include 'inc/header.php'; 
-    
-    if (!$user->isLogged()){
-        header('Location: login.php');
-        exit();
-    }
-    ?>
+    <?php include 'inc/header.php';?>
 
     <main class="container px-5 px-lg-5 mx-5 my-5">
         <?php
@@ -90,11 +86,17 @@
                 <div class="love d-flex mb-5">
                     <i class="heart heart-bk fas fa-heart me-1 align-content-center" data-id="<?= $id?>">Add to wishlist</i>
                         
-
-                    <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
-                        <i class="fas fa-shopping-cart me-1"></i>
-                        Add to cart
-                    </button>
+                    <?php if ($user->isLogged()) { ?>
+                        <button id="add_to_cart" class="connected btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id?>">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Add to cart
+                        </button>
+                    <?php } else { ?>
+                        <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id?>">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Add to cart
+                        </button>
+                    <?php } ?>
                 </div>
                 <!----------------------------------------------------------------------->
 

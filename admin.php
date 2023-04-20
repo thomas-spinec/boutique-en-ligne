@@ -1,3 +1,5 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,7 +20,7 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/admin.js"></script>
-    
+
     <script> /* Tabs script */
         function openTab(evt, information) {
         let i, tabcontent, tablinks;
