@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- JS -->
     <script src="inc/js/scrollToTop.js"></script>
+    <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/auth.js"></script>
 </head>
 

@@ -9,7 +9,6 @@ $user = new User();
 $product = new Product();
 $comment = new Comment();
 $wishlist = new Wishlist();
-$wishlist = new Wishlist();
 ?>
 
 
@@ -83,9 +82,6 @@ $wishlist = new Wishlist();
                     <li class="nav-item px-1">
                         <a class="nav-link" href="shop.php"><img src="inc/img/icons/shop.png"> Shop</a>
                     </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link" href="cart.php"><img src="inc/img/icons/bag.png"> Cart</a>
-                    </li>
                 </ul>
             <?php
             } ?>
@@ -93,7 +89,7 @@ $wishlist = new Wishlist();
     </nav> <!-- /menu-top -->
 
     <!--------------------------------------MAINMENU---------------------------------------------->
-    <nav class="sticky-top mainmenu navbar navbar-expand-md navbar-light bg-light justify-content-end px-3">
+    <nav id="mainmenu" class="mainmenu navbar navbar-expand-md navbar-light bg-light justify-content-end px-3">
         <!-- logo -->
         <a class="navbar-brand" href="index.php"><img src="inc/img/design/logo_bk.png" alt="logo" height="40px"></a>
         <!-- search bar -->
@@ -126,7 +122,7 @@ $wishlist = new Wishlist();
                     <a class="nav-link" href="shop.php?category_id=8" data-id="8">Promotion</a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link" href="contact.php">Contact</a>

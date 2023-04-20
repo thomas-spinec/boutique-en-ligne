@@ -34,8 +34,8 @@ if (isset($_GET['category_id'])):
     } else{
         ?>
         <div class="container overflow-hidden">
-            <h1><?= $nameCateg?></h1>
-            <div class="row my-5 gx-4">
+            <h2><hr><?= $nameCateg?><hr></h2>
+            <div class="row my-0 gx-4">
                 <?php
                 foreach ($products as $result) : 
                     $id = $result['id_product'];

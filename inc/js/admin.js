@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const display = document.querySelector("#display");
   const gestion = document.querySelector("#gestion");
   const popUp = document.querySelector(".popup-container");
+
   // -----------------------------------------------------------FUNCTIONS-------------------------------------------------------
 
   // USERS//
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function changeProduct(id) {
     popUp.innerHTML = "";
     //display true pour popUp
-    popUp.style.display = "block";
+    popUp.style.display = "flex";
     fetch("inc/php/templateAdmin.php?changeProduct=" + id)
       .then((response) => response.text())
       .then((response) => {
@@ -273,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     display.innerHTML = "";
     gestion.innerHTML = "";
     popUp.innerHTML = "";
-
+    
     fetch("inc/php/templateAdmin.php?categories")
       .then((response) => response.text())
       .then((table) => (display.innerHTML = table));
@@ -326,6 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("inc/php/templateAdmin.php?changeCategory=" + id)
       .then((response) => response.text())
       .then((form) => (popUp.innerHTML = form));
+      popUp.style.display = "flex";
   }
 
   function updateCategory(form) {

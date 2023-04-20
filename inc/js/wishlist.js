@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const love = document.querySelector(".love");
 
+
     love.addEventListener('click', event => {
-        event.preventDefault();
         if (event.target.classList.contains('heart')) {
+            event.preventDefault();
             const productId = event.target.getAttribute('data-id');
-            console.log(productId);
 
             let data = new FormData();
             data.append('productId', productId);
