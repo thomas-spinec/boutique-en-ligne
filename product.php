@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- jQuery 3.6.4 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- Lightbox2 2.11.3 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/a05ac89949.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
@@ -25,9 +27,7 @@
     <script src="inc/js/wishlist.js"></script>
     <script src="inc/js/features.js"></script>
 
-
 </head>
-
 <body>
 
     <?php include 'inc/header.php';?>
@@ -38,11 +38,26 @@
         $product_info = $product->getProductInfo($id);
         $category = $product->getCategoryName($id);
         $comment = $comment->getComment($id);
+        $image = $product_info['image'];
+        $image1 = $product_info['image_1'];
+        $image2 = $product_info['image_2'];
+        $title = $product_info['title'];
         ?>
 
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
-                <img class="product_img" src="inc/img/shop/<?= $product_info['image'] ?>" alt="<?= $product_info['title'] ?> ">
+
+            <?php $images = [$image, $image1, $image2]; ?>
+                <?php foreach ($images as $index => $image) : ?>
+                    <?php if (!empty($image) && $index === 0) : ?>
+                        <a href="inc/img/shop/<?= $image ?>" data-lightbox="<?= $title ?>">
+                        <img src="inc/img/shop/<?= $image ?>" alt="<?= $title ?>" class="product_img img-fluid">
+                        </a>
+                    <?php elseif (!empty($image) && $index !== 0) : ?>
+                        <a href="inc/img/shop/<?= $image ?>" data-lightbox="<?= $title ?>" style="display:none;"></a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
                 <div class="thumbnails">
                     <img class="thumbnail" src="inc/img/shop/<?= $product_info['image'] ?>" data-full-image="inc/img/shop/<?= $product_info['image'] ?>">
                     <?php
@@ -85,7 +100,7 @@
                 <!-------------------------- ADD TO CART ------------------------------>
 
                 <div class="love d-flex mb-5">
-                    <i class="heart heart-bk fas fa-heart me-1 align-content-center" data-id="<?= $id?>">Add to wishlist</i>
+                    <i class="heart heart-bk fas fa-heart px-2 pt-2" data-id="<?= $id?>">Add to wishlist</i>
                         
                     <?php if ($user->isLogged()) { ?>
                         <button id="add_to_cart" class="connected btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id?>">
@@ -217,17 +232,16 @@
 
     <!-- Bootstrap js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Lightbox2 js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <!-- image thumbnails -->
+    <script src="inc/js/thumbnails.js"></script>
 
     <script>
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const mainImage = document.querySelector('.product_img');
-
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', () => {
-                const fullImage = thumbnail.dataset.fullImage;
-                mainImage.src = fullImage;
-            });
-        });
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
     </script>
 
 </body>

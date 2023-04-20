@@ -20,6 +20,7 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/admin.js"></script>
+    <script src="inc/js/adminThumbs.js"></script>
 
     <script> /* Tabs script */
         function openTab(evt, information) {
@@ -82,5 +83,4 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.5 pl-5.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

@@ -391,7 +391,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // update product
     else if (e.target.classList.contains("changeProduct")) {
-      console.log("click");
       const idProduct = e.target.getAttribute("data-id");
       changeProduct(idProduct);
     }

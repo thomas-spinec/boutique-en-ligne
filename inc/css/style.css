@@ -221,6 +221,10 @@ del {color: tomato;}
     color: black;
 }
 
+.heart:hover, .heart-bk:hover {
+    cursor: pointer;
+}
+
 .heart.clicked {
     color: #d9b420;
 }
