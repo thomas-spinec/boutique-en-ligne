@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,22 +21,27 @@
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/profil.js"></script>
 
-    <script> /* Tabs script */
+    <script>
+        /* Tabs script */
         function openTab(evt, information) {
-        let i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";}
-            
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace("active", "");}
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
 
-        document.getElementById(information).style.display = "block";
-            evt.currentTarget.className += " active";}
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(information).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 </head>
-<body>        
+
+<body>
     <?php include 'inc/header.php'; ?>
 
     <?php
@@ -43,6 +49,7 @@
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
         $wishlist_items = $wishlist->getWishlistItems($userId);
+
     } else {
         header('Location: login.php');
         exit();
@@ -51,6 +58,7 @@
 
     <div class="hero_profile">        
         <h1 class="h1-responsive">Profile</h1>
+
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 
@@ -97,7 +105,7 @@
                     <p class="text-muted">Billing Address: </p>
                 </div>
             </div>
-        </div> 
+        </div>
 
         <!-- Tab login -->
         <div id="login" class="tabcontent p-5">
@@ -132,7 +140,7 @@
         </div>
 
         <!-- Tab password -->
-        <div id="password" class="tabcontent p-5">    
+        <div id="password" class="tabcontent p-5">
             <div class="row wrap justify-content-between">
                 <div class="col">
                     <form action="" method="post" id="passwordForm" class="col-lg-6 col-md-12 col-sm-12 bg-white shadow my-2 p-5">
@@ -166,20 +174,21 @@
         </div>
 
         <!-- Tab wishlist -->
-        <div id="whishlist" class="tabcontent p-5">    
+        <div id="whishlist" class="tabcontent p-5">
             <h3>My Wishlist</h3>
             <div class="row wrap justify-content-between">
-                <?php if (count($wishlist_items) > 0): ?>
-                    <?php foreach ($wishlist_items as $item): ?>
+                <?php if (count($wishlist_items) > 0) : ?>
+                    <?php foreach ($wishlist_items as $item) : ?>
                         <div class="col">
                             <a href="product.php?id=<?= $item['id_product'] ?>">
-                            <p><?= $item['date'] ?></p>
-                            <?= $item['title'] ?></a>
-                            <img src="inc/img/shop/<?=$item['image'] ?>" alt="<?= $item['title'] ?>">
-                            <p><?= $item['price']/100 ?>€</p>
+                                <p><?= $item['date'] ?></p>
+                                <?= $item['title'] ?>
+                            </a>
+                            <img src="inc/img/shop/<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
+                            <p><?= $item['price'] / 100 ?>€</p>
                         </div>
                     <?php endforeach; ?>
-                <?php else: ?>
+                <?php else : ?>
                     <div class="col text-center">
                         <p>Your wishlist is empty!</p>
                     </div>
@@ -195,4 +204,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

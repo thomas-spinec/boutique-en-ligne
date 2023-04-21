@@ -87,31 +87,28 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function updateQuantity(id_product, size_product, id_order, quantity){
-        let data = new FormData();
+    function updateQuantity(id_product, size_product, id_order, quantity) {
+      let data = new FormData();
 
-        data.append("id", id_product);
-        data.append("size", size_product);
-        data.append("id_order", id_order);
-        data.append("quantity", quantity)
-        data.append("updateProduct", "ok");
+      data.append("id", id_product);
+      data.append("size", size_product);
+      data.append("id_order", id_order);
+      data.append("quantity", quantity);
+      data.append("updateProduct", "ok");
 
-        fetch("inc/php/process-order.php",{
-            method: "POST",
-            body: data,
-        })
-        .then((response)=>response.text())
-        .then((data)=>{
-            data = data.trim();
-            if (data === "ok") {
-                displayCart();
-              } else {
-                alert("There was an error, please retry later");
-              }
-        })
-
-
-
+      fetch("inc/php/process-order.php", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          data = data.trim();
+          if (data === "ok") {
+            displayCart();
+          } else {
+            alert("There was an error, please retry later");
+          }
+        });
     }
     //-------------------Calls-------------------------
 
@@ -130,20 +127,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    divCart.addEventListener("change", function(e){
-        e.preventDefault();
+    divCart.addEventListener("change", function (e) {
+      e.preventDefault();
 
-        if(e.target.classList.contains("quantity")){
-            const quantity = e.target.value
-            const id_product = e.target.getAttribute("data-id");
-            const size_product = e.target.getAttribute("data-size");
-            const order_product = e.target.getAttribute("data-order");
+      if (e.target.classList.contains("quantity")) {
+        const quantity = e.target.value;
+        const id_product = e.target.getAttribute("data-id");
+        const size_product = e.target.getAttribute("data-size");
+        const order_product = e.target.getAttribute("data-order");
 
-            updateQuantity(id_product ,size_product, order_product, quantity)
-
-
-        }
-    })
-
+        updateQuantity(id_product, size_product, order_product, quantity);
+      }
+    });
   }
 });
