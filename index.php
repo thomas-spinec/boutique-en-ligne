@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,8 +21,9 @@
     <script src="inc/js/wishlist.js"></script>
     <script src="inc/js/features.js"></script>
 </head>
+
 <body>
-            
+
     <?php include 'inc/header.php'; ?>
 
     <section class="hero">
@@ -29,8 +31,8 @@
         <img class="logo_big" src="inc/img/design/logo_wt.png" alt="logo">
         <a href="./shop.php"><button class="btn btn-white fw-bold my-5 d-flex justify-items-center">SHOP NOW</button></a>
     </section>
-        
-    <main>
+
+    <main class="love">
 
         <!-- NEW COLLECTION -->
         <section class="container overflow-hidden">
@@ -42,7 +44,7 @@
 
         <!-- SPRING COLLECTION TEASER -->
         <section>
-            <div class="photo w-100 d-flex my-5 pt-5"> 
+            <div class="photo w-100 d-flex my-5 pt-5">
                 <span class="text-body-tertiary fs-3 lh-5 col-lg-6 align-content-center my-auto text-center">SPRING <br>COLLECTION</span>
             </div>
         </section>
@@ -63,4 +65,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
