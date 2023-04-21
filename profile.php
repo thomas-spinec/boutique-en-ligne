@@ -1,3 +1,5 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -53,6 +55,7 @@
         // get whishlist products for the user
 
         $wishlist_items = $wishlist->getWishlistItems($userId);
+
         $login = $user->getLogin();
         $firstName = $user->getFirstname();
         $lastName = $user->getLastname();
@@ -63,14 +66,16 @@
         $country = $user->getCountry();
 
         $orders = $cart->getOrder($userId);
+
     } else {
         header('Location: login.php');
         exit();
     }
     ?>
 
-    <div class="hero_profile">
-        <h1 class="h1-responsive text-dark">Profile</h1>
+    <div class="hero_profile">        
+        <h1 class="h1-responsive">Profile</h1>
+
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 

@@ -199,6 +199,8 @@ elseif (isset($_GET["changeProduct"])) :
 
                 </div>
             </div>
+                <!-- image thumbnails -->
+                <script src="inc/js/thumbnails.js"></script>
 
             <div class="col-md-6">
                 <div class="small mb-3"><p class="text"><em>Category :</em> <span class="lead"><?php echo $category; ?></span></p></div>
@@ -606,3 +608,5 @@ elseif (isset($_GET["changeCategory"])) :
         </div>
 <?php
 endif;
+
+

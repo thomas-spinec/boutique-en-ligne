@@ -1,3 +1,5 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
