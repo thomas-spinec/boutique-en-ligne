@@ -50,6 +50,8 @@
         </div>
     </section>
 
+    <section class="popup-container"></section>
+
     <?php include 'inc/footer.php'; ?>
 
     <!-- Bootstrap js -->
