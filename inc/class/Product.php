@@ -489,9 +489,9 @@ class Product extends Model
         ]);
 
         if ($update) {
-            echo "ok";
+            return "ok";
         } else {
-            echo "error";
+            return "error";
         }
     }
 

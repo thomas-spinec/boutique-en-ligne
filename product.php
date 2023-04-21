@@ -76,7 +76,7 @@
                         <select name="size" id="size">
                             <?php foreach ($sizesProduct as $cols => $valueSize) {
                             ?>
-                                <option value="<?= $valueSize['id_size'] ?>"><?= $valueSize['size'] ?></option>
+                                <option value="<?= $valueSize['size'] ?>"><?= $valueSize['size'] ?></option>
                             <?php
                             }
                             ?>
