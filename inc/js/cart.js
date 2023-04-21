@@ -96,19 +96,24 @@ document.addEventListener("DOMContentLoaded", function () {
       data.append("quantity", quantity);
       data.append("updateProduct", "ok");
 
-      fetch("inc/php/process-order.php", {
-        method: "POST",
-        body: data,
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          data = data.trim();
-          if (data === "ok") {
-            displayCart();
-          } else {
-            alert("There was an error, please retry later");
-          }
-        });
+        fetch("inc/php/process-order.php",{
+            method: "POST",
+            body: data,
+        })
+        .then((response)=>response.text())
+        .then((data)=>{
+            data = data.trim();
+            if (data === "ok") {
+                displayCart();
+              } else {
+                alert("There was an error, please retry later");
+              }
+        })
+
+        
+
+
+
     }
     //-------------------Calls-------------------------
 
