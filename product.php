@@ -28,12 +28,8 @@
 <body>
 
     <?php
-    include 'inc/header.php'; 
-    
-    if (!$user->isLogged()){
-        header('Location: login.php');
-        exit();
-    }
+    include 'inc/header.php';
+
     ?>
 
     <main class="container px-5 px-lg-5 mx-5 my-5">
@@ -42,7 +38,11 @@
         $product_info = $product->getProductInfo($id);
         $category = $product->getCategoryName($id);
         $comment = $comment->getComment($id);
+
+        // size for current product
+        $sizesProduct = $product->getSize($id);
         ?>
+
 
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
@@ -74,12 +74,12 @@
 
                     <p class="">Size :
                         <select name="size" id="size">
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
+                            <?php foreach ($sizesProduct as $cols => $valueSize) {
+                            ?>
+                                <option value="<?= $valueSize['id_size'] ?>"><?= $valueSize['size'] ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </p>
                     <h3 class="py-5"><?php echo $product_info['price'] / 100; ?>€</h3>
@@ -89,8 +89,8 @@
                 <!-------------------------- ADD TO CART ------------------------------>
 
                 <div class="love d-flex mb-5">
-                    <i class="heart heart-bk fas fa-heart me-1 align-content-center" data-id="<?= $id?>">Add to wishlist</i>
-                        
+                    <i class="heart heart-bk fas fa-heart me-1 align-content-center" data-id="<?= $id ?>">Add to wishlist</i>
+
 
                     <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button">
                         <i class="fas fa-shopping-cart me-1"></i>
@@ -184,7 +184,7 @@
                     } else {
 
                         $id_product = $_GET['id'];
-                        ?>
+                    ?>
                         <form action="./inc/php/leaveComment.php" method="post" class="needs-validation bg-light p-3 rounded">
                             <input type="hidden" name="id_product" value="<?= $id_product ?>">
                             <div class="row">
@@ -199,13 +199,13 @@
                                     <label for="comment">Comment :</label>
                                     <textarea class="form-control" name="comment" rows="5" required></textarea>
                                     <div class="invalid-feedback">
-                                    Please enter your comment.
+                                        Please enter your comment.
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="btn btn-dark" type="submit">SEND</button>
+                                <button class="btn btn-dark" type="submit">SEND</button>
 
                         </form>
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
