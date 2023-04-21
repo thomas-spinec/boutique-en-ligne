@@ -37,7 +37,7 @@
         <?php
         $id = $_GET['id'];
         $product_info = $product->getProductInfo($id);
-        $category = $product->getCategoryName($id);
+        $categories = $product->getCategoryName($id);
         $comment = $comment->getComment($id);
         $image = $product_info['image'];
         $image1 = $product_info['image_1'];
@@ -79,7 +79,10 @@
             </div>
 
             <div class="col-md-6">
-                <div class="small mb-5">Category: <?php echo $category; ?></div>
+                <div class="small mb-5">Categories:
+                    <?php foreach ($categories as $category) {
+                        echo $category['name'] . ', ';
+                    } ?></div>
                 <h2 class="display-5 fw-bolder my-5"><?php echo $product_info['title'] ?></h2>
                 <div class="fs-5 mb-5">
                     <!-- Quantity -->

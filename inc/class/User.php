@@ -340,19 +340,19 @@ class User extends Model
     }
 
 
-        public function getAll()
+    public function getAll()
     {
-       return parent::getAll();
+        return parent::getAll();
     }
 
-    public function deleteOne($id){
+    public function deleteOne($id)
+    {
 
         echo parent::deleteOne($id);
-
-
     }
 
-    public function changeRole($newRole, $id){
+    public function changeRole($newRole, $id)
+    {
 
         $newRole = htmlspecialchars($newRole);
         $id = htmlspecialchars($id);
@@ -361,17 +361,14 @@ class User extends Model
         $updateRole = $this->bdd->prepare($request);
 
         $updateRole->execute([
-             ":role" =>$newRole,
-             ":id" => $id,
+            ":role" => $newRole,
+            ":id" => $id,
         ]);
 
-        if($updateRole){
+        if ($updateRole) {
             echo "ok";
-        }
-        else{
+        } else {
             echo "error";
         }
-
     }
-
 }
