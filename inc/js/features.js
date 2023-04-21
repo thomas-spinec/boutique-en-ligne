@@ -5,9 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (newCollec == null) {
     newCollec = "null";
-  } else if (bestSellers == null) {
+  }
+  if (bestSellers == null) {
     bestSellers = "null";
-  } else if (promotions == null) {
+  }
+  if (promotions == null) {
     promotions = "null";
   }
 
