@@ -112,17 +112,21 @@
         <!-- Tab orders -->
         <div id="orders" class="tabcontent p-5">
             <div class="row justify-content-between">
-                <?php foreach ($orders as $order) : ?>
-                    <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                        <p class="text-muted">Order ID: <?= $order['id_order'] ?></p>
-                        <p class="text-muted">Order Date: <?= $order['date'] ?></p>
-                        <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
-                    </div>
-                    <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                        <p class="text-muted">Shipping Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?></p>
-                        <p class="text-muted">Billing Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?> </p>
-                    </div>
-                <?php endforeach; ?>
+                <?php if ($orders !== 'Nothing to show here !') {
+                    foreach ($orders as $order) : ?>
+                        <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                            <p class="text-muted">Order ID: <?= $order['id_order'] ?></p>
+                            <p class="text-muted">Order Date: <?= $order['date'] ?></p>
+                            <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
+                        </div>
+                        <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                            <p class="text-muted">Shipping Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?></p>
+                            <p class="text-muted">Billing Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?> </p>
+                        </div>
+                <?php endforeach;
+                } else {
+                    echo $orders;
+                } ?>
             </div>
         </div>
 
