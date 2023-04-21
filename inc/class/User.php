@@ -47,7 +47,7 @@ class User extends Model
 
 
     // register new user
-    public function register($login, $password, $email, $firstname, $lastname, $address, $city, $country, $zip)
+    public function register($login, $password, $email, $firstname, $lastname, $address, $city, $zip, $country,)
     {
         // special characters
         $login = htmlspecialchars($login);

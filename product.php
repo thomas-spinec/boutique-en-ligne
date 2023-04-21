@@ -30,7 +30,7 @@
 </head>
 <body>
 
-    <?php include 'inc/header.php';?>
+    <?php include 'inc/header.php'; ?>
 
     <main class="container px-5 px-lg-5 mx-5 my-5">
         <?php
@@ -42,7 +42,11 @@
         $image1 = $product_info['image_1'];
         $image2 = $product_info['image_2'];
         $title = $product_info['title'];
+
+        // size for current product
+        $sizesProduct = $product->getSize($id);
         ?>
+
 
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
@@ -85,12 +89,12 @@
 
                     <p class="">Size :
                         <select name="size" id="size">
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
+                            <?php foreach ($sizesProduct as $cols => $valueSize) {
+                            ?>
+                                <option value="<?= $valueSize['size'] ?>"><?= $valueSize['size'] ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </p>
                     <h3 class="py-5"><?php echo $product_info['price'] / 100; ?>€</h3>
@@ -113,6 +117,7 @@
                             Add to cart
                         </button>
                     <?php } ?>
+
                 </div>
                 <!----------------------------------------------------------------------->
 
@@ -150,7 +155,6 @@
 
         <!-------------------------- COMMENTS ------------------------------>
         <?php include 'inc/php/comment_our_project.php'; ?>
-
 
     </main>
 

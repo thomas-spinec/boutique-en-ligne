@@ -33,7 +33,7 @@ if (isset($_POST['updateStock'])) {
     $idSize = $_POST['idSize'];
     $newStock = $_POST['stock'];
 
-    $product->updateStock($idProduct, $idSize, $newStock);
+    echo $product->updateStock($idProduct, $idSize, $newStock);
 }
 
 if (isset($_POST['addStock'])) {
