@@ -138,7 +138,7 @@ class Cart extends Model
         $totalOrder = 0;
 
         foreach ($select as $product) {
-            $totalOrder = $totalOrder + $product['totalProduct'];
+            $totalOrder = $totalOrder + (int)$product['totalProduct'];
         }
 
         $request2 = "UPDATE $this->tablename SET `total` = $totalOrder WHERE id_order = :id_order";
