@@ -45,7 +45,9 @@
     <?php
     if ($user->isLogged()) {
         require_once "inc/class/User.php";
+        require_once "inc/class/Cart.php";
         $user = new User();
+        $cart = new Cart();
 
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
@@ -60,9 +62,7 @@
         $city = $user->getCity();
         $country = $user->getCountry();
 
-
-
-
+        $orders = $cart->getOrder($userId);
     } else {
         header('Location: login.php');
         exit();
@@ -107,15 +107,17 @@
         <!-- Tab orders -->
         <div id="orders" class="tabcontent p-5">
             <div class="row justify-content-between">
-                <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Order ID:</p>
-                    <p class="text-muted">Order Date:</p>
-                    <p class="text-muted">Order Total:</p>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Shipping Address: </p>
-                    <p class="text-muted">Billing Address: </p>
-                </div>
+                <?php foreach ($orders as $order) : ?>
+                    <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                        <p class="text-muted">Order ID: <?= $order['id_order'] ?></p>
+                        <p class="text-muted">Order Date: <?= $order['date'] ?></p>
+                        <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
+                    </div>
+                    <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                        <p class="text-muted">Shipping Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?></p>
+                        <p class="text-muted">Billing Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?> </p>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
 
@@ -133,7 +135,7 @@
                         <div class="col">
                             <div class="row">
                                 <label for="login">login</label>
-                                <input type="text" name="login" class="login" value="<?= $login ?>" required> 
+                                <input type="text" name="login" class="login" value="<?= $login ?>" required>
                                 <p></p>
                             </div>
                             <div class="row">
