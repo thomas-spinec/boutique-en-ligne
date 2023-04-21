@@ -9,12 +9,12 @@ $product = new Product();
 $cart = new Cart();
 
 $id = $user->getUserId();
-
 if(isset($_GET["cart"]))
 {
 
     // $displaTitle = $product->getProductInfo($displayCart[0]["id_product"]);
     $carts = $cart->getCart($id);
+    var_dump($carts);
 
 
     ?>
@@ -249,11 +249,19 @@ if(isset($_POST["updateProduct"])){
 
 if(isset($_POST["validate"])){
 
+    $login = $user->getLogin();
+    $item = $product->getProductInfo($id_pro)
     ?>
+    
     <div class="popup">
-
+    <p>Congratulation <?= $login ?> </p>
+    <p>You've ordered  <?php foreach($carts as $article){?>
+        <?= $item ?> </p> <?php 
+        }?>
+    
     </div>
     <?php
+
 }
 
 ?>
