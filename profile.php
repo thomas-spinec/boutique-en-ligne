@@ -196,16 +196,23 @@
         <!-- Tab wishlist -->
         <div id="whishlist" class="tabcontent p-5">
             <h3>My Wishlist</h3>
-            <div class="row wrap justify-content-between">
-                <?php if (count($wishlist_items) > 0) : ?>
-                    <?php foreach ($wishlist_items as $item) : ?>
-                        <div class="col">
-                            <a href="product.php?id=<?= $item['id_product'] ?>">
+            <div class="d-flex flex-wrap card-columns justify-content-center text-dark">
+                <?php if (count($wishlist_items) > 0): ?>
+                    <?php foreach ($wishlist_items as $item): ?>
+                        <div class="card col-lg-3 col-sm-6 mx-3 my-3">
+                            <div class="card-header">
                                 <p><?= $item['date'] ?></p>
-                                <?= $item['title'] ?>
-                            </a>
-                            <img src="inc/img/shop/<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
-                            <p><?= $item['price'] / 100 ?>€</p>
+                            </div>
+                            <div class="card-body">
+                                <a class="text-dark lead " href="product.php?id=<?= $item['id_product'] ?>">
+                                <img class="w-25" src="inc/img/shop/<?=$item['image'] ?>" alt="<?= $item['title'] ?>">
+                                <div class="card-title">
+                                    <?= $item['title'] ?></a>
+                                </div>
+                                <div class="card-text">
+                                    <p><?= $item['price']/100 ?>€</p>
+                                </div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
