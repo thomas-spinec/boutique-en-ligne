@@ -489,9 +489,9 @@ class Product extends Model
         ]);
 
         if ($update) {
-            echo "ok";
+            return "ok";
         } else {
-            echo "error";
+            return "error";
         }
     }
 
@@ -686,5 +686,37 @@ class Product extends Model
             $results = 'Nothing to show here!';
             return $results;
         }
+    }
+
+    public function getProduct($id_product, $size){
+
+        $id_product = htmlspecialchars($id_product);
+        $size = htmlspecialchars($size);
+
+        $request1 = "SELECT id_size FROM size WHERE `size`= :size";
+        $select1 = $this->bdd->prepare($request1);
+        $select1->execute([
+            ":size"=>$size,
+        ]);
+        $result = $select1->fetch(PDO::FETCH_ASSOC);
+        $id_size = $result['id_size'];
+
+
+        $request2 = "SELECT stock FROM product_size WHERE id_product = :id_product AND id_size = :id_size";
+        $select2 = $this->bdd->prepare($request2);
+        $select2->execute([
+            ":id_product"=>$id_product,
+            ":id_size"=>$id_size,
+        ]);
+        $result2 = $select2->fetch(PDO::FETCH_ASSOC);
+        
+        $table["id_size"]= $id_size;
+        $table["stock"]= $result2["stock"];
+        return $table ;
+
+
+
+
+
     }
 }

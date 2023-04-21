@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,29 +21,52 @@
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/profil.js"></script>
 
-    <script> /* Tabs script */
+    <script>
+        /* Tabs script */
         function openTab(evt, information) {
-        let i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";}
-            
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace("active", "");}
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
 
-        document.getElementById(information).style.display = "block";
-            evt.currentTarget.className += " active";}
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(information).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 </head>
-<body>        
+
+<body>
     <?php include 'inc/header.php'; ?>
 
     <?php
     if ($user->isLogged()) {
+        require_once "inc/class/User.php";
+        require_once "inc/class/Cart.php";
+        $user = new User();
+        $cart = new Cart();
+
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
+
         $wishlist_items = $wishlist->getWishlistItems($userId);
+
+        $login = $user->getLogin();
+        $firstName = $user->getFirstname();
+        $lastName = $user->getLastname();
+        $email = $user->getEmail();
+        $adress = $user->getAddress();
+        $zip = $user->getZip();
+        $city = $user->getCity();
+        $country = $user->getCountry();
+
+        $orders = $cart->getOrder($userId);
+
     } else {
         header('Location: login.php');
         exit();
@@ -51,6 +75,7 @@
 
     <div class="hero_profile">        
         <h1 class="h1-responsive">Profile</h1>
+
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 
@@ -70,16 +95,16 @@
         <div id="infos" class="tabcontent p-5">
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Login: <?php $user->getLogin(); ?></p>
-                    <p class="text-muted">First Name: <?php $user->getFirstName(); ?></p>
-                    <p class="text-muted">Last Name: <?php $user->getLastName(); ?></p>
-                    <p class="text-muted">E-mail: <?php $user->getEmail(); ?></p>
+                    <p class="text-muted">Login: <?= $login ?></p>
+                    <p class="text-muted">First Name: <?= $firstName ?></p>
+                    <p class="text-muted">Last Name: <?= $lastName ?></p>
+                    <p class="text-muted">E-mail: <?= $email ?></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <P class="text-muted">Address: <?php $user->getAddress(); ?></p>
-                    <p class="text-muted">ZipCode: <?php $user->getZip(); ?></p>
-                    <p class="text-muted">City: <?php $user->getCity(); ?></P>
-                    <p class="text-muted">Country: <?php $user->getCountry(); ?></p>
+                    <P class="text-muted">Address: <?= $adress ?></p>
+                    <p class="text-muted">ZipCode: <?= $zip ?></p>
+                    <p class="text-muted">City: <?= $city ?></P>
+                    <p class="text-muted">Country: <?= $country ?></p>
                 </div>
             </div>
         </div>
@@ -87,17 +112,19 @@
         <!-- Tab orders -->
         <div id="orders" class="tabcontent p-5">
             <div class="row justify-content-between">
-                <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Order ID:</p>
-                    <p class="text-muted">Order Date:</p>
-                    <p class="text-muted">Order Total:</p>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Shipping Address: </p>
-                    <p class="text-muted">Billing Address: </p>
-                </div>
+                <?php foreach ($orders as $order) : ?>
+                    <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                        <p class="text-muted">Order ID: <?= $order['id_order'] ?></p>
+                        <p class="text-muted">Order Date: <?= $order['date'] ?></p>
+                        <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
+                    </div>
+                    <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                        <p class="text-muted">Shipping Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?></p>
+                        <p class="text-muted">Billing Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?> </p>
+                    </div>
+                <?php endforeach; ?>
             </div>
-        </div> 
+        </div>
 
         <!-- Tab login -->
         <div id="login" class="tabcontent p-5">
@@ -132,7 +159,7 @@
         </div>
 
         <!-- Tab password -->
-        <div id="password" class="tabcontent p-5">    
+        <div id="password" class="tabcontent p-5">
             <div class="row wrap justify-content-between">
                 <div class="col">
                     <form action="" method="post" id="passwordForm" class="col-lg-6 col-md-12 col-sm-12 bg-white shadow my-2 p-5">
@@ -166,7 +193,7 @@
         </div>
 
         <!-- Tab wishlist -->
-        <div id="whishlist" class="tabcontent p-5">    
+        <div id="whishlist" class="tabcontent p-5">
             <h3>My Wishlist</h3>
             <div class="d-flex flex-wrap card-columns justify-content-center text-dark">
                 <?php if (count($wishlist_items) > 0): ?>
@@ -187,7 +214,7 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-                <?php else: ?>
+                <?php else : ?>
                     <div class="col text-center">
                         <p>Your wishlist is empty!</p>
                     </div>
@@ -203,4 +230,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

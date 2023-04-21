@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (pageTitle == "Cart") {
     const divCart = document.querySelector(".productsCart");
     const divPay = document.querySelector(".pay");
+    const sectPop = document.querySelector(".popup-container");
+    sectPop.innerHTML = '';
 
     //-------------------Functions-------------------------
     function displayCart() {
@@ -87,14 +89,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function updateQuantity(id_product, size_product, id_order, quantity){
-        let data = new FormData();
+    function updateQuantity(id_product, size_product, id_order, quantity) {
+      let data = new FormData();
 
-        data.append("id", id_product);
-        data.append("size", size_product);
-        data.append("id_order", id_order);
-        data.append("quantity", quantity)
-        data.append("updateProduct", "ok");
+      data.append("id", id_product);
+      data.append("size", size_product);
+      data.append("id_order", id_order);
+      data.append("quantity", quantity);
+      data.append("updateProduct", "ok");
 
         fetch("inc/php/process-order.php",{
             method: "POST",
@@ -110,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
               }
         })
 
+        
+
 
 
     }
@@ -122,28 +126,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (e.target.id == "delProduct") {
         let delProduct = e.target;
+        let article = document.querySelector('#article');
         const id_product = delProduct.getAttribute("data-id");
         const size_product = delProduct.getAttribute("data-size");
         const order_product = delProduct.getAttribute("data-order");
-
+        article.classList.toggle("fade");
         delFromCart(id_product, size_product, order_product);
       }
     });
 
-    divCart.addEventListener("change", function(e){
-        e.preventDefault();
+    divCart.addEventListener("change", function (e) {
+      e.preventDefault();
 
-        if(e.target.classList.contains("quantity")){
-            const quantity = e.target.value
-            const id_product = e.target.getAttribute("data-id");
-            const size_product = e.target.getAttribute("data-size");
-            const order_product = e.target.getAttribute("data-order");
+      if (e.target.classList.contains("quantity")) {
+        const quantity = e.target.value;
+        const id_product = e.target.getAttribute("data-id");
+        const size_product = e.target.getAttribute("data-size");
+        const order_product = e.target.getAttribute("data-order");
 
-            updateQuantity(id_product ,size_product, order_product, quantity)
+        updateQuantity(id_product ,size_product, order_product, quantity)
 
 
-        }
+      }
+    })
+
+    divPay.addEventListener("click", function(e){
+      e.preventDefault();
+      if(e.target.classList.contains("cart-empty")){
+        alert("Your cart is empty!")
+      }
+      else if(e.target.classList.contains("pay-btn")){
+
+        fetch("inc/php/process-order.php?validate")
+        .then((response) => response.text())
+        .then((response) => {
+          response = response.trim();
+          if (response == "error"){
+            alert("An error occured, please try later")
+          }
+          else if (response == "ok"){
+            fetch("inc/php/process-order.php?confirm")
+            .then((response) => response.text())
+            .then((data) =>{
+              data = data.trim();
+              if (response == "error"){
+                alert("An error occured, please try later")
+              }
+              else {
+                sectPop.style.display = "flex";
+                sectPop.innerHTML=data;
+              }
+            })
+          }
+        })
+      }
     })
 
   }
+
+
+
 });
