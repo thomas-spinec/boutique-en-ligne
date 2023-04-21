@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,15 +20,17 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/auth.js"></script>
+    <script src="inc/js/wishlist.js"></script>
+    <script src="inc/js/features.js"></script>
 </head>
 
 <body>
 
     <div class="wrapper">
-        
+
         <?php include 'inc/header.php'; ?>
 
-        <main class="m-0">
+        <main class="m-0 love">
 
             <section class="container-fluid h-auto userAuth m-0">
                 <div class="authBox m-0">
@@ -131,9 +134,10 @@
             <section class="bg-grey py-5 m-5">
                 <h1>New Collection</h1>
                 <h1 class="ter">New Collection</h1>
-                <?php $product->getRandomNewCollection(4); ?>
+                <div id="new_collec" class="row my-5 gx-4">
+                </div>
             </section>
-            
+
         </main>
 
         <div class="push"></div>

@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,14 +20,17 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/cart.js"></script>
+    <script src="inc/js/features.js"></script>
+    <script src="inc/js/wishlist.js"></script>
 </head>
+
 <body>
-        
-    <?php 
+
+    <?php
     include 'inc/header.php';
-    require_once "inc/class/Cart.php"; 
+    require_once "inc/class/Cart.php";
     $cart = new Cart();
-    
+
     ?>
 
     <section class="h-100 h-custom" style="background-color: #eee;">
@@ -56,10 +60,19 @@
 
     <section class="popup-container"></section>
 
+    <!-- BEST SELLERS -->
+    <section class="container overflow-hidden">
+        <h1>Best Sellers</h1>
+        <h1 class="ter">Best Sellers</h1>
+        <div id="best_sellers" class="row my-5 gx-4">
+        </div>
+    </section>
+
     <?php include 'inc/footer.php'; ?>
 
     <!-- Bootstrap js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

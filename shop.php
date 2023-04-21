@@ -1,6 +1,7 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +23,10 @@
     <script src="inc/js/menu.js"></script>
     <script src="inc/js/search.js"></script>
     <script src="inc/js/wishlist.js"></script>
+    <script src="inc/js/features.js"></script>
 </head>
-<body>        
+
+<body>
     <?php include 'inc/header.php'; ?>
 
     <main class="mt-0">
@@ -80,10 +83,19 @@
                 </div>
             </div>
         </section>
-        
+
         <div class="title"></div>
         <!-- Products fetch container -->
         <div id="products_container" class="container d-flex flex-wrap my-5 love"> </div>
+
+
+        <!-- BEST SELLERS -->
+        <section class="container overflow-hidden">
+            <h1>Best Sellers</h1>
+            <h1 class="ter">Best Sellers</h1>
+            <div id="best_sellers" class="row my-5 gx-4">
+            </div>
+        </section>
 
     </main>
 
@@ -101,4 +113,5 @@
     </script>
 
 </body>
+
 </html>

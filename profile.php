@@ -20,6 +20,8 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/profil.js"></script>
+    <script src="inc/js/features.js"></script>
+    <script src="inc/js/wishlist.js"></script>
 
     <script>
         /* Tabs script */
@@ -66,20 +68,19 @@
         $country = $user->getCountry();
 
         $orders = $cart->getOrder($userId);
-
     } else {
         header('Location: login.php');
         exit();
     }
     ?>
 
-    <div class="hero_profile">        
+    <div class="hero_profile">
         <h1 class="h1-responsive">Profile</h1>
 
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 
-    <main class="container bg-light p-5">
+    <main class="love container bg-light p-5">
 
         <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
 
@@ -214,6 +215,14 @@
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- PROMOTION -->
+        <section class="container overflow-hidden">
+            <h1>Promotions</h1>
+            <h1 class="ter">Promotions</h1>
+            <div id="promotions" class="row my-5 gx-4">
+            </div>
+        </section>
 
     </main>
 
