@@ -97,8 +97,16 @@
                             ?>
                         </select>
                     </p>
-                    <h3 class="py-5"><?php echo $product_info['price'] / 100; ?>€</h3>
-                    <p class="lead"><?php echo $product_info['description'] ?></p>
+                    <?php if ($product_info['promotion'] == 1) {
+                        $price = $product_info['price'] / 100;
+                        $percentage = $product_info['promotion_percentage'];
+                        $newPrice = $price - ($price * $percentage / 100);
+                    ?>
+                        <h3 class="py-5"><?= '<del>' . $price . '€</del> &nbsp;-' . $percentage . '% &nbsp;' . $newPrice ?>€</h3>
+                    <?php } else { ?>
+                        <h3 class="py-5"><?= $product_info['price'] / 100; ?>€</h3>
+                    <?php } ?>
+                    <p class="lead"><?= $product_info['description'] ?></p>
                 </div>
 
                 <!-------------------------- ADD TO CART ------------------------------>
