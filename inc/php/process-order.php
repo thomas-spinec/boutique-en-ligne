@@ -9,12 +9,12 @@ $product = new Product();
 $cart = new Cart();
 
 $id = $user->getUserId();
+$login = $user->getLogin();
 if(isset($_GET["cart"]))
 {
 
     // $displaTitle = $product->getProductInfo($displayCart[0]["id_product"]);
     $carts = $cart->getCart($id);
-    var_dump($carts);
 
 
     ?>
@@ -57,7 +57,7 @@ if(isset($_GET["cart"]))
                             </div>
                             <div class="ms-3" id="article">
                                 <h5><?= $item['title']?></h5>
-                                <p>Prix unitaire: <?=$item['price']?></p>
+                                <p>Prix unitaire: <?=$item['price']/100?></p>
                                 <p>Size: <?= $size?></p>
                                 <?php
                                 ?>
@@ -72,7 +72,7 @@ if(isset($_GET["cart"]))
                         </div>
                         <div class="d-flex flex-row align-items-center">
                             <div style="width: 80px;">
-                                <h5 class="mb-0"><?=$item['price']*$order['quantity']?>€</h5>
+                                <h5 class="mb-0"><?=($item['price']/100)*$order['quantity']?>€</h5>
                             </div>
                         </div>
                         <div class="d-flex flex-row align-items-center">
@@ -176,9 +176,9 @@ if(isset($_GET["pay"]))
             <?php if($total !== "Nothing to show here !"){
                 ?>
             <button type="button" class="pay-btn btn btn-info btn-block btn-lg">
-                <div class="d-flex pay-btn justify-content-between">
-                    <span class="pay-btn" ><?= $total[0]['total']?>€ </span>
-                    <span class="pay-btn" >&nbsp; Checkout <i class="cart-empty fas fa-long-arrow-alt-right ms-2"></i></span>
+                <div class="pay-btn d-flex justify-content-between">
+                    <span class="pay-btn"><?= $total[0]['total']?>€ </span>
+                    <span class="pay-btn">&nbsp; Checkout <i class="cart-empty fas fa-long-arrow-alt-right ms-2"></i></span>
                 </div>
             </button>
             <?php } else {
@@ -206,7 +206,7 @@ if(isset($_POST["addToCart"])){
     $id_order = $cart->cartVerify($id);
     $item = $product->getProductInfo($id_product);
 
-    $total = $item["price"]*$quantity;
+    $total = ($item["price"]/100)*$quantity;
 
 
     $result = $cart->createDetail($id_order, $id_product, $quantity, $size, $total);
@@ -247,21 +247,51 @@ if(isset($_POST["updateProduct"])){
 
 }
 
-if(isset($_POST["validate"])){
+if(isset($_GET["validate"])){
+    $order = $cart->getCart($id);
+    foreach( $order as $item){
 
-    $login = $user->getLogin();
-    $item = $product->getProductInfo($id_pro)
-    ?>
-    
-    <div class="popup">
-    <p>Congratulation <?= $login ?> </p>
-    <p>You've ordered  <?php foreach($carts as $article){?>
-        <?= $item ?> </p> <?php 
-        }?>
-    
-    </div>
-    <?php
+        $id_product = $item["id_product"];
+        $size = $item['size'];
+        $quantity = $item['quantity'];
 
+        $table = $product->getProduct($id_product, $size);
+        $stock = $table['stock'];
+        $id_size = $table['id_size'];
+        $newStock= $stock - $quantity;
+
+        $request = $product->updateStock($id_product, $id_size, $newStock);
+        if ($request ==="error"){
+            echo "error";
+            die();
+        }
+    }
+    echo "ok";
+}
+
+if (isset($_GET["confirm"])){
+    $order = $cart->getCart($id);
+    $id_order = $order[0]['id_order'];
+    $result = $cart->orderOk($id_order);
+    if($result ==="error"){
+        echo $result;
+    } else if($result ==="ok") {
+        $item = $cart->getOrder($id, $id_order);
+        $date = $item[0]['date'];
+        $id_order = $item[0]['id_order'];
+        $total = $item[0]['total'];
+        ?>
+        <div class="popup">
+            <h3>Your <?= $total?>€ payment has been successfully processed</h3>
+            <p> Your command has been registered on <?= $date?> </p>
+            <p>Congratulations on your purchase from Vetix! We are delighted that you have found clothes that you love. We hope you enjoy them and feel confident and stylish in your new outfits. Please do not hesitate to visit us again for more shopping in the future. Thank you for your trust and see you soon!</p>
+
+            <a href="shop.php">Continue Shopping</a>
+        </div>
+        <?php
+
+    }
+    
 }
 
 ?>

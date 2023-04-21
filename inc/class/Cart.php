@@ -15,7 +15,7 @@ class Cart extends Model{
     public function getCart($id)
     {
         $id = htmlspecialchars($id);
-        $request = "SELECT $this->tablename.total,
+        $request = "SELECT $this->tablename.total, $this->tablename.id_order,
         date, state,
         detail.id_product, detail.total AS total_product, detail.quantity, detail.size
         FROM $this->tablename
@@ -207,6 +207,51 @@ class Cart extends Model{
         }
         else{
             return "error";
+        }
+    }
+
+    public function orderOk($id_order){
+        $id_order = htmlspecialchars($id_order);
+        $request = "UPDATE $this->tablename SET date=NOW(), state='pending' WHERE id_order=:id_order";
+        $update = $this->bdd->prepare($request);
+        $update->execute([
+            ":id_order"=>$id_order,
+        ]);
+
+        if($update){
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
+
+    public function getOrder($id_user, $id_order=null) {
+        $id_user = htmlspecialchars($id_user);
+
+        $request = "SELECT $this->tablename.total, $this->tablename.id_order,
+        DATE_FORMAT(date, '%d/%m/%Y %H:%i') AS date, state,
+        detail.id_product, detail.total AS total_product, detail.quantity, detail.size
+        FROM $this->tablename
+        INNER JOIN detail ON detail.id_order = shop_order.id_order 
+        WHERE $this->tablename.id_user = :id_user AND $this->tablename.state = 'pending'";
+
+        if ($id_order!=null){
+            $id_order = htmlspecialchars($id_order);
+            $request = $request . " AND $this->tablename.id_order=$id_order";
+        }
+
+        $select = $this->bdd->prepare($request);
+        $select->execute([
+            ":id_user"=>$id_user,
+        ]);
+
+        $result = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            $result = "Nothing to show here !";
+            return $result;
         }
     }
 
