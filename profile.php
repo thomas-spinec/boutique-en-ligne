@@ -50,7 +50,7 @@
     ?>
 
     <div class="hero_profile">        
-        <h1 class="h1-responsive text-dark">Profile</h1>
+        <h1 class="h1-responsive">Profile</h1>
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 

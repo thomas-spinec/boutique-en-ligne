@@ -63,7 +63,7 @@ if (isset($_GET['category_id'])):
                                     <a href="./inc/img/shop/<?= $image ?>" data-lightbox="<?= $title ?>" style="display:none;"></a>
                                 <?php endif; ?>
                             <?php endforeach; ?>
-                            <div class="bottom-menu shadow bg-dark position-absolute w-100 py-1">
+                            <div class="bottom-menu shadow bg-dark position-absolute w-100 py-2">
                                 <div class="d-flex justify-content-between px-3">
                                     <div class="d-flex">
                                         <!-- love -->
@@ -141,7 +141,7 @@ elseif (isset($_GET['limit'])):
                         <a href="./inc/img/shop/<?= $image ?>" data-lightbox="<?= $title ?>" style="display:none;"></a>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                        <div class="bottom-menushadow bg-dark position-absolute w-100">
+                        <div class="bottom-menushadow bg-dark position-absolute w-100 py-2">
                             <div class="d-flex justify-content-between px-3">
                                 <div class="d-flex">
                             <!-- love -->
