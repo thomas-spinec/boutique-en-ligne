@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once "../class/User.php";
 require_once "../class/Product.php";
@@ -14,12 +13,9 @@ if (isset($_GET["cart"])) {
 
     // $displaTitle = $product->getProductInfo($displayCart[0]["id_product"]);
     $carts = $cart->getCart($id);
-
-
 ?>
 
-    <h5 class="mb-3"><a href="#!" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
-    <hr>
+
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -181,7 +177,7 @@ if (isset($_GET["pay"])) {
                 <button type="button" class="pay-btn btn btn-info btn-block btn-lg">
                     <div class="pay-btn d-flex justify-content-between">
                         <span class="pay-btn"><?= $total[0]['total'] ?>€ </span>
-                        <span class="pay-btn">&nbsp; Checkout <i class="cart-empty fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span class="pay-btn">&nbsp; Pay Now <i class="cart-empty fas fa-long-arrow-alt-right ms-2"></i></span>
                     </div>
                 </button>
             <?php } else {
@@ -189,7 +185,7 @@ if (isset($_GET["pay"])) {
                 <button type="button" class="cart-empty btn btn-info btn-block btn-lg">
                     <div class="cart-empty d-flex justify-content-between">
                         <span class="cart-empty">0€ </span>
-                        <span class="cart-empty">&nbsp; Checkout <i class="cart-empty fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span class="cart-empty">&nbsp; Pay Now <i class="cart-empty fas fa-long-arrow-alt-right ms-2"></i></span>
                     </div>
                 </button>
             <?php

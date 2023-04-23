@@ -1,7 +1,7 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">

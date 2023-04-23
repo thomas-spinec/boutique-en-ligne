@@ -2,7 +2,7 @@
 
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,7 @@
 
     <?php include 'inc/header.php'; ?>
 
-    <main class="container px-5 px-lg-5 mx-5 my-5">
+    <main class="container my-5">
         <?php
         $id = $_GET['id'];
         $product_info = $product->getProductInfo($id);

@@ -1,6 +1,6 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -37,7 +37,7 @@
         </section>
 
         <!-- Icons -->
-        <section class="bg-shopmenu shadow text-center justify-content-between w-100 px-5 py-2 mb-0">
+        <section class="bg-shopmenu shadow-lg text-center  w-100 px-5 py-2 mb-0">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
-                            <a class="category_link" href="" data-id="6"><img src="inc/img/icons/underwear.png" alt="Loungewear" data-id="6"></a>
+                            <a class="category_link" href="" data-id="6"><img class="img-fluid" src="inc/img/icons/underwear.png" alt="Loungewear" data-id="6"></a>
                         </div>
                     </div>
                 </div>

@@ -398,7 +398,7 @@ elseif (isset($_GET["addProducts"])) :
             <div class="row d-flex mb-3"> <!--PRICE-->
                 <div class="col-4">
                     <label for="price">Price <span class="red">*</span></label>
-                    <input type="number" name="priceEuro" min="1" id="euros" placeholder="€" class="form-control text-right">
+                    <input type="number" name="priceEuro" min="1" id="euros" placeholder="00" class="form-control text-right">
                 </div>
                 <div class="col-1">
                     <label></label>
@@ -406,7 +406,11 @@ elseif (isset($_GET["addProducts"])) :
                 </div>
                 <div class="col-4">
                     <label></label>
-                    <input type="number" name="priceCentime" min="0" id="centimes" placeholder="cents" class="form-control text-right">
+                    <input type="number" name="priceCentime" min="0" id="centimes" placeholder="00" class="form-control text-right">
+                </div>
+                <div class="col-1">
+                    <label></label>
+                    <p class="mt-1 mx-0 px-0 fs-5">€</p>
                 </div>
             </div> <!--END ROW-->
             <div class="row d-flex my-5"> <!--BUTTON submit-->

@@ -1,7 +1,7 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,6 @@
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/cart.js"></script>
     <script src="inc/js/features.js"></script>
-    <script src="inc/js/wishlist.js"></script>
 </head>
 
 <body>
@@ -33,13 +32,15 @@
 
     ?>
 
-    <section class="h-100 h-custom" style="background-color: #eee;">
-        <div class="container py-5 h-100">
-            <h1>Cart</h1>
-            <h1 class="ter">Cart</h1>
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col">
-                    <div class="card">
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <h1>Cart</h1>
+        <h1 class="ter">Cart</h1>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                        <a href="shop.php" class="lead d-inline pt-5 ps-4"><i class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a>
+                        <hr>
                         <div class="card-body p-4">
 
                             <div class="row">
