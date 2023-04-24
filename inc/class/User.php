@@ -63,8 +63,8 @@ class User extends Model
         // hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $register = "INSERT INTO $this->tablename (login, password, email, firstname, lastname, address, city, country, zip) VALUES
-        (:login, :password, :email, :firstname, :lastname, :address, :city, :country, :zip)";
+        $register = "INSERT INTO $this->tablename (login, password, email, firstname, lastname, address, zip, city, country) VALUES
+        (:login, :password, :email, :firstname, :lastname, :address, :zip, :city, :country)";
         // préparation de la requête             
         $insert = $this->bdd->prepare($register);
         // exécution de la requête avec liaison des paramètres
@@ -75,9 +75,9 @@ class User extends Model
             ':firstname' => $firstname,
             ':lastname' => $lastname,
             ':address' => $address,
+            ':zip' => $zip,
             ':city' => $city,
-            ':country' => $country,
-            ':zip' => $zip
+            ':country' => $country
         ]);
         echo "Successfully registered!";
         $this->bdd = null;

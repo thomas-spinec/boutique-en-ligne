@@ -1,7 +1,7 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -130,9 +130,9 @@
         <div class="row my-5">
             <div class="col-lg-6 col-sm-12">
                 <h2 class="pt-5">Languages</h2>
-                <hr>
+                <hr class="pb-5">
                 <!-- icones -->
-                <ul class="d-flex flex-wrap list-unstyled justify-content-center align-items-center">
+                <ul class="d-flex flex-wrap list-unstyled justify-content-start">
                     <li><img src="inc/img/icons/html.svg" width="64" alt="html" class="img-fluid m-3"></li>
                     <li><img src="inc/img/icons/css.svg" width="64" alt="css" class="img-fluid m-3"></li>
                     <li><img src="inc/img/icons/js.svg" width="64" alt="js" class="img-fluid m-3"></li>
@@ -145,8 +145,8 @@
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <h2 class="pt-5">Tools</h2>
-                <hr>
-                <ul class="d-flex flex-wrap list-unstyled justify-content-center align-items-center">
+                <hr class="pb-5">
+                <ul class="d-flex flex-wrap list-unstyled justify-content-start">
                     <li><a href="https://www.mysql.com/fr/" target="_blank"><img class="img-fluid" src="inc/img/icons/mysql.svg"></a></li>
                     <li><a href="https://github.com" target="_blank"><img class="img-fluid" src="inc/img/icons/github.svg"></a></li>
                     <li><a href="https://www.figma.com/fr/" target="_blank"><img class="img-fluid" src="inc/img/icons/figma.svg"></a></li>
@@ -155,8 +155,8 @@
             </div>
             <div class="col-lg-6 col-sm-12 flex-wrap">         
                 <h2 class="pt-5">Libs</h2>
-                <hr>
-                <ul class="d-flex flex-wrap list-unstyled justify-content-center align-items-center">
+                <hr class="pb-5">
+                <ul class="d-flex flex-wrap list-unstyled justify-content-start">
                     <li><a href="https://getbootstrap.com/" target="_blank"><img class="img-fluid" src="inc/img/icons/bootstrap.svg"></a></li>
                     <li><a href="https://fontawesome.com/" target="_blank"><img class="img-fluid" src="inc/img/icons/font-awesome.svg"></a></li>
                     <li class="fs-3 px-2"><a href="https://github.com/lokesh/lightbox2" target="_blank">Lightbox2</a></li>

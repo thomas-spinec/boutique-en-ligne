@@ -53,8 +53,8 @@ if (isset($_GET['category_id'])) :
                     $newPrice = $price - ($price * $percentage / 100);
                 ?>
                     <!-- card -->
-                    <div class="col-lg-3 col-md-6 col-sm-12 p-3 mb-5">
-                        <div class="position-relative shadow">
+                    <div class="col-lg-3 col-md-6 col-sm-12 p-3">
+                        <div class="position-relative shadow-lg mb-5">
                             <h4 class="card-title text-center p-3"><?= $title ?></h4>
                             <?php $images = [$image, $image1, $image2]; ?>
                             <?php foreach ($images as $index => $image) : ?>
@@ -72,13 +72,13 @@ if (isset($_GET['category_id'])) :
                                         <!-- love -->
                                         <?php if ($user->isLogged()) { ?>
                                             <?php if (in_array($id, $favorites)) { ?>
-                                                <i class="clicked heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
+                                                <i class="clicked heart fas fa-heart px-2 pt-1" data-id="<?= $id ?>"></i></a>
                                             <?php } else { ?>
                                                 <i class="heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
                                             <?php } ?>
                                         <?php } ?>
                                         <!-- Go product -->
-                                        <a href="product.php?id=<?= $id ?>" class="px-1"><i class="fas fa-search"></i></a>
+                                        <a href="product.php?id=<?= $id ?>" class="px-2"><i class="fas fa-search"></i></a>
                                     </div>
                                     <div class="d-flex">
                                         <!-- price -->
@@ -132,7 +132,7 @@ elseif (isset($_GET['limit'])) :
 
             <!-- card -->
             <div class="col-lg-3 col-md-6 col-sm-12 p-3 justify-content-center">
-                <div class="position-relative shadow">
+                <div class="position-relative shadow-lg mb-5">
                     <h4 class="card-title  text-center p-3"><?= $title ?></h4>
                     <?php $images = [$image, $image1, $image2]; ?>
                     <?php foreach ($images as $index => $image) : ?>
@@ -150,13 +150,13 @@ elseif (isset($_GET['limit'])) :
                                 <!-- love -->
                                 <?php if ($user->isLogged()) { ?>
                                     <?php if (in_array($id, $favorites)) { ?>
-                                        <i class="clicked heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
+                                        <i class="clicked heart fas fa-heart px-2 pt-1" data-id="<?= $id ?>"></i></a>
                                     <?php } else { ?>
                                         <i class="heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
                                     <?php } ?>
                                 <?php } ?>
                                 <!-- Go product -->
-                                <a href="product.php?id=<?= $id ?>" class="ico p-x1"><i class="fas fa-search"></i></a>
+                                <a href="product.php?id=<?= $id ?>" class="ico px-2"><i class="fas fa-search"></i></a>
                             </div>
                             <div class="d-flex">
                                 <!-- price -->

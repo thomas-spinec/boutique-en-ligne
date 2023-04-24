@@ -1,7 +1,7 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -59,10 +59,10 @@
         $wishlist_items = $wishlist->getWishlistItems($userId);
 
         $login = $user->getLogin();
+        $email = $user->getEmail();
         $firstName = $user->getFirstname();
         $lastName = $user->getLastname();
-        $email = $user->getEmail();
-        $adress = $user->getAddress();
+        $address = $user->getAddress();
         $zip = $user->getZip();
         $city = $user->getCity();
         $country = $user->getCountry();
@@ -97,12 +97,12 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
                     <p class="text-muted">Login: <?= $login ?></p>
+                    <p class="text-muted">E-mail: <?= $email ?></p>
                     <p class="text-muted">First Name: <?= $firstName ?></p>
                     <p class="text-muted">Last Name: <?= $lastName ?></p>
-                    <p class="text-muted">E-mail: <?= $email ?></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <P class="text-muted">Address: <?= $adress ?></p>
+                    <P class="text-muted">Address: <?= $address ?></p>
                     <p class="text-muted">ZipCode: <?= $zip ?></p>
                     <p class="text-muted">City: <?= $city ?></P>
                     <p class="text-muted">Country: <?= $country ?></p>
@@ -121,8 +121,10 @@
                             <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
                         </div>
                         <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                            <p class="text-muted">Shipping Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?></p>
-                            <p class="text-muted">Billing Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?> </p>
+
+                            <p class="text-muted">Shipping Address: <?= $address ?>, <?= $zip ?>, <?= $city ?></p>
+                            <p class="text-muted">Billing Address: <?= $address ?>, <?= $zip ?>, <?= $city ?> </p>
+
                         </div>
                 <?php endforeach;
                 } else {
@@ -200,16 +202,23 @@
         <!-- Tab wishlist -->
         <div id="whishlist" class="tabcontent p-5">
             <h3>My Wishlist</h3>
-            <div class="row wrap justify-content-between">
-                <?php if (count($wishlist_items) > 0) : ?>
-                    <?php foreach ($wishlist_items as $item) : ?>
-                        <div class="col">
-                            <a href="product.php?id=<?= $item['id_product'] ?>">
+            <div class="d-flex flex-wrap card-columns justify-content-center text-dark">
+                <?php if (count($wishlist_items) > 0): ?>
+                    <?php foreach ($wishlist_items as $item): ?>
+                        <div class="card col-lg-3 col-sm-6 mx-3 my-3">
+                            <div class="card-header">
                                 <p><?= $item['date'] ?></p>
-                                <?= $item['title'] ?>
-                            </a>
-                            <img src="inc/img/shop/<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
-                            <p><?= $item['price'] / 100 ?>€</p>
+                            </div>
+                            <div class="card-body">
+                                <a class="text-dark lead " href="product.php?id=<?= $item['id_product'] ?>">
+                                <img class="w-25" src="inc/img/shop/<?=$item['image'] ?>" alt="<?= $item['title'] ?>">
+                                <div class="card-title">
+                                    <?= $item['title'] ?></a>
+                                </div>
+                                <div class="card-text">
+                                    <p><?= $item['price']/100 ?>€</p>
+                                </div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>

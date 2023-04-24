@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 16 avr. 2023 à 08:12
+-- Généré le : ven. 21 avr. 2023 à 12:10
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -40,13 +40,13 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`id_category`, `name`) VALUES
 (1, 'Accessory'),
-(2, 'best_sellers'),
+(2, 'Best Sellers'),
 (3, 'Bottoms'),
 (4, 'Coat'),
 (5, 'Dress'),
 (6, 'Loungewear'),
-(7, 'new_collection'),
-(8, 'promotion'),
+(7, 'New Collection'),
+(8, 'Promotion'),
 (9, 'Sportswear'),
 (10, 'Suits'),
 (11, 'Tops');
@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `detail` (
   `id_product` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
+  `size` varchar(255) NOT NULL,
   PRIMARY KEY (`id_detail`),
   KEY `id_order` (`id_order`),
   KEY `id_product` (`id_product`)
@@ -192,8 +193,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `image` varchar(255) NOT NULL,
-  `image_1` varchar(255) NOT NULL,
-  `image_2` varchar(255) NOT NULL,
+  `image_1` varchar(255) DEFAULT NULL,
+  `image_2` varchar(255) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `best_sellers` tinyint(1) NOT NULL DEFAULT '0',
   `new_collection` tinyint(1) NOT NULL DEFAULT '0',
@@ -207,44 +208,44 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id_product`, `title`, `description`, `image`, `image_1`, `image_2`, `price`, `best_sellers`, `new_collection`, `promotion`, `promotion_percentage`) VALUES
-(1, 'Black suit', 'Black suit', 'suit_03.jpg', 'suit_03a.jpg', 'suit_03b.jpg', 110, 1, 0, 0, NULL),
-(2, 'Pants with pleats', 'Wide pants with pleats, navy blue\r\n2 front pockets and 2 fake back pockets', 'pant_01.jpeg', 'pant_01a.jpeg', 'pant_01b.jpeg', 135, 0, 0, 1, 75),
-(3, 'Powdery pink dress', 'Powdery pink dress.\r\nSoft and light for summer time\r\nv-neck, fitted waist, Silk fabric', 'dress_03.jpg', '', '', 90, 1, 1, 0, NULL),
-(4, 'Ivory sweater', 'Ivory cashmere sweater', 'sweater_03.jpeg', 'sweater_03a.jpeg', 'sweater_03b.jpeg', 86, 0, 0, 1, 50),
-(5, 'Intense Red suit', 'Red suit, double-breasted, jacket slim pants', 'suit_01.jpg', 'suit_01a.jpg', '', 150, 0, 0, 0, NULL),
-(6, 'Pink spring suit', 'Light pink suit', 'suit_06.jpg', 'suit_06a.jpg', '', 150, 0, 1, 0, NULL),
-(7, 'Satin suit', 'Brown satin summer suit', 'suit_07.jpg', '', '', 80, 0, 1, 0, NULL),
-(8, 'White dress', 'White spring dress', 'dress_06.jpg', 'dress_06a.jpg', '', 110, 0, 1, 0, NULL),
-(9, 'White slim pants', 'White slim & strech pants', 'pants_04.jpg', 'pants_04a.jpg', 'pants_04b.jpg', 45, 0, 0, 0, NULL),
-(10, 'Suit camel', 'Suit camel', 'suit_04.jpg', 'suit_04a.jpg', '', 120, 0, 1, 1, 20),
-(11, 'Cocktail dress', 'Green cocktail dress', 'dress_08.jpg', 'dress_08a.jpg', 'dress_08b.jpg', 75, 0, 0, 0, NULL),
-(12, 'Sun glasses', 'Sun glasses', 'glasses_01.jpg', '', '', 80, 0, 1, 0, NULL),
-(13, 'I. kredenets Bag', 'Leather bag Irene Kredenets 30x42, made of crossed straps, chain handle\r\n', 'bag_01.jpg', '', '', 210, 0, 0, 0, NULL),
-(14, 'Sweater oversize', 'White oversize hooded sweater', 'sweater_02.jpg', 'sweater_02a.jpg', '', 75, 1, 0, 0, NULL),
-(15, 'Mustard dress mini', 'Mustard corded dress mini, 3 buttons front', 'dress_05.jpg', '', '', 60, 0, 1, 0, NULL),
-(16, 'Pink backpack ', 'faux leather pink backpack', 'bag_02.jpg', '', '', 162, 0, 0, 0, NULL),
-(17, 'White wool coat', 'White wool coat, 2 side pockets, trench cut with belt', 'coat_01.jpg', 'coat_01a.jpg', '', 120, 0, 0, 1, 20),
-(18, 'Red straight dress', 'Red thin ribbed below knee length bodycon dress', 'dress_02.jpg', '', '', 66, 1, 0, 0, NULL),
-(19, 'Mini dress', 'Mini dress, light cotton triangle bustier', 'dress_01.jpg', '', '', 45, 1, 1, 0, NULL),
-(20, 'Satin dress', 'Satin dress, printed with small yellow flowers, bow bustier and side slit', 'dress_04.jpg', 'dress_04a.jpg', '', 112, 0, 1, 0, NULL),
-(21, 'Green relaxation set', 'strapless loungewear and cropped pants', 'loungewear_01.jpg', 'loungewear_01a.jpg', '', 60, 0, 1, 0, NULL),
-(22, 'satin sleepwear set', 'Pink satin sleepwear set. Top and short', 'loungewear_02.jpg', 'loungewear_02a.jpg', '', 55, 0, 1, 0, NULL),
-(23, 'Sportswear set Nike', 'Pink sportswear set Nike', 'sportswear_03.jpg', 'sportswear_03a.jpg', '', 90, 0, 0, 0, NULL),
-(24, 'Yellow suit ', 'Yellow suit', 'suit_02.jpg', 'suit_02a.jpg', 'suit_02b.jpg', 120, 0, 0, 0, NULL),
-(25, 'Sky blue suit', 'Sky blue suit without collar, 2 side pockets, a hook closure ', 'suit_05.jpg', 'suit_05a.jpg', 'suit_05b.jpg', 135, 0, 1, 0, NULL),
-(26, 'Grey loose suit', 'Grey loose boyfriend suit', 'suit_08.jpg', 'suit_08a.jpg', 'suit_08b.jpg', 135, 0, 0, 0, NULL),
-(27, 'Red shorts suit', 'Red shorts suit, smocking cut', 'suit_09.jpg', 'suit_09a.jpg', 'suit_09b.jpg', 135, 0, 0, 0, NULL),
-(28, 'Cashmere sweater', 'Blue cashmere turtleneck sweater', 'sweater_01.jpg', 'sweater_01a.jpg', '', 62, 0, 0, 1, 30),
-(29, 'Glossy brown top', 'glossy brown top. Backless', 'top_01.jpg', 'top_01a.jpg', 'top_01b.jpg', 75, 0, 1, 0, NULL),
-(30, 'Pink t-shirt & shorts', 'Oversized cotton shirt and shorts set', 'shirt_01.jpg', '', '', 59, 0, 0, 0, NULL),
-(31, 'Black cotton t-shirt', 'Black cotton t-shirt', 'tshirt_02.jpg', 'tshirt_02a.jpg', 'tshirt_02b.jpg', 29, 0, 0, 0, NULL),
-(32, 'M&M watch', 'M&M watch white strap and gold metal', 'watch_01.jpg', '', '', 226, 0, 0, 0, NULL),
-(33, 'Safari jacket', 'Belted safari jacket', 'coat_03.jpg', 'coat_03a.jpg', '', 83, 1, 1, 0, NULL),
-(34, 'Short speckled jacket', 'Short pink/black/grey speckled jacket, 3 buttons', 'jacket_02.jpg', 'jacket_02a.jpg', '', 80, 0, 0, 1, 50),
-(35, 'Purse Sarel', 'Imitation crocodile red handbag from Sarel', 'purse_02.jpg', '', '', 85, 1, 0, 0, NULL),
-(36, 'Leather purse', 'Leather and gold metal purse', 'purse_01.jpg', '', '', 119, 0, 0, 0, NULL),
-(37, 'Orange tracksuit', 'Orange tracksuit. cropped hoodie', 'sportswear_05.jpg', '', '', 89, 0, 0, 0, NULL),
-(38, 'Crossed ties top', 'White knit top, crossed ties in front', 'top_02.jpg', 'top_02a.jpg', 'top_02b.jpg', 159, 0, 1, 0, NULL);
+(1, 'Black suit', 'Black suit', 'suit_03.jpg', 'suit_03a.jpg', 'suit_03b.jpg', 11000, 1, 0, 0, NULL),
+(2, 'Pants with pleats', 'Wide pants with pleats, navy blue\r\n2 front pockets and 2 fake back pockets', 'pant_01.jpeg', 'pant_01a.jpeg', 'pant_01b.jpeg', 13500, 0, 0, 1, 75),
+(3, 'Powdery pink dress', 'Powdery pink dress.\r\nSoft and light for summer time\r\nv-neck, fitted waist, Silk fabric', 'dress_03.jpg', '', '', 9000, 1, 1, 0, NULL),
+(4, 'Ivory sweater', 'Ivory cashmere sweater', 'sweater_03.jpeg', 'sweater_03a.jpeg', 'sweater_03b.jpeg', 8600, 0, 0, 1, 50),
+(5, 'Intense Red suit', 'Red suit, double-breasted, jacket slim pants', 'suit_01.jpg', 'suit_01a.jpg', '', 15000, 0, 0, 0, NULL),
+(6, 'Pink spring suit', 'Light pink suit', 'suit_06.jpg', 'suit_06a.jpg', '', 15000, 0, 1, 0, NULL),
+(7, 'Satin suit', 'Brown satin summer suit', 'suit_07.jpg', '', '', 8000, 0, 1, 0, NULL),
+(8, 'White dress', 'White spring dress', 'dress_06.jpg', 'dress_06a.jpg', '', 11000, 0, 1, 0, NULL),
+(9, 'White slim pants', 'White slim & strech pants', 'pants_04.jpg', 'pants_04a.jpg', 'pants_04b.jpg', 4500, 0, 0, 0, NULL),
+(10, 'Suit camel', 'Suit camel', 'suit_04.jpg', 'suit_04a.jpg', '', 12000, 0, 1, 1, 20),
+(11, 'Cocktail dress', 'Green cocktail dress', 'dress_08.jpg', 'dress_08a.jpg', 'dress_08b.jpg', 7500, 0, 0, 0, NULL),
+(12, 'Sun glasses', 'Sun glasses', 'glasses_01.jpg', '', '', 8000, 0, 1, 0, NULL),
+(13, 'I. kredenets Bag', 'Leather bag Irene Kredenets 30x42, made of crossed straps, chain handle\r\n', 'bag_01.jpg', '', '', 21000, 0, 0, 0, NULL),
+(14, 'Sweater oversize', 'White oversize hooded sweater', 'sweater_02.jpg', 'sweater_02a.jpg', '', 7500, 1, 0, 0, NULL),
+(15, 'Mustard dress mini', 'Mustard corded dress mini, 3 buttons front', 'dress_05.jpg', '', '', 6000, 0, 1, 0, NULL),
+(16, 'Pink backpack ', 'faux leather pink backpack', 'bag_02.jpg', '', '', 16200, 0, 0, 0, NULL),
+(17, 'White wool coat', 'White wool coat, 2 side pockets, trench cut with belt', 'coat_01.jpg', 'coat_01a.jpg', '', 12000, 0, 0, 1, 20),
+(18, 'Straight dress', 'Red thin ribbed below knee length bodycon dress', 'dress_02.jpg', '', '', 6600, 1, 0, 0, NULL),
+(19, 'Mini dress', 'Mini dress, light cotton triangle bustier', 'dress_01.jpg', '', '', 4500, 1, 1, 0, NULL),
+(20, 'Satin dress', 'Satin dress, printed with small yellow flowers, bow bustier and side slit', 'dress_04.jpg', 'dress_04a.jpg', '', 11200, 0, 1, 0, NULL),
+(21, 'Green relaxation set', 'strapless loungewear and cropped pants', 'loungewear_01.jpg', 'loungewear_01a.jpg', '', 6000, 0, 1, 0, NULL),
+(22, 'satin sleepwear set', 'Pink satin sleepwear set. Top and short', 'loungewear_02.jpg', 'loungewear_02a.jpg', '', 5500, 0, 1, 0, NULL),
+(23, 'Sportswear set Nike', 'Pink sportswear set Nike', 'sportswear_03.jpg', 'sportswear_03a.jpg', '', 9000, 0, 0, 0, NULL),
+(24, 'Yellow suit ', 'Yellow suit', 'suit_02.jpg', 'suit_02a.jpg', 'suit_02b.jpg', 12000, 0, 0, 0, NULL),
+(25, 'Sky blue suit', 'Sky blue suit without collar, 2 side pockets, a hook closure ', 'suit_05.jpg', 'suit_05a.jpg', 'suit_05b.jpg', 13500, 0, 1, 0, NULL),
+(26, 'Grey loose suit', 'Grey loose boyfriend suit', 'suit_08.jpg', 'suit_08a.jpg', 'suit_08b.jpg', 13500, 0, 0, 0, NULL),
+(27, 'Red shorts suit', 'Red shorts suit, smocking cut', 'suit_09.jpg', 'suit_09a.jpg', 'suit_09b.jpg', 13500, 0, 0, 0, NULL),
+(28, 'Cashmere sweater', 'Blue cashmere turtleneck sweater', 'sweater_01.jpg', 'sweater_01a.jpg', '', 6200, 0, 0, 1, 30),
+(29, 'Glossy brown top', 'glossy brown top. Backless', 'top_01.jpg', 'top_01a.jpg', 'top_01b.jpg', 7500, 0, 1, 0, NULL),
+(30, 'Pink t-shirt & shorts', 'Oversized cotton shirt and shorts set', 'shirt_01.jpg', '', '', 5900, 0, 0, 0, NULL),
+(31, 'Black cotton t-shirt', 'Black cotton t-shirt', 'tshirt_02.jpg', 'tshirt_02a.jpg', 'tshirt_02b.jpg', 2900, 0, 0, 0, NULL),
+(32, 'M&M watch', 'M&M watch white strap and gold metal', 'watch_01.jpg', '', '', 22600, 0, 0, 0, NULL),
+(33, 'Safari jacket', 'Belted safari jacket', 'coat_03.jpg', 'coat_03a.jpg', '', 8300, 1, 1, 0, NULL),
+(34, 'Short jacket', 'Short pink/black/grey speckled jacket, 3 buttons', 'jacket_02.jpg', 'jacket_02a.jpg', '', 8000, 0, 0, 1, 50),
+(35, 'Purse Sarel', 'Imitation crocodile red handbag from Sarel', 'purse_02.jpg', '', '', 8500, 1, 0, 0, NULL),
+(36, 'Leather purse', 'Leather and gold metal purse', 'purse_01.jpg', '', '', 11900, 0, 0, 0, NULL),
+(37, 'Orange tracksuit', 'Orange tracksuit. cropped hoodie', 'sportswear_05.jpg', '', '', 8900, 0, 0, 0, NULL),
+(38, 'Crossed ties top', 'White knit top, crossed ties in front', 'top_02.jpg', 'top_02a.jpg', 'top_02b.jpg', 15900, 0, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -261,7 +262,90 @@ CREATE TABLE IF NOT EXISTS `product_size` (
   PRIMARY KEY (`id_product_size`),
   KEY `id_product` (`id_product`),
   KEY `id_color` (`id_size`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `product_size`
+--
+
+INSERT INTO `product_size` (`id_product_size`, `id_size`, `id_product`, `stock`) VALUES
+(1, 4, 12, 20),
+(2, 3, 12, 20),
+(3, 4, 13, 20),
+(4, 3, 13, 20),
+(5, 4, 16, 20),
+(6, 3, 16, 20),
+(7, 4, 32, 20),
+(8, 3, 32, 20),
+(9, 4, 35, 20),
+(10, 3, 35, 20),
+(11, 4, 36, 20),
+(12, 3, 36, 20),
+(13, 4, 1, 20),
+(14, 3, 1, 20),
+(15, 4, 3, 20),
+(16, 3, 3, 20),
+(17, 4, 14, 20),
+(18, 3, 14, 20),
+(19, 4, 18, 20),
+(20, 3, 18, 20),
+(21, 4, 19, 20),
+(22, 3, 19, 20),
+(23, 4, 33, 20),
+(24, 3, 33, 20),
+(25, 4, 2, 20),
+(26, 3, 2, 20),
+(27, 4, 9, 20),
+(28, 3, 9, 20),
+(29, 4, 17, 20),
+(30, 3, 17, 20),
+(31, 4, 34, 20),
+(32, 3, 34, 20),
+(33, 4, 8, 20),
+(34, 3, 8, 20),
+(35, 4, 11, 20),
+(36, 3, 11, 20),
+(37, 4, 15, 20),
+(38, 3, 15, 20),
+(39, 4, 20, 20),
+(40, 3, 20, 20),
+(41, 4, 21, 20),
+(42, 3, 21, 20),
+(43, 4, 22, 20),
+(44, 3, 22, 20),
+(45, 4, 6, 20),
+(46, 3, 6, 20),
+(47, 4, 10, 20),
+(48, 3, 10, 20),
+(49, 4, 25, 20),
+(50, 3, 25, 20),
+(51, 4, 29, 20),
+(52, 3, 29, 20),
+(53, 4, 38, 20),
+(54, 3, 38, 20),
+(55, 4, 4, 20),
+(56, 3, 4, 20),
+(57, 4, 28, 20),
+(58, 3, 28, 20),
+(59, 4, 23, 20),
+(60, 3, 23, 20),
+(61, 4, 37, 20),
+(62, 3, 37, 20),
+(63, 4, 5, 20),
+(64, 3, 5, 20),
+(65, 4, 7, 20),
+(66, 3, 7, 20),
+(67, 4, 24, 20),
+(68, 3, 24, 20),
+(69, 4, 26, 20),
+(70, 3, 26, 20),
+(71, 4, 27, 20),
+(72, 3, 27, 20),
+(73, 4, 30, 20),
+(74, 3, 30, 20),
+(75, 4, 31, 20),
+(76, 3, 31, 20),
+(77, 1, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -272,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `product_size` (
 DROP TABLE IF EXISTS `shop_order`;
 CREATE TABLE IF NOT EXISTS `shop_order` (
   `id_order` int(11) NOT NULL AUTO_INCREMENT,
-  `total` int(11) NOT NULL,
+  `total` int(11) DEFAULT NULL,
   `date` datetime NOT NULL,
   `id_user` int(11) NOT NULL,
   `state` enum('complete','pending','cart') NOT NULL,
@@ -334,8 +418,33 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id_user`, `login`, `password`, `firstname`, `lastname`, `email`, `address`, `city`, `zip`, `country`, `role`) VALUES
 (1, 'jeremy', '$2y$10$ljcpdniyMc9oCci5sjIekezalUJNyv5E7HHRHi0LGJ6KSAC53ngyK', ' n', 'jn@orange.fr', 'j', 'a', 'a', 'france', '83500', 'user'),
 (2, 'admin', '$2y$10$1WgJOFotErRi.IV85iL9o.DOjgQ.6kh/QVnlfYty3QqWRFcH5SHLm', 'n', 'jn@orange.fr', 'j', 'a', 'La Seyne sur Mer', 'France', '83500', 'admin'),
-(3, 'a', '$2y$10$Vat5HPRTVK/Qx..cnYOG1ut6UQXyZgwUZjkn56qe8w/HbwOSQjRQm', 'a', 'azda@hotmail', 'a', 'a', 'a', 'France', '83500', 'user'),
 (4, 'nedh', '$2y$10$16kF9bY5b7CFJ/T.3RGgM.6IAwoeGgL9g/OxoOsNKniBac0DgyIxO', 'nedh', 'nedh@nedh.fr', 'nedh', 'nedh', 'nedh', 'france', '00000', 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `wishlist`
+--
+
+DROP TABLE IF EXISTS `wishlist`;
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_product` (`id_product`),
+  KEY `id_user` (`id_user`)
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `id_user`, `id_product`, `date`) VALUES
+(19, 2, 1, '2023-04-20 13:59:27'),
+(11, 2, 2, '2023-04-19 19:50:10'),
+(28, 2, 8, '2023-04-20 20:39:59');
 
 --
 -- Contraintes pour les tables déchargées

@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // verif if password is empty
     if (passwordValue === "") {
       password_conn.nextElementSibling.innerHTML =
-        "Veuillez rentrer un mot de passe";
+        "Enter a password";
       // change border color and background
       password_conn.style.borderColor = "red";
       password_conn.style.backgroundColor = "#ff000033";
