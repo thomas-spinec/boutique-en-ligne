@@ -102,7 +102,7 @@ if (isset($_GET["pay"])) {
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">Card details</h5>
-                <h6>User</h6>
+                <h6><?= $login ?></h6>
             </div>
 
             <p class="small mb-2">Card type</p>
@@ -239,7 +239,9 @@ if (isset($_POST["updateProduct"])) {
     $quantity = $_POST["quantity"];
 
     $item = $product->getProductInfo($id_product);
-    $total = $item["price"] * $quantity;
+
+    $total = $item["price"]/100*$quantity;
+
 
 
     $result = $cart->updateQuantity($id_product, $size_product, $id_order, $quantity, $total);
