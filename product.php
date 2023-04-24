@@ -26,6 +26,7 @@
     <script src="inc/js/cart.js"></script>
     <script src="inc/js/wishlist.js"></script>
     <script src="inc/js/features.js"></script>
+    <script src="inc/js/comment.js"></script>
 
 </head>
 
@@ -167,7 +168,7 @@
 
 
         <!-------------------------- COMMENTS ------------------------------>
-        <?php include 'inc/php/comment_our_project.php'; ?>
+        <section class="comment_section"></section>
 
     </main>
 

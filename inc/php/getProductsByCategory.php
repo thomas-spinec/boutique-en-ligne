@@ -78,7 +78,7 @@ if (isset($_GET['category_id'])) :
                                             <?php } ?>
                                         <?php } ?>
                                         <!-- Go product -->
-                                        <a href="product.php?id=<?= $id ?>" class="px-2"><i class="fas fa-search"></i></a>
+                                        <a href="product.php?id=<?= $id ?>" class="px-1"><i class="fas fa-search"></i></a>
                                     </div>
                                     <div class="d-flex">
                                         <!-- price -->
@@ -156,7 +156,7 @@ elseif (isset($_GET['limit'])) :
                                     <?php } ?>
                                 <?php } ?>
                                 <!-- Go product -->
-                                <a href="product.php?id=<?= $id ?>" class="ico px-2"><i class="fas fa-search"></i></a>
+                                <a href="product.php?id=<?= $id ?>" class="ico px-1"><i class="fas fa-search"></i></a>
                             </div>
                             <div class="d-flex">
                                 <!-- price -->

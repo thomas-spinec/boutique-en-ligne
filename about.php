@@ -19,6 +19,7 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/search.js"></script>
+    <script src="inc/js/comment.js"></script>
 
 
 </head>
@@ -169,7 +170,8 @@
             <hr>
             <p class="fs-3 fw-light text-center">and feel free to comment our work here <img src="inc/img/icons/chat.svg" width="32px"></p>
 
-            <?php include 'inc/php/comment_our_project.php'; ?>
+            <section class="comment_section"></section>
+        </div>
 
     </main>
 
