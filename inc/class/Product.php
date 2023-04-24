@@ -12,17 +12,17 @@ class Product extends Model
 
     public function getAll($categ = null)
     {
-        $request = "SELECT product.id_product, product.title, product.description, product.image, product.image_1, product.image_2, product.price, product.promotion, product.promotion_percentage, link_categ.id_categ, category.id_category, category.name 
-        AS category
-        FROM $this->tablename 
-        INNER JOIN link_categ 
-        ON product.id_product=link_categ.id_product 
-        INNER JOIN category 
-        ON link_categ.id_categ=category.id_category";
+        $request = "SELECT product.id_product, product.title, product.description, product.image, product.image_1, product.image_2, product.price, product.promotion, product.promotion_percentage FROM $this->tablename";
 
         if ($categ != null) {
             $categ = htmlspecialchars($categ);
-            $request = $request . " WHERE category.id_category=$categ";
+            $request = "SELECT product.id_product, product.title, product.description, product.image, product.image_1, product.image_2, product.price, product.promotion, product.promotion_percentage, link_categ.id_categ, category.id_category, category.name 
+            AS category
+            FROM $this->tablename 
+            INNER JOIN link_categ 
+            ON product.id_product=link_categ.id_product 
+            INNER JOIN category 
+            ON link_categ.id_categ=category.id_category WHERE category.id_category=$categ";
         }
 
 
@@ -206,10 +206,10 @@ class Product extends Model
     {
         $query = $this->bdd->prepare("SELECT name FROM category INNER JOIN link_categ ON category.id_category = link_categ.id_categ WHERE link_categ.id_product = :id");
         $query->execute([':id' => $id]);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
         if ($result) {
-            return $result['name'];
+            return $result;
         } else {
             return 'not ok';
         }
@@ -688,7 +688,8 @@ class Product extends Model
         }
     }
 
-    public function getProduct($id_product, $size){
+    public function getProduct($id_product, $size)
+    {
 
         $id_product = htmlspecialchars($id_product);
         $size = htmlspecialchars($size);
@@ -696,7 +697,7 @@ class Product extends Model
         $request1 = "SELECT id_size FROM size WHERE `size`= :size";
         $select1 = $this->bdd->prepare($request1);
         $select1->execute([
-            ":size"=>$size,
+            ":size" => $size,
         ]);
         $result = $select1->fetch(PDO::FETCH_ASSOC);
         $id_size = $result['id_size'];
@@ -705,18 +706,13 @@ class Product extends Model
         $request2 = "SELECT stock FROM product_size WHERE id_product = :id_product AND id_size = :id_size";
         $select2 = $this->bdd->prepare($request2);
         $select2->execute([
-            ":id_product"=>$id_product,
-            ":id_size"=>$id_size,
+            ":id_product" => $id_product,
+            ":id_size" => $id_size,
         ]);
         $result2 = $select2->fetch(PDO::FETCH_ASSOC);
-        
-        $table["id_size"]= $id_size;
-        $table["stock"]= $result2["stock"];
-        return $table ;
 
-
-
-
-
+        $table["id_size"] = $id_size;
+        $table["stock"] = $result2["stock"];
+        return $table;
     }
 }

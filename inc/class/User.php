@@ -63,8 +63,8 @@ class User extends Model
         // hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $register = "INSERT INTO $this->tablename (login, password, email, firstname, lastname, address, city, country, zip) VALUES
-        (:login, :password, :email, :firstname, :lastname, :address, :city, :country, :zip)";
+        $register = "INSERT INTO $this->tablename (login, password, email, firstname, lastname, address, zip, city, country) VALUES
+        (:login, :password, :email, :firstname, :lastname, :address, :zip, :city, :country)";
         // préparation de la requête             
         $insert = $this->bdd->prepare($register);
         // exécution de la requête avec liaison des paramètres
@@ -75,9 +75,9 @@ class User extends Model
             ':firstname' => $firstname,
             ':lastname' => $lastname,
             ':address' => $address,
+            ':zip' => $zip,
             ':city' => $city,
-            ':country' => $country,
-            ':zip' => $zip
+            ':country' => $country
         ]);
         echo "Successfully registered!";
         $this->bdd = null;
@@ -340,19 +340,19 @@ class User extends Model
     }
 
 
-        public function getAll()
+    public function getAll()
     {
-       return parent::getAll();
+        return parent::getAll();
     }
 
-    public function deleteOne($id){
+    public function deleteOne($id)
+    {
 
         echo parent::deleteOne($id);
-
-
     }
 
-    public function changeRole($newRole, $id){
+    public function changeRole($newRole, $id)
+    {
 
         $newRole = htmlspecialchars($newRole);
         $id = htmlspecialchars($id);
@@ -361,17 +361,14 @@ class User extends Model
         $updateRole = $this->bdd->prepare($request);
 
         $updateRole->execute([
-             ":role" =>$newRole,
-             ":id" => $id,
+            ":role" => $newRole,
+            ":id" => $id,
         ]);
 
-        if($updateRole){
+        if ($updateRole) {
             echo "ok";
-        }
-        else{
+        } else {
             echo "error";
         }
-
     }
-
 }

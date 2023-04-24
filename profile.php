@@ -1,7 +1,7 @@
 <?php require_once 'inc/php/callToClasses.php'; ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,8 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/profil.js"></script>
+    <script src="inc/js/features.js"></script>
+    <script src="inc/js/wishlist.js"></script>
 
     <script>
         /* Tabs script */
@@ -57,29 +59,28 @@
         $wishlist_items = $wishlist->getWishlistItems($userId);
 
         $login = $user->getLogin();
+        $email = $user->getEmail();
         $firstName = $user->getFirstname();
         $lastName = $user->getLastname();
-        $email = $user->getEmail();
-        $adress = $user->getAddress();
+        $address = $user->getAddress();
         $zip = $user->getZip();
         $city = $user->getCity();
         $country = $user->getCountry();
 
         $orders = $cart->getOrder($userId);
-
     } else {
         header('Location: login.php');
         exit();
     }
     ?>
 
-    <div class="hero_profile">        
+    <div class="hero_profile">
         <h1 class="h1-responsive">Profile</h1>
 
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 
-    <main class="container bg-light p-5">
+    <main class="love container bg-light p-5">
 
         <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
 
@@ -96,12 +97,12 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
                     <p class="text-muted">Login: <?= $login ?></p>
+                    <p class="text-muted">E-mail: <?= $email ?></p>
                     <p class="text-muted">First Name: <?= $firstName ?></p>
                     <p class="text-muted">Last Name: <?= $lastName ?></p>
-                    <p class="text-muted">E-mail: <?= $email ?></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <P class="text-muted">Address: <?= $adress ?></p>
+                    <P class="text-muted">Address: <?= $address ?></p>
                     <p class="text-muted">ZipCode: <?= $zip ?></p>
                     <p class="text-muted">City: <?= $city ?></P>
                     <p class="text-muted">Country: <?= $country ?></p>
@@ -120,8 +121,10 @@
                             <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
                         </div>
                         <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                            <p class="text-muted">Shipping Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?></p>
-                            <p class="text-muted">Billing Address: <?= $adress ?>, <?= $zip ?>, <?= $city ?> </p>
+
+                            <p class="text-muted">Shipping Address: <?= $address ?>, <?= $zip ?>, <?= $city ?></p>
+                            <p class="text-muted">Billing Address: <?= $address ?>, <?= $zip ?>, <?= $city ?> </p>
+
                         </div>
                 <?php endforeach;
                 } else {
@@ -225,6 +228,14 @@
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- PROMOTION -->
+        <section class="container overflow-hidden">
+            <h1>Promotions</h1>
+            <h1 class="ter">Promotions</h1>
+            <div id="promotions" class="row my-5 gx-4">
+            </div>
+        </section>
 
     </main>
 

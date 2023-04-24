@@ -2,7 +2,7 @@
 
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -28,15 +28,16 @@
     <script src="inc/js/features.js"></script>
 
 </head>
+
 <body>
 
     <?php include 'inc/header.php'; ?>
 
-    <main class="container px-5 px-lg-5 mx-5 my-5">
+    <main class="container my-5">
         <?php
         $id = $_GET['id'];
         $product_info = $product->getProductInfo($id);
-        $category = $product->getCategoryName($id);
+        $categories = $product->getCategoryName($id);
         $comment = $comment->getComment($id);
         $image = $product_info['image'];
         $image1 = $product_info['image_1'];
@@ -51,11 +52,11 @@
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
 
-            <?php $images = [$image, $image1, $image2]; ?>
+                <?php $images = [$image, $image1, $image2]; ?>
                 <?php foreach ($images as $index => $image) : ?>
                     <?php if (!empty($image) && $index === 0) : ?>
                         <a href="inc/img/shop/<?= $image ?>" data-lightbox="<?= $title ?>">
-                        <img src="inc/img/shop/<?= $image ?>" alt="<?= $title ?>" class="product_img img-fluid">
+                            <img src="inc/img/shop/<?= $image ?>" alt="<?= $title ?>" class="product_img img-fluid">
                         </a>
                     <?php elseif (!empty($image) && $index !== 0) : ?>
                         <a href="inc/img/shop/<?= $image ?>" data-lightbox="<?= $title ?>" style="display:none;"></a>
@@ -78,7 +79,10 @@
             </div>
 
             <div class="col-md-6">
-                <div class="small mb-5">Category: <?php echo $category; ?></div>
+                <div class="small mb-5">Categories:
+                    <?php foreach ($categories as $category) {
+                        echo $category['name'] . ', ';
+                    } ?></div>
                 <h2 class="display-5 fw-bolder my-5"><?php echo $product_info['title'] ?></h2>
                 <div class="fs-5 mb-5">
                     <!-- Quantity -->
@@ -97,22 +101,30 @@
                             ?>
                         </select>
                     </p>
-                    <h3 class="py-5"><?php echo $product_info['price'] / 100; ?>€</h3>
-                    <p class="lead"><?php echo $product_info['description'] ?></p>
+                    <?php if ($product_info['promotion'] == 1) {
+                        $price = $product_info['price'] / 100;
+                        $percentage = $product_info['promotion_percentage'];
+                        $newPrice = $price - ($price * $percentage / 100);
+                    ?>
+                        <h3 class="py-5"><?= '<del>' . $price . '€</del> &nbsp;-' . $percentage . '% &nbsp;' . $newPrice ?>€</h3>
+                    <?php } else { ?>
+                        <h3 class="py-5"><?= $product_info['price'] / 100; ?>€</h3>
+                    <?php } ?>
+                    <p class="lead"><?= $product_info['description'] ?></p>
                 </div>
 
                 <!-------------------------- ADD TO CART ------------------------------>
 
                 <div class="love d-flex mb-5">
-                    <i class="heart heart-bk fas fa-heart px-2 pt-2" data-id="<?= $id?>">Add to wishlist</i>
-                        
+                    <i class="heart heart-bk fas fa-heart px-2 pt-2" data-id="<?= $id ?>">Add to wishlist</i>
+
                     <?php if ($user->isLogged()) { ?>
-                        <button id="add_to_cart" class="connected btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id?>">
+                        <button id="add_to_cart" class="connected btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id ?>">
                             <i class="fas fa-shopping-cart me-1"></i>
                             Add to cart
                         </button>
                     <?php } else { ?>
-                        <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id?>">
+                        <button id="add_to_cart" class="btn btn-outline-dark flex-shrink-0 mx-1" type="button" data-id="<?= $id ?>">
                             <i class="fas fa-shopping-cart me-1"></i>
                             Add to cart
                         </button>
@@ -144,7 +156,7 @@
             </div>
         </div>
 
-        <!-------------------------- BEST SELLERS ------------------------------>
+
         <!-- BEST SELLERS -->
         <section class="container overflow-hidden">
             <h1>Best Sellers</h1>
@@ -152,6 +164,7 @@
             <div id="best_sellers" class="row my-5 gx-4">
             </div>
         </section>
+
 
         <!-------------------------- COMMENTS ------------------------------>
         <?php include 'inc/php/comment_our_project.php'; ?>
