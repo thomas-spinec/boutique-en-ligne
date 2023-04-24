@@ -96,7 +96,7 @@ class Product extends Model
         return $result;
     }
 
-    public function deleteProduct($idProduct)
+    public function deleteProduct($idProduct, $colname = "id_product")
     {
         $idProduct = htmlspecialchars($idProduct);
 
@@ -125,38 +125,15 @@ class Product extends Model
         }
 
         // delete the product
-        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idProduct,
-        ]);
-
-        if ($delete) {
-            return "ok";
-        } else {
-            return "error";
-        }
+        echo parent::deleteOne($idProduct, $colname);
     }
 
-    public function deleteCategory($idCategory)
+    public function deleteCategory($idCategory, $colname = "id_category")
     {
         $idCategory = htmlspecialchars($idCategory);
-
-        $request = "DELETE FROM category WHERE id_category = :id ";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idCategory,
-        ]);
-
-        if ($delete) {
-            echo "ok";
-        } else {
-            echo "error";
-        }
+        $this->tablename = "category";
+        echo parent::deleteOne($idCategory, $colname);
+        $this->tablename = "product";
     }
 
 
@@ -185,12 +162,9 @@ class Product extends Model
         return $result;
     }
 
-    public function getProductInfo($id)
+    public function getProductInfo($id, $colname = "id_product")
     {
-        $query = $this->bdd->prepare("SELECT * FROM $this->tablename WHERE id_product = :id");
-        $query->execute([':id' => $id]);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        parent::getOne($id, $colname);
     }
 
     public function updateProduct($id, $title, $description, $image, $image1, $image2, $price, $sales, $categ)
@@ -212,53 +186,6 @@ class Product extends Model
             return $result;
         } else {
             return 'not ok';
-        }
-    }
-
-    public function getProductImages($id)
-    {
-        $query = $this->bdd->prepare("SELECT image, image_1, image_2 FROM product WHERE id_product = :id ORDER BY image ASC");
-        $query->execute([':id' => $id]);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function getRandomBestSellers($limit)
-    {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, best_sellers 
-
-        FROM $this->tablename 
-        WHERE best_sellers = 1
-        ORDER BY RAND() 
-        LIMIT " . intval($limit));
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        // si il y a des résultats
-        if (count($results) > 0) {
-            return $results;
-        } else {
-
-            $results = 'No best sellers';
-            return $results;
-        }
-    }
-
-    public function getRandomNewCollection($limit)
-    {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, new_collection 
-
-        FROM $this->tablename
-        WHERE new_collection = 1
-        ORDER BY RAND() 
-        LIMIT " . intval($limit));
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        if (count($results) > 0) {
-            return $results;
-        } else {
-
-            $results = 'Coming soon';
-            return $results;
         }
     }
 

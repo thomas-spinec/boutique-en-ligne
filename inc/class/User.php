@@ -345,10 +345,9 @@ class User extends Model
         return parent::getAll();
     }
 
-    public function deleteOne($id)
+    public function deleteOne($id, $colname = "id_user")
     {
-
-        echo parent::deleteOne($id);
+        echo parent::deleteOne($id, $colname);
     }
 
     public function changeRole($newRole, $id)
