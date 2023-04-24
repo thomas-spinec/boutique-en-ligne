@@ -102,7 +102,7 @@ if (isset($_GET["pay"])) {
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">Card details</h5>
-                <h6>User</h6>
+                <h6><?= $login ?></h6>
             </div>
 
             <p class="small mb-2">Card type</p>
@@ -118,7 +118,7 @@ if (isset($_GET["pay"])) {
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                    <input type="text" id="typeText" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                    <input type="text" id="typeCardNumber" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
                     <label class="form-label" for="typeText">Card Number</label>
                 </div>
 
@@ -198,25 +198,29 @@ if (isset($_GET["pay"])) {
 
 if (isset($_POST["addToCart"])) {
 
-    $id_product = $_POST["id"];
-    $quantity = $_POST["quantity"];
-    $size = $_POST["size"];
+    if ($user->isLogged()) {
+        $id_product = $_POST["id"];
+        $quantity = $_POST["quantity"];
+        $size = $_POST["size"];
 
-    $id_order = $cart->cartVerify($id);
-    $item = $product->getProductInfo($id_product);
-    $price = $item["price"] / 100;
+        $id_order = $cart->cartVerify($id);
+        $item = $product->getProductInfo($id_product);
+        $price = $item["price"] / 100;
 
-    if ($item["promotion"] === 1) {
-        $price = $price - ($price * ($item["promotion_percentage"] / 100));
+        if ($item["promotion"] === 1) {
+            $price = $price - ($price * ($item["promotion_percentage"] / 100));
+        }
+
+        $total = $price * $quantity;
+
+
+        $result = $cart->createDetail($id_order, $id_product, $quantity, $size, $total);
+        if ($result === "ok") {
+            $cart->updateTotal($id_order);
+        };
+    } else {
+        echo "not connected";
     }
-
-    $total = $price * $quantity;
-
-
-    $result = $cart->createDetail($id_order, $id_product, $quantity, $size, $total);
-    if ($result === "ok") {
-        $cart->updateTotal($id_order);
-    };
 }
 
 if (isset($_POST["delFromCart"])) {
@@ -239,7 +243,9 @@ if (isset($_POST["updateProduct"])) {
     $quantity = $_POST["quantity"];
 
     $item = $product->getProductInfo($id_product);
-    $total = $item["price"] * $quantity;
+
+    $total = $item["price"]/100*$quantity;
+
 
 
     $result = $cart->updateQuantity($id_product, $size_product, $id_order, $quantity, $total);

@@ -215,7 +215,10 @@ elseif (isset($_GET["changeProduct"])) :
 
             <div class="col-md-6">
                 <div class="small mb-3">
-                    <p class="text"><em>Category :</em> <span class="lead"><?php echo $category; ?></span></p>
+                    <p class="text"><em>Category :</em> <span class="lead">
+                            <?php foreach ($category as $categ) {
+                                echo $categ['name'] . ", ";
+                            } ?></span></p>
                 </div>
                 <h2 class="display-5 fw-light my-3"><?php echo $title ?></h2>
                 <div class=" my-3 ">
