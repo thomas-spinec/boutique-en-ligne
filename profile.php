@@ -1,5 +1,7 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
+
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -18,6 +20,8 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/profil.js"></script>
+    <script src="inc/js/features.js"></script>
+    <script src="inc/js/wishlist.js"></script>
 
     <script>
         /* Tabs script */
@@ -45,24 +49,25 @@
     <?php
     if ($user->isLogged()) {
         require_once "inc/class/User.php";
+        require_once "inc/class/Cart.php";
         $user = new User();
+        $cart = new Cart();
 
         $userId = $_SESSION['user']['id'];
         // get whishlist products for the user
 
         $wishlist_items = $wishlist->getWishlistItems($userId);
+
         $login = $user->getLogin();
+        $email = $user->getEmail();
         $firstName = $user->getFirstname();
         $lastName = $user->getLastname();
-        $email = $user->getEmail();
-        $adress = $user->getAddress();
+        $address = $user->getAddress();
         $zip = $user->getZip();
         $city = $user->getCity();
         $country = $user->getCountry();
 
-
-
-
+        $orders = $cart->getOrder($userId);
     } else {
         header('Location: login.php');
         exit();
@@ -70,11 +75,12 @@
     ?>
 
     <div class="hero_profile">
-        <h1 class="h1-responsive text-dark">Profile</h1>
+        <h1 class="h1-responsive">Profile</h1>
+
         <h1 class="h1-responsive bis opacity-25">Profile</h1>
     </div>
 
-    <main class="container bg-light p-5">
+    <main class="love container bg-light p-5">
 
         <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
 
@@ -91,12 +97,12 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
                     <p class="text-muted">Login: <?= $login ?></p>
+                    <p class="text-muted">E-mail: <?= $email ?></p>
                     <p class="text-muted">First Name: <?= $firstName ?></p>
                     <p class="text-muted">Last Name: <?= $lastName ?></p>
-                    <p class="text-muted">E-mail: <?= $email ?></p>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <P class="text-muted">Address: <?= $adress ?></p>
+                    <P class="text-muted">Address: <?= $address ?></p>
                     <p class="text-muted">ZipCode: <?= $zip ?></p>
                     <p class="text-muted">City: <?= $city ?></P>
                     <p class="text-muted">Country: <?= $country ?></p>
@@ -107,15 +113,23 @@
         <!-- Tab orders -->
         <div id="orders" class="tabcontent p-5">
             <div class="row justify-content-between">
-                <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Order ID:</p>
-                    <p class="text-muted">Order Date:</p>
-                    <p class="text-muted">Order Total:</p>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
-                    <p class="text-muted">Shipping Address: </p>
-                    <p class="text-muted">Billing Address: </p>
-                </div>
+                <?php if ($orders !== 'Nothing to show here !') {
+                    foreach ($orders as $order) : ?>
+                        <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+                            <p class="text-muted">Order ID: <?= $order['id_order'] ?></p>
+                            <p class="text-muted">Order Date: <?= $order['date'] ?></p>
+                            <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
+                        </div>
+                        <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+
+                            <p class="text-muted">Shipping Address: <?= $address ?>, <?= $zip ?>, <?= $city ?></p>
+                            <p class="text-muted">Billing Address: <?= $address ?>, <?= $zip ?>, <?= $city ?> </p>
+
+                        </div>
+                <?php endforeach;
+                } else {
+                    echo $orders;
+                } ?>
             </div>
         </div>
 
@@ -133,7 +147,7 @@
                         <div class="col">
                             <div class="row">
                                 <label for="login">login</label>
-                                <input type="text" name="login" class="login" value="<?= $login ?>" required> 
+                                <input type="text" name="login" class="login" value="<?= $login ?>" required>
                                 <p></p>
                             </div>
                             <div class="row">
@@ -188,16 +202,23 @@
         <!-- Tab wishlist -->
         <div id="whishlist" class="tabcontent p-5">
             <h3>My Wishlist</h3>
-            <div class="row wrap justify-content-between">
-                <?php if (count($wishlist_items) > 0) : ?>
-                    <?php foreach ($wishlist_items as $item) : ?>
-                        <div class="col">
-                            <a href="product.php?id=<?= $item['id_product'] ?>">
+            <div class="d-flex flex-wrap card-columns justify-content-center text-dark">
+                <?php if (count($wishlist_items) > 0): ?>
+                    <?php foreach ($wishlist_items as $item): ?>
+                        <div class="card col-lg-3 col-sm-6 mx-3 my-3">
+                            <div class="card-header">
                                 <p><?= $item['date'] ?></p>
-                                <?= $item['title'] ?>
-                            </a>
-                            <img src="inc/img/shop/<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
-                            <p><?= $item['price'] / 100 ?>€</p>
+                            </div>
+                            <div class="card-body">
+                                <a class="text-dark lead " href="product.php?id=<?= $item['id_product'] ?>">
+                                <img class="w-25" src="inc/img/shop/<?=$item['image'] ?>" alt="<?= $item['title'] ?>">
+                                <div class="card-title">
+                                    <?= $item['title'] ?></a>
+                                </div>
+                                <div class="card-text">
+                                    <p><?= $item['price']/100 ?>€</p>
+                                </div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -207,6 +228,14 @@
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- PROMOTION -->
+        <section class="container overflow-hidden">
+            <h1>Promotions</h1>
+            <h1 class="ter">Promotions</h1>
+            <div id="promotions" class="row my-5 gx-4">
+            </div>
+        </section>
 
     </main>
 

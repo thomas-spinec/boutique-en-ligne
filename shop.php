@@ -1,5 +1,7 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,8 +23,10 @@
     <script src="inc/js/menu.js"></script>
     <script src="inc/js/search.js"></script>
     <script src="inc/js/wishlist.js"></script>
+    <script src="inc/js/features.js"></script>
 </head>
-<body>        
+
+<body>
     <?php include 'inc/header.php'; ?>
 
     <main class="mt-0">
@@ -33,7 +37,7 @@
         </section>
 
         <!-- Icons -->
-        <section class="bg-shopmenu shadow text-center justify-content-between w-100 px-5 py-2 mb-0">
+        <section class="bg-shopmenu shadow-lg text-center  w-100 px-5 py-2 mb-0">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
@@ -73,16 +77,25 @@
                     </div>
                     <div class="btn btn-default square-button shadow m-3 col-lg col-md-1 col-sm-1">
                         <div class="square-button-content">
-                            <a class="category_link" href="" data-id="6"><img src="inc/img/icons/underwear.png" alt="Loungewear" data-id="6"></a>
+                            <a class="category_link" href="" data-id="6"><img class="img-fluid" src="inc/img/icons/underwear.png" alt="Loungewear" data-id="6"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <div class="title"></div>
         <!-- Products fetch container -->
         <div id="products_container" class="container d-flex flex-wrap my-5 love"> </div>
+
+
+        <!-- BEST SELLERS -->
+        <section class="container overflow-hidden">
+            <h1>Best Sellers</h1>
+            <h1 class="ter">Best Sellers</h1>
+            <div id="best_sellers" class="row my-5 gx-4">
+            </div>
+        </section>
 
     </main>
 
@@ -100,4 +113,5 @@
     </script>
 
 </body>
+
 </html>

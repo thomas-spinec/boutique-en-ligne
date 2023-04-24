@@ -23,18 +23,3 @@ $(document).ready(function(){
     }
     
     });
-
-
-// sticky menu on scroll up
-// jQuery : see first menu on scroll up
-/* let prevScrollpos = window.pageYOffset;
-$(window).scroll(function() {
-let currentScrollPos = window.pageYOffset;
-if (prevScrollpos > currentScrollPos) {
-    $('.sticky-top').addClass('active');
-} else {
-    $('.sticky-top').removeClass('active');
-}
-prevScrollpos = currentScrollPos;
-});
- */

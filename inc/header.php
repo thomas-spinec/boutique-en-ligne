@@ -1,17 +1,3 @@
-<?php
-
-session_start();
-require_once 'class/User.php';
-require_once 'class/Product.php';
-require_once "class/Comment.php";
-require_once 'class/Wishlist.php';
-$user = new User();
-$product = new Product();
-$comment = new Comment();
-$wishlist = new Wishlist();
-?>
-
-
 <header class="header bg-light">
 
     <!--------------------------------------TOPMENU---------------------------------------------->

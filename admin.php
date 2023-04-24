@@ -1,5 +1,7 @@
+<?php require_once 'inc/php/callToClasses.php'; ?>
+
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +20,8 @@
     <script src="inc/js/scrollToTop.js"></script>
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/admin.js"></script>
-    
+    <script src="inc/js/adminThumbs.js"></script>
+
     <script> /* Tabs script */
         function openTab(evt, information) {
         let i, tabcontent, tablinks;
@@ -38,41 +41,34 @@
 
 <body>
 
+    <?php include 'inc/header.php'; ?>
 
-    <div class="wrapper">
-
-        <?php include 'inc/header.php'; ?>
-
-        <main class="container mt-2">
+    <main class="container mt-2">
+    
         
-            
-            <h1>Admin</h1>
-            <h1 class="bis">Admin</h1>
-            <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
-            
-            <div class="tab admin">
-                <button id="users" class="tablinks" onclick="openTab(event, 'member')">MEMBER MANAGEMENT</button>
-                <button id="products" class="tablinks" onclick="openTab(event, 'product')">PRODUCT MANAGEMENT</button>
-                <button id="categories" class="tablinks" onclick="openTab(event, 'category')">CATEGORY MANAGEMENT</button>
-                <button id="sizes" class="tablinks" onclick="openTab(event, 'size')">SIZE MANAGEMENT</button>
-            </div>
+        <h1>Admin</h1>
+        <h1 class="bis">Admin</h1>
+        <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
+        
+        <div class="tab admin">
+            <button id="users" class="tablinks" onclick="openTab(event, 'member')">MEMBER MANAGEMENT</button>
+            <button id="products" class="tablinks" onclick="openTab(event, 'product')">PRODUCT MANAGEMENT</button>
+            <button id="categories" class="tablinks" onclick="openTab(event, 'category')">CATEGORY MANAGEMENT</button>
+            <button id="sizes" class="tablinks" onclick="openTab(event, 'size')">SIZE MANAGEMENT</button>
+        </div>
 
-            <!-- Tabs content -->
-            <div id="member" class="tabcontent pt-3"> </div>
-            <div id="product" class="tabcontent pt-3"> </div>
-            <div id="category" class="tabcontent pt-3"> </div>
-            <div id="size" class="tabcontent pt-3"> </div>
+        <!-- Tabs content -->
+        <div id="member" class="tabcontent pt-3"> </div>
+        <div id="product" class="tabcontent pt-3"> </div>
+        <div id="category" class="tabcontent pt-3"> </div>
+        <div id="size" class="tabcontent pt-3"> </div>
 
-            <section id="gestion"></section>
-            <section id="display"></section>
-            <p></p>
-            <section class="popup-container"></section>
+        <section id="gestion"></section>
+        <section id="display"></section>
+        <p></p>
+        <section class="popup-container"></section>
 
-        </main>
-
-        <div class="push"></div>
-
-    </div> <!-- /wrapper -->
+    </main>
 
     <?php include 'inc/footer.php'; ?>
 
@@ -80,5 +76,4 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.5 pl-5.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

@@ -1,11 +1,7 @@
-<?php
-
-require_once './inc/class/Product.php';
-$product = new Product();
-?>
+<?php require_once 'inc/php/callToClasses.php'; ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -1,6 +1,7 @@
 <?php
 require_once "Model.php";
-class Cart extends Model{
+class Cart extends Model
+{
 
     protected $bdd;
 
@@ -9,7 +10,6 @@ class Cart extends Model{
     public function __construct()
     {
         parent::__construct();
-        
     }
 
     public function getCart($id)
@@ -25,7 +25,7 @@ class Cart extends Model{
         $select = $this->bdd->prepare($request);
 
         $select->execute([
-            ":id_user"=>$id
+            ":id_user" => $id
         ]);
 
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +38,8 @@ class Cart extends Model{
         }
     }
 
-    public function cartVerify($id){
+    public function cartVerify($id)
+    {
 
         $id = htmlspecialchars($id);
 
@@ -46,31 +47,30 @@ class Cart extends Model{
 
         $select = $this->bdd->prepare($request);
         $select->execute([
-            ":id"=>$id
+            ":id" => $id
         ]);
 
         $result = $select->fetch(PDO::FETCH_ASSOC);
-        
-        if($result){
+
+        if ($result) {
             return $result['id_order'];
-        }
-        else{
+        } else {
             $request2 = "INSERT INTO $this->tablename (date, id_user, state) VALUES (NOW(), :id_user, 'cart')";
             $insert = $this->bdd->prepare($request2);
             $insert->execute([
-                ":id_user"=>$id
+                ":id_user" => $id
             ]);
 
-            if($insert){
+            if ($insert) {
                 return $this->bdd->lastInsertId();
-            }
-            else{
+            } else {
                 echo "error";
             }
         }
     }
 
-    public function createDetail($id_order, $id_product,  $quantity, $size, $total){
+    public function createDetail($id_order, $id_product,  $quantity, $size, $total)
+    {
 
         $id_order = htmlspecialchars($id_order);
         $id_product = htmlspecialchars($id_product);
@@ -81,12 +81,12 @@ class Cart extends Model{
         $request = "SELECT * FROM detail WHERE id_order = :id_order AND id_product = :id_product AND size = :size";
         $select = $this->bdd->prepare($request);
         $select->execute([
-            ":id_order"=>$id_order,
-            ":id_product"=>$id_product,
-            ":size"=>$size,
+            ":id_order" => $id_order,
+            ":id_product" => $id_product,
+            ":size" => $size,
         ]);
         $result = $select->fetch(PDO::FETCH_ASSOC);
-        if($result){
+        if ($result) {
 
             $quantity = $quantity + $result["quantity"];
             $total = $total + $result['total'];
@@ -94,69 +94,60 @@ class Cart extends Model{
             $request2 = "UPDATE detail SET total=:total, quantity=:quantity WHERE id_order = :id_order AND id_product = :id_product AND size = :size";
             $update = $this->bdd->prepare($request2);
             $update->execute([
-                ":total"=>$total,
-                ":quantity"=>$quantity,
-                ":id_order"=>$id_order,
-                "id_product"=>$id_product,
-                ":size"=>$size,
+                ":total" => $total,
+                ":quantity" => $quantity,
+                ":id_order" => $id_order,
+                "id_product" => $id_product,
+                ":size" => $size,
             ]);
-            if($update){
+            if ($update) {
                 return "ok";
-            }
-            else{
+            } else {
                 return "error";
             }
-        }
-        else{
+        } else {
             $request2 = "INSERT INTO detail (id_order, id_product, total, quantity, size) VALUES (:id_order, :id_product, :total, :quantity, :size)";
 
             $insert = $this->bdd->prepare($request2);
             $insert->execute([
-                ":id_order"=>$id_order,
-                ":id_product"=>$id_product,
-                ":total"=>$total,
-                ":quantity"=>$quantity,
-                ":size"=>$size
+                ":id_order" => $id_order,
+                ":id_product" => $id_product,
+                ":total" => $total,
+                ":quantity" => $quantity,
+                ":size" => $size
             ]);
-            
-            if($insert){
-                return "ok";
 
-            }
-            else{
+            if ($insert) {
+                return "ok";
+            } else {
                 return "error";
             }
         }
-
-        
-        
-
-
     }
 
-    public function updateTotal($id_order) 
+    public function updateTotal($id_order)
     {
         $request = "SELECT total AS totalProduct FROM detail WHERE id_order=:id_order";
         $select = $this->bdd->prepare($request);
         $select->execute([
-            ":id_order"=>$id_order,
+            ":id_order" => $id_order,
         ]);
 
         $select = $select->fetchAll(PDO::FETCH_ASSOC);
 
         $totalOrder = 0;
 
-        foreach($select as $product){
-            $totalOrder = $totalOrder + $product['totalProduct'];
+        foreach ($select as $product) {
+            $totalOrder = $totalOrder + (int)$product['totalProduct'];
         }
 
         $request2 = "UPDATE $this->tablename SET `total` = $totalOrder WHERE id_order = :id_order";
         $update = $this->bdd->prepare($request2);
         $update->execute([
-            ":id_order"=>$id_order,
+            ":id_order" => $id_order,
         ]);
 
-        if($update){
+        if ($update) {
             echo "ok";
         } else {
             echo "error";
@@ -164,25 +155,26 @@ class Cart extends Model{
     }
 
 
-    public function deleteProduct($id_product, $id_order, $size){
+    public function deleteProduct($id_product, $id_order, $size)
+    {
 
-        $request = "DELETE FROM detail WHERE id_product = :id_product AND id_order = :id_order AND size = :size"; 
+        $request = "DELETE FROM detail WHERE id_product = :id_product AND id_order = :id_order AND size = :size";
         $delete = $this->bdd->prepare($request);
         $delete->execute([
-            ":id_product"=>$id_product,
-            "id_order"=>$id_order,
-            ":size"=>$size,
+            ":id_product" => $id_product,
+            "id_order" => $id_order,
+            ":size" => $size,
         ]);
 
-        if($delete){
+        if ($delete) {
             return "ok";
-        }
-        else{
+        } else {
             return "error";
         }
     }
-    
-    public function updateQuantity($id_product, $size_order, $id_order, $quantity, $total){
+
+    public function updateQuantity($id_product, $size_order, $id_order, $quantity, $total)
+    {
 
         $id_product = htmlspecialchars($id_product);
         $size_order = htmlspecialchars($size_order);
@@ -202,47 +194,46 @@ class Cart extends Model{
             ":size" => $size_order,
             "id_order" => $id_order
         ]);
-        if($update){
-            return "ok";
-        }
-        else{
-            return "error";
-        }
-    }
-
-    public function orderOk($id_order){
-        $id_order = htmlspecialchars($id_order);
-        $request = "UPDATE $this->tablename SET date=NOW(), state='pending' WHERE id_order=:id_order";
-        $update = $this->bdd->prepare($request);
-        $update->execute([
-            ":id_order"=>$id_order,
-        ]);
-
-        if($update){
+        if ($update) {
             return "ok";
         } else {
             return "error";
         }
     }
 
-    public function getOrder($id_user, $id_order=null) {
+    public function orderOk($id_order)
+    {
+        $id_order = htmlspecialchars($id_order);
+        $request = "UPDATE $this->tablename SET date=NOW(), state='pending' WHERE id_order=:id_order";
+        $update = $this->bdd->prepare($request);
+        $update->execute([
+            ":id_order" => $id_order,
+        ]);
+
+        if ($update) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
+
+    public function getOrder($id_user, $id_order = null)
+    {
         $id_user = htmlspecialchars($id_user);
 
         $request = "SELECT $this->tablename.total, $this->tablename.id_order,
-        DATE_FORMAT(date, '%d/%m/%Y %H:%i') AS date, state,
-        detail.id_product, detail.total AS total_product, detail.quantity, detail.size
-        FROM $this->tablename
-        INNER JOIN detail ON detail.id_order = shop_order.id_order 
+        DATE_FORMAT(date, '%d/%m/%Y %H:%i') AS date, state
+        FROM $this->tablename 
         WHERE $this->tablename.id_user = :id_user AND $this->tablename.state = 'pending'";
 
-        if ($id_order!=null){
+        if ($id_order != null) {
             $id_order = htmlspecialchars($id_order);
             $request = $request . " AND $this->tablename.id_order=$id_order";
         }
 
         $select = $this->bdd->prepare($request);
         $select->execute([
-            ":id_user"=>$id_user,
+            ":id_user" => $id_user,
         ]);
 
         $result = $select->fetchAll(PDO::FETCH_ASSOC);
@@ -254,18 +245,4 @@ class Cart extends Model{
             return $result;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

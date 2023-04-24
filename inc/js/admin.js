@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("inc/php/templateAdmin.php?" + sizeNb)
       .then((response) => response.text())
       .then((response) => {
-        // rajouter la response à la suite de target via son parent, puis supprimer le target
+        // add the response to the end of target via its parent, then delete the target
         div.innerHTML += response;
       });
   }
@@ -391,7 +391,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // update product
     else if (e.target.classList.contains("changeProduct")) {
-      console.log("click");
       const idProduct = e.target.getAttribute("data-id");
       changeProduct(idProduct);
     }
@@ -497,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // If we select a size, we hide the option in the other select
+  // If we select a size, we hide the others in the other select
   gestion.addEventListener("change", function (e) {
     if (e.target.classList.contains("selectSize")) {
       const target = e.target;
