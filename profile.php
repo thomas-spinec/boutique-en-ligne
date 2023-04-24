@@ -121,8 +121,10 @@
                             <p class="text-muted">Order Total: <?= $order['total'] ?>€</p>
                         </div>
                         <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
+
                             <p class="text-muted">Shipping Address: <?= $address ?>, <?= $zip ?>, <?= $city ?></p>
                             <p class="text-muted">Billing Address: <?= $address ?>, <?= $zip ?>, <?= $city ?> </p>
+
                         </div>
                 <?php endforeach;
                 } else {
