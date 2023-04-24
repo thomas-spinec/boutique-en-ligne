@@ -72,13 +72,13 @@ if (isset($_GET['category_id'])) :
                                         <!-- love -->
                                         <?php if ($user->isLogged()) { ?>
                                             <?php if (in_array($id, $favorites)) { ?>
-                                                <i class="clicked heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
+                                                <i class="clicked heart fas fa-heart px-2 pt-1" data-id="<?= $id ?>"></i></a>
                                             <?php } else { ?>
                                                 <i class="heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
                                             <?php } ?>
                                         <?php } ?>
                                         <!-- Go product -->
-                                        <a href="product.php?id=<?= $id ?>" class="px-1"><i class="fas fa-search"></i></a>
+                                        <a href="product.php?id=<?= $id ?>" class="px-2"><i class="fas fa-search"></i></a>
                                     </div>
                                     <div class="d-flex">
                                         <!-- price -->
@@ -150,13 +150,13 @@ elseif (isset($_GET['limit'])) :
                                 <!-- love -->
                                 <?php if ($user->isLogged()) { ?>
                                     <?php if (in_array($id, $favorites)) { ?>
-                                        <i class="clicked heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
+                                        <i class="clicked heart fas fa-heart px-2 pt-1" data-id="<?= $id ?>"></i></a>
                                     <?php } else { ?>
                                         <i class="heart fas fa-heart px-1 pt-1" data-id="<?= $id ?>"></i></a>
                                     <?php } ?>
                                 <?php } ?>
                                 <!-- Go product -->
-                                <a href="product.php?id=<?= $id ?>" class="ico p-x1"><i class="fas fa-search"></i></a>
+                                <a href="product.php?id=<?= $id ?>" class="ico px-2"><i class="fas fa-search"></i></a>
                             </div>
                             <div class="d-flex">
                                 <!-- price -->
