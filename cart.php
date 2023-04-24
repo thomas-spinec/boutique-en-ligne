@@ -22,6 +22,7 @@
     <script src="inc/js/cart.js"></script>
     <script src="inc/js/features.js"></script>
     <script src="inc/js/wishlist.js"></script>
+    <script src="inc/js/search.js"></script>
 </head>
 
 <body>
@@ -61,7 +62,7 @@
     <section class="popup-container"></section>
 
     <!-- BEST SELLERS -->
-    <section class="container overflow-hidden">
+    <section class="love container overflow-hidden">
         <h1>Best Sellers</h1>
         <h1 class="ter">Best Sellers</h1>
         <div id="best_sellers" class="row my-5 gx-4">
