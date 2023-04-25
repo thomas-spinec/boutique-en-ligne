@@ -25,9 +25,11 @@ abstract class Model
     }
 
     // get one data from a table
-    protected function getOne($id)
+    protected function getOne($id, $colname)
     {
-        $query = "SELECT * FROM $this->tablename WHERE id = :id";
+        $id = htmlspecialchars($id);
+
+        $query = "SELECT * FROM $this->tablename WHERE $colname = :id";
         $select = $this->bdd->prepare($query);
         $select->execute([':id' => $id]);
         $result = $select->fetch(PDO::FETCH_ASSOC);
@@ -45,36 +47,16 @@ abstract class Model
     }
 
     //Delete one from table//
-    protected function deleteOne($id)
+    protected function deleteOne($id, $colname)
     {
         $id = htmlspecialchars($id);
 
-        $request = "DELETE FROM $this->tablename WHERE id_user = :id ";
+        $request = "DELETE FROM $this->tablename WHERE $colname = :id ";
 
         $delete = $this->bdd->prepare($request);
 
         $delete->execute([
             ":id" => $id,
-        ]);
-
-        if ($delete) {
-            return "ok";
-        } else {
-            return "error";
-        }
-    }
-
-    //Delete one category from table
-    protected function deleteCategory($idCategory)
-    {
-        $idCategory = htmlspecialchars($idCategory);
-
-        $request = "DELETE FROM category WHERE id_category = :id";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idCategory,
         ]);
 
         if ($delete) {

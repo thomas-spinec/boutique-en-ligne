@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // change border color and background
       loginInput.style.borderColor = "initial";
       let dataLogin = new FormData();
-      
+
       dataLogin.append("verifLogin", loginValue);
       fetch("inc/php/verifProfil.php", {
         method: "POST",
@@ -142,13 +142,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.text())
         .then((response) => {
           response = response.trim();
-          //   console.log(response);
           if (response === "ok") {
             loginButton.nextElementSibling.innerHTML = "Successfull update";
             loginInput.focus();
             // new login
             user = loginInput.value;
-            msg.textContent = user;
             // reset form
             loginForm.reset();
             loginInput.nextElementSibling.innerHTML = "";
@@ -163,8 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // mise en place du nouveau login
             loginInput.value = user;
           } else if (response === "incorrect") {
-            passwordInput.nextElementSibling.innerHTML =
-              "Invalid password";
+            passwordInput.nextElementSibling.innerHTML = "Invalid password";
             passwordInput.style.borderColor = "red";
             passwordInput.style.backgroundColor = "#fde2e2";
           }
@@ -205,16 +202,14 @@ document.addEventListener("DOMContentLoaded", function () {
           response = response.trim();
           // console.log(response);
           if (response === "ok") {
-            passwordButton.nextElementSibling.innerHTML =
-              "Successfull update";
+            passwordButton.nextElementSibling.innerHTML = "Successfull update";
             // reset form
             passwordForm.reset();
             oldPasswordInput.nextElementSibling.innerHTML = "";
             newPasswordInput.nextElementSibling.innerHTML = "";
             newPasswordConfirmInput.nextElementSibling.innerHTML = "";
           } else if (response === "incorrect") {
-            oldPasswordInput.nextElementSibling.innerHTML =
-              "Invalid password";
+            oldPasswordInput.nextElementSibling.innerHTML = "Invalid password";
             oldPasswordInput.style.borderColor = "red";
             oldPasswordInput.style.backgroundColor = "#fde2e2";
           }
