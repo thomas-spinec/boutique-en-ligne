@@ -39,7 +39,6 @@
         $id = $_GET['id'];
         $product_info = $product->getProductInfo($id);
         $categories = $product->getCategoryName($id);
-        $comment = $comment->getComment($id);
         $image = $product_info['image'];
         $image1 = $product_info['image_1'];
         $image2 = $product_info['image_2'];

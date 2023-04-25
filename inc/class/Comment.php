@@ -1,12 +1,13 @@
 <?php
 require_once "Model.php";
-class Comment extends Model {    
+class Comment extends Model
+{
     protected $bdd;
     protected $tablename = "comment";
-    
+
     public function __construct()
     {
-            parent::__construct();
+        parent::__construct();
     }
 
     // function to get all comments for a product
@@ -34,32 +35,6 @@ class Comment extends Model {
         } else {
             // else we return the result
             return $comments;
-        }
-    }
-
-    // function to get a comment with the author and everything that goes with it
-    public function getComment($id)
-    {
-        $request = "SELECT comment.*, DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date, user.login as author 
-        FROM comment 
-        INNER JOIN user ON comment.id_user = user.id_user 
-        WHERE comment.id_comment = :id_comment";
-
-        // request
-        $select = $this->bdd->prepare($request);
-        // exec with params
-        $select->execute([
-            'id_comment' => $id,
-        ]);
-
-        // get results
-        $comment = $select->fetch(PDO::FETCH_ASSOC);
-        // if $result produce an error, we return null
-        if (!$comment) {
-            return null;
-        } else {
-            // else we return the result
-            return $comment;
         }
     }
 
