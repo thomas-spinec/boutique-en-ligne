@@ -170,7 +170,7 @@ class Product extends Model
     // get the info of a product (but not the categories and size)
     public function getProductInfo($id, $colname = "id_product")
     {
-        parent::getOne($id, $colname);
+        return parent::getOne($id, $colname);
     }
 
     // get the name of the categories for a product
