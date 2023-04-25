@@ -226,14 +226,13 @@ if (!$user->isLogged()) {
                                 <p><?= $item['price'] / 100 ?>€</p>
                             </div>
                         </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="col text-center">
+                        <p>Your wishlist is empty!</p>
+                    </div>
+                <?php endif; ?>
             </div>
-        <?php endforeach; ?>
-    <?php else : ?>
-        <div class="col text-center">
-            <p>Your wishlist is empty!</p>
-        </div>
-    <?php endif; ?>
-        </div>
         </div>
 
         <div class="clearfix"></div>
