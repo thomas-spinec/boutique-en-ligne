@@ -624,7 +624,7 @@ elseif (isset($_GET["changeCategory"])) :
                 <div class="col-12 text-center">
                     <label for="category" class="lead mb-3">Change the category</label>
                     <input type="text" name="category" class="form-control mx-auto w-50" value="<?= $category['name'] ?>">
-                    <input type="hidden" name="id_category" value="<?= $category['id_category'] ?>">
+                    <input type="hidden" name="id_category" value="<?= $_GET["changeCategory"] ?>">
                 </div>
             </div>
             <div class="col-12 text-center">
