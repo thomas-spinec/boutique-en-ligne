@@ -93,7 +93,7 @@
         </div>
 
         <!-- Tab infos -->
-        <div id="infos" class="tabcontent p-5">
+        <div id="infos" class="tabcontent p-2">
             <div class="row justify-content-between">
                 <div class="col-lg-5 col-md-12 col-sm-12 bg-white p-3 my-1 shadow">
                     <p class="text-muted">Login: <?= $login ?></p>
@@ -111,7 +111,7 @@
         </div>
 
         <!-- Tab orders -->
-        <div id="orders" class="tabcontent p-5">
+        <div id="orders" class="tabcontent p-2">
             <div class="row justify-content-between">
                 <?php if ($orders !== 'Nothing to show here !') {
                     foreach ($orders as $order) : ?>
@@ -134,7 +134,7 @@
         </div>
 
         <!-- Tab login -->
-        <div id="login" class="tabcontent p-5">
+        <div id="login" class="tabcontent p-2">
             <div class="row wrap justify-content-between">
                 <div class="col">
                     <?php $login = $user->getLogin(); ?>
@@ -166,7 +166,7 @@
         </div>
 
         <!-- Tab password -->
-        <div id="password" class="tabcontent p-5">
+        <div id="password" class="tabcontent p-2">
             <div class="row wrap justify-content-between">
                 <div class="col">
                     <form action="" method="post" id="passwordForm" class="col-lg-6 col-md-12 col-sm-12 bg-white shadow my-2 p-5">
@@ -200,8 +200,8 @@
         </div>
 
         <!-- Tab wishlist -->
-        <div id="whishlist" class="tabcontent p-5">
-            <h3>My Wishlist</h3>
+        <div id="whishlist" class="tabcontent p-2">
+            <h5 class="py-5">My Wishlist</h5>
             <div class="d-flex flex-wrap card-columns justify-content-center text-dark">
                 <?php if (count($wishlist_items) > 0): ?>
                     <?php foreach ($wishlist_items as $item): ?>
@@ -229,8 +229,9 @@
             </div>
         </div>
 
+        <div class="clearfix"></div>
         <!-- PROMOTION -->
-        <section class="container overflow-hidden">
+        <section class="container overflow-hidden py-5">
             <h1>Promotions</h1>
             <h1 class="ter">Promotions</h1>
             <div id="promotions" class="row my-5 gx-4">

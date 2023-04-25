@@ -54,14 +54,12 @@
             <button id="users" class="tablinks" onclick="openTab(event, 'member')">MEMBER MANAGEMENT</button>
             <button id="products" class="tablinks" onclick="openTab(event, 'product')">PRODUCT MANAGEMENT</button>
             <button id="categories" class="tablinks" onclick="openTab(event, 'category')">CATEGORY MANAGEMENT</button>
-            <button id="sizes" class="tablinks" onclick="openTab(event, 'size')">SIZE MANAGEMENT</button>
         </div>
 
         <!-- Tabs content -->
         <div id="member" class="tabcontent pt-3"> </div>
         <div id="product" class="tabcontent pt-3"> </div>
         <div id="category" class="tabcontent pt-3"> </div>
-        <div id="size" class="tabcontent pt-3"> </div>
 
         <section id="gestion"></section>
         <section id="display"></section>

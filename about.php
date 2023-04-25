@@ -122,7 +122,6 @@
                 <ul>
                     <li>Comments/User Reviews system with moderation at the Admin level.</li>
                     <li>Product inventory management</li>
-                    <li>Generation of an order number / invoices</li>
                     <li>Promotion management</li>
                 </ul>
             </div>

@@ -67,6 +67,22 @@ h1.ter {
     margin: -80px 0 50px 0;
     z-index: 1!important;
 }
+@media all and (max-width: 768px) {
+    h1 {
+        font-size: 50px!important;
+    }
+    h1.bis {
+        font-size: 70px!important;
+        margin: -50px 0 50px 0;
+    }
+    h1.ter {
+        font-size: 70px!important;
+        margin: -50px 0 50px 0;
+    }
+    p {
+        font-size: 13px!important;
+    }
+}
 
 .big {
     font-size: 35rem;
@@ -618,5 +634,9 @@ footer a {
     .lined {
         display: inline;
         padding-left: 2rem;
+    }
+    form {
+        width: 100%;
+        padding: 1rem;
     }
 }

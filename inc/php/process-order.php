@@ -71,9 +71,9 @@ if (isset($_GET["cart"])) {
                             </div>
                         </div>
                         <div class="d-flex flex-row align-items-center">
-                            <div style="width: 50px;">
+                            <div style="width: 70px;">
                                 <div class="form-outline">
-                                    <input id="form1" min="1" name="quantity" value="<?= $order['quantity'] ?>" type="number" class="quantity form-control" data-id="<?= $id_pro ?>" data-size="<?= $size ?>" data-order="<?= $id_order ?>" />
+                                    <input id="form1" min="1" max="99" name="quantity" value="<?= $order['quantity'] ?>" type="number" class="quantity form-control" data-id="<?= $id_pro ?>" data-size="<?= $size ?>" data-order="<?= $id_order ?>" />
                                 </div>
                             </div>
                         </div>
