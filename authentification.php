@@ -1,4 +1,10 @@
-<?php require_once 'inc/php/callToClasses.php'; ?>
+<?php
+require_once 'inc/php/callToClasses.php';
+if ($user->isLogged()) {
+    header('Location: index.php');
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

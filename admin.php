@@ -1,4 +1,10 @@
-<?php require_once 'inc/php/callToClasses.php'; ?>
+<?php
+require_once 'inc/php/callToClasses.php';
+if (!$user->isAdmin()) {
+    header('Location: index.php');
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,19 +28,23 @@
     <script src="inc/js/admin.js"></script>
     <script src="inc/js/adminThumbs.js"></script>
 
-    <script> /* Tabs script */
+    <script>
+        /* Tabs script */
         function openTab(evt, information) {
-        let i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";}
-            
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace("active", "");}
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
 
-        document.getElementById(information).style.display = "block";
-            evt.currentTarget.className += " active";}
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(information).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 
 </head>
@@ -44,12 +54,12 @@
     <?php include 'inc/header.php'; ?>
 
     <main class="container mt-2">
-    
-        
+
+
         <h1>Admin</h1>
         <h1 class="bis">Admin</h1>
         <h4 class="mb-5">Welcome <?= $user->getLogin() ?></h4>
-        
+
         <div class="tab admin">
             <button id="users" class="tablinks" onclick="openTab(event, 'member')">MEMBER MANAGEMENT</button>
             <button id="products" class="tablinks" onclick="openTab(event, 'product')">PRODUCT MANAGEMENT</button>
@@ -76,4 +86,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.5 pl-5.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

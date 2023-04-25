@@ -6,9 +6,9 @@ $user = new User();
 $users = $user->getAll();
 $product = new Product();
 $tableSize = 'size';
-$sizes = $product->getInfo($tableSize);
+$sizes = $product->getTable($tableSize);
 $tableCategory = 'category';
-$categories = $product->getInfo($tableCategory);
+$categories = $product->getTable($tableCategory);
 
 // MEMBER MANAGEMENT --------------------------------
 if (isset($_GET["users"])) :

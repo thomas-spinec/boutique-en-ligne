@@ -40,6 +40,7 @@ class Product extends Model
         }
     }
 
+    // get the stock of a product and a size
     public function getStock($idProduct, $idSize)
     {
 
@@ -62,6 +63,7 @@ class Product extends Model
         return $result;
     }
 
+    // get all the sizes of a product
     public function getSize($idProduct)
     {
         $idProduct = htmlspecialchars($idProduct);
@@ -86,8 +88,8 @@ class Product extends Model
         return $result;
     }
 
-
-    public function getInfo($table)
+    // get all the data from a table (size and category)
+    public function getTable($table)
     {
         $table = htmlspecialchars($table);
         $this->tablename = $table;
@@ -96,7 +98,8 @@ class Product extends Model
         return $result;
     }
 
-    public function deleteProduct($idProduct)
+    // delete a product (and the images in the folder)
+    public function deleteProduct($idProduct, $colname = "id_product")
     {
         $idProduct = htmlspecialchars($idProduct);
 
@@ -125,42 +128,20 @@ class Product extends Model
         }
 
         // delete the product
-        $request = "DELETE FROM $this->tablename WHERE id_product = :id ";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idProduct,
-        ]);
-
-        if ($delete) {
-            return "ok";
-        } else {
-            return "error";
-        }
+        echo parent::deleteOne($idProduct, $colname);
     }
 
-    public function deleteCategory($idCategory)
+    // delete a category
+    public function deleteCategory($idCategory, $colname = "id_category")
     {
         $idCategory = htmlspecialchars($idCategory);
-
-        $request = "DELETE FROM category WHERE id_category = :id ";
-
-        $delete = $this->bdd->prepare($request);
-
-        $delete->execute([
-            ":id" => $idCategory,
-        ]);
-
-        if ($delete) {
-            echo "ok";
-        } else {
-            echo "error";
-        }
+        $this->tablename = "category";
+        echo parent::deleteOne($idCategory, $colname);
+        $this->tablename = "product";
     }
 
-
-
+    // -------------------------------------------------------------------
+    // ------------------------- Completion -----------------------------------
     public function completion()
     {
 
@@ -184,26 +165,18 @@ class Product extends Model
         // return the search results
         return $result;
     }
+    // -------------------------------------------------------------------
 
-    public function getProductInfo($id)
+    // get the info of a product (but not the categories and size)
+    public function getProductInfo($id, $colname = "id_product")
     {
-        $query = $this->bdd->prepare("SELECT * FROM $this->tablename WHERE id_product = :id");
-        $query->execute([':id' => $id]);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        parent::getOne($id, $colname);
     }
 
-    public function updateProduct($id, $title, $description, $image, $image1, $image2, $price, $sales, $categ)
-    {
-        $query = $this->bdd->prepare("UPDATE $this->tablename SET title = :title, description = :description, image = :image, image_1 = :image_1, image_2 = :image_2, price = :price, sales = :sales WHERE id_product = :id");
-        $query->execute([':id' => $id, ':title' => $title, ':description' => $description, ':image' => $image, ':image_1' => $image1, ':image_2' => $image2, ':price' => $price, ':sales' => $sales]);
-
-        $query = $this->bdd->prepare("UPDATE link_categ SET id_categ = :categ WHERE id_product = :id");
-        $query->execute([':id' => $id, ':categ' => $categ]);
-    }
-
+    // get the name of the categories for a product
     public function getCategoryName($id)
     {
+        $id = htmlspecialchars($id);
         $query = $this->bdd->prepare("SELECT name FROM category INNER JOIN link_categ ON category.id_category = link_categ.id_categ WHERE link_categ.id_product = :id");
         $query->execute([':id' => $id]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -215,56 +188,11 @@ class Product extends Model
         }
     }
 
-    public function getProductImages($id)
-    {
-        $query = $this->bdd->prepare("SELECT image, image_1, image_2 FROM product WHERE id_product = :id ORDER BY image ASC");
-        $query->execute([':id' => $id]);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function getRandomBestSellers($limit)
-    {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, best_sellers 
-
-        FROM $this->tablename 
-        WHERE best_sellers = 1
-        ORDER BY RAND() 
-        LIMIT " . intval($limit));
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        // si il y a des résultats
-        if (count($results) > 0) {
-            return $results;
-        } else {
-
-            $results = 'No best sellers';
-            return $results;
-        }
-    }
-
-    public function getRandomNewCollection($limit)
-    {
-        $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage, new_collection 
-
-        FROM $this->tablename
-        WHERE new_collection = 1
-        ORDER BY RAND() 
-        LIMIT " . intval($limit));
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        if (count($results) > 0) {
-            return $results;
-        } else {
-
-            $results = 'Coming soon';
-            return $results;
-        }
-    }
-
+    // get the name of the category
     public function getCategory($id)
     {
-        $request = "SELECT * FROM category WHERE id_category = :id";
+        $id = htmlspecialchars($id);
+        $request = "SELECT name FROM category WHERE id_category = :id";
         $select = $this->bdd->prepare($request);
         $select->execute([
             ':id' => $id
@@ -274,6 +202,7 @@ class Product extends Model
         return $result;
     }
 
+    // add a product
     public function addProduct($product)
     {
         $title = htmlspecialchars($product["title"]);
@@ -403,75 +332,7 @@ class Product extends Model
         }
     }
 
-    // sera effacée
-    public function addSize()
-    {
-        // boucle avec une requete pour ajouter une taille et un stock pour chaque produit
-        $products = $this->getAll();
-        foreach ($products as $cols => $value) {
-            $idProduct = $value['id_product'];
-            $idProduct2 = $value['id_product'];
-            // si le produit a déjà cette taille, on l'update
-            $verif = "SELECT * FROM product_size WHERE id_product = :idProduct AND id_size = 4 OR id_product = :idProduct2 AND id_size = 3";
-            $select = $this->bdd->prepare($verif);
-            $select->execute([
-                ":idProduct" => $idProduct,
-                ":idProduct2" => $idProduct2,
-            ]);
-            // on compte le nombre de ligne et s'il y en a une, on update
-            $count = $select->rowCount();
-            if ($count > 0) {
-                $request = "UPDATE product_size SET stock = 20 WHERE id_product = :idProduct AND id_size = 4 OR id_product = :idProduct2 AND id_size = 3";
-                $update = $this->bdd->prepare($request);
-                $update->execute([
-                    ":idProduct" => $idProduct,
-                    ":idProduct2" => $idProduct2,
-                ]);
-                if ($update) {
-                    echo "update ok";
-                } else {
-                    echo "error";
-                }
-            } else {
-                // sinon on insert
-                $request = "INSERT INTO `product_size` (`id_size`, `id_product`, `stock`) VALUES ('4', :idProduct, '20'), ('3', :idProduct2, '20')";
-                $insert = $this->bdd->prepare($request);
-                $insert->execute([
-                    ":idProduct" => $idProduct,
-                    ":idProduct2" => $idProduct2,
-                ]);
-
-                if ($insert) {
-                    echo "ok";
-                } else {
-                    echo "error";
-                }
-            }
-        }
-    }
-
-    public function correctPrice()
-    {
-        $products = $this->getAll();
-        foreach ($products as $product) {
-            $idProduct = $product['id_product'];
-            $price = $product['price'];
-            $price = $price * 100;
-            $request = "UPDATE $this->tablename SET price = :price WHERE id_product = :idProduct";
-            $update = $this->bdd->prepare($request);
-            $update->execute([
-                ":price" => $price,
-                ":idProduct" => $idProduct,
-            ]);
-            if ($update) {
-                echo "ok";
-            } else {
-                echo "error";
-            }
-        }
-    }
-    // sera effacée
-
+    // update the stock of a particular size
     public function updateStock($idProduct, $idSize, $newStock)
     {
         //htmlspecialchars
@@ -495,6 +356,7 @@ class Product extends Model
         }
     }
 
+    // add a new size with the stock to a product
     public function addStock($idProduct, $idSize, $newStock)
     {
         //htmlspecialchars
@@ -517,6 +379,7 @@ class Product extends Model
         }
     }
 
+    // add a product to new collection
     public function addNewCollection($idProduct, $request)
     {
         $idProduct = htmlspecialchars($idProduct);
@@ -555,6 +418,7 @@ class Product extends Model
         }
     }
 
+    // add a product to best seller
     public function addBestSeller($idProduct, $request)
     {
         $idProduct = htmlspecialchars($idProduct);
@@ -592,6 +456,7 @@ class Product extends Model
         }
     }
 
+    // put a product on promotion
     public function addPromotion($idProduct, $percentage)
     {
         $idProduct = htmlspecialchars($idProduct);
@@ -631,7 +496,7 @@ class Product extends Model
         }
     }
 
-
+    // add new category
     public function addCategory($newCategory)
     {
         $newCategory = htmlspecialchars($newCategory);
@@ -649,6 +514,7 @@ class Product extends Model
         }
     }
 
+    // update category name
     public function updateCategory($idCategory, $newName)
     {
         $idCategory = htmlspecialchars($idCategory);
@@ -668,8 +534,11 @@ class Product extends Model
         }
     }
 
+    // get 4 random products from a categorie
     public function getRandomCateg($categ, $limit)
     {
+        $categ = htmlspecialchars($categ);
+        $limit = htmlspecialchars($limit);
         $query = $this->bdd->prepare("SELECT id_product, title, image, image_1, image_2, price, promotion, promotion_percentage 
 
         FROM $this->tablename 
@@ -688,7 +557,8 @@ class Product extends Model
         }
     }
 
-    public function getProduct($id_product, $size)
+    // Get the size and the stock of a product
+    public function getProductSize($id_product, $size)
     {
 
         $id_product = htmlspecialchars($id_product);

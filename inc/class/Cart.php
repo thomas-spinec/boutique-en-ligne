@@ -12,6 +12,7 @@ class Cart extends Model
         parent::__construct();
     }
 
+    // get the cart of the user
     public function getCart($id)
     {
         $id = htmlspecialchars($id);
@@ -38,6 +39,7 @@ class Cart extends Model
         }
     }
 
+    // verify if the user already own a cart, create it if not and get the id of the cart
     public function cartVerify($id)
     {
 
@@ -69,6 +71,7 @@ class Cart extends Model
         }
     }
 
+    // add a product to the cart
     public function createDetail($id_order, $id_product,  $quantity, $size, $total)
     {
 
@@ -125,6 +128,7 @@ class Cart extends Model
         }
     }
 
+    // update the total of the cart
     public function updateTotal($id_order)
     {
         $request = "SELECT total AS totalProduct FROM detail WHERE id_order=:id_order";
@@ -154,7 +158,7 @@ class Cart extends Model
         }
     }
 
-
+    // delete a product from the cart
     public function deleteProduct($id_product, $id_order, $size)
     {
 
@@ -173,6 +177,7 @@ class Cart extends Model
         }
     }
 
+    // update the quantity of a product in the cart
     public function updateQuantity($id_product, $size_order, $id_order, $quantity, $total)
     {
 
@@ -201,6 +206,7 @@ class Cart extends Model
         }
     }
 
+    // put the cart in pending
     public function orderOk($id_order)
     {
         $id_order = htmlspecialchars($id_order);
@@ -217,6 +223,7 @@ class Cart extends Model
         }
     }
 
+    // get the order(s) of a user
     public function getOrder($id_user, $id_order = null)
     {
         $id_user = htmlspecialchars($id_user);
