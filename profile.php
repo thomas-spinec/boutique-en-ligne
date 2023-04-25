@@ -1,4 +1,10 @@
-<?php require_once 'inc/php/callToClasses.php'; ?>
+<?php
+require_once 'inc/php/callToClasses.php';
+if (!$user->isLogged()) {
+    header('Location: index.php');
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -203,30 +209,31 @@
         <div id="whishlist" class="tabcontent p-5">
             <h3>My Wishlist</h3>
             <div class="d-flex flex-wrap card-columns justify-content-center text-dark">
-                <?php if (count($wishlist_items) > 0): ?>
-                    <?php foreach ($wishlist_items as $item): ?>
+                <?php if (count($wishlist_items) > 0) : ?>
+                    <?php foreach ($wishlist_items as $item) : ?>
                         <div class="card col-lg-3 col-sm-6 mx-3 my-3">
                             <div class="card-header">
                                 <p><?= $item['date'] ?></p>
                             </div>
                             <div class="card-body">
                                 <a class="text-dark lead " href="product.php?id=<?= $item['id_product'] ?>">
-                                <img class="w-25" src="inc/img/shop/<?=$item['image'] ?>" alt="<?= $item['title'] ?>">
-                                <div class="card-title">
-                                    <?= $item['title'] ?></a>
-                                </div>
-                                <div class="card-text">
-                                    <p><?= $item['price']/100 ?>€</p>
-                                </div>
+                                    <img class="w-25" src="inc/img/shop/<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
+                                    <a class="card-title">
+                                        <?= $item['title'] ?>
+                                    </a>
+                            </div>
+                            <div class="card-text">
+                                <p><?= $item['price'] / 100 ?>€</p>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <div class="col text-center">
-                        <p>Your wishlist is empty!</p>
-                    </div>
-                <?php endif; ?>
             </div>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <div class="col text-center">
+            <p>Your wishlist is empty!</p>
+        </div>
+    <?php endif; ?>
+        </div>
         </div>
 
         <!-- PROMOTION -->

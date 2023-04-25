@@ -244,7 +244,7 @@ if (isset($_POST["updateProduct"])) {
 
     $item = $product->getProductInfo($id_product);
 
-    $total = $item["price"]/100*$quantity;
+    $total = $item["price"] / 100 * $quantity;
 
 
 
@@ -263,7 +263,7 @@ if (isset($_GET["validate"])) {
         $size = $item['size'];
         $quantity = $item['quantity'];
 
-        $table = $product->getProduct($id_product, $size);
+        $table = $product->getProductSize($id_product, $size);
         $stock = $table['stock'];
         $id_size = $table['id_size'];
         $newStock = $stock - $quantity;

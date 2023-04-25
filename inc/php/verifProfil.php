@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../class/User.php';
 $user = new User();
 
