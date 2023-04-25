@@ -40,7 +40,8 @@ class Comment extends Model {
     // function to get a comment with the author and everything that goes with it
     public function getComment($id)
     {
-        $request = "SELECT comment.*, DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date, user.login as author 
+        $request = "SELECT comment.*, 
+        DATE_FORMAT(comment.date, '- %d %m %Y %H:%i -') as date, user.login as author 
         FROM comment 
         INNER JOIN user ON comment.id_user = user.id_user 
         WHERE comment.id_comment = :id_comment";

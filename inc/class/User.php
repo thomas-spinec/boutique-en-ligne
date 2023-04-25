@@ -231,7 +231,7 @@ class User extends Model
         return $this->role;
     }
 
-    // Modification login
+    // Login Modification
     public function updateLogin($login, $old, $password)
     {
         // requête
@@ -282,7 +282,7 @@ class User extends Model
         $this->bdd = null;
     }
 
-    // Modification mot de passe
+    // Password Modification
     public function updatePassword($password, $newPassword)
     {
         // requête
@@ -338,7 +338,6 @@ class User extends Model
         // fermer la connexion
         $this->bdd = null;
     }
-
 
     public function getAll()
     {

@@ -55,7 +55,7 @@ if (isset($_GET['category_id'])) :
                     <!-- card -->
                     <div class="col-lg-3 col-md-6 col-sm-12 p-3">
                         <div class="position-relative shadow-lg mb-5">
-                            <h4 class="card-title text-center p-3"><?= $title ?></h4>
+                           <h4 class="card-title text-center p-3"><?= $title ?></h4>
                             <?php $images = [$image, $image1, $image2]; ?>
                             <?php foreach ($images as $index => $image) : ?>
                                 <?php if (!empty($image) && $index === 0) : ?>
@@ -100,7 +100,7 @@ if (isset($_GET['category_id'])) :
     <?php
     }; ?>
     <?php
-// INDEX -- PROFIL -- 
+// FEATURES
 elseif (isset($_GET['limit'])) :
     if (isset($_GET['new'])) {
         $categ = 'new_collection';
