@@ -414,7 +414,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     } else if (e.target.classList.contains("filterCateg")) {
       const idCategory = e.target.value;
-      console.log(idCategory);
       displayProducts(idCategory);
     }
   });
