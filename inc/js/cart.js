@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data === "ok") {
             history.back();
           } else if (data === "not connected") {
+            alert("You must be connected to add a product to your cart");
             window.location.href = "authentification.php?choice=login";
           } else {
             cart.nextElementSibling.innerHTML =

@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     display.innerHTML = "";
     gestion.innerHTML = "";
     popUp.innerHTML = "";
-    
+
     fetch("inc/php/templateAdmin.php?categories")
       .then((response) => response.text())
       .then((table) => (display.innerHTML = table));
@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("inc/php/templateAdmin.php?changeCategory=" + id)
       .then((response) => response.text())
       .then((form) => (popUp.innerHTML = form));
-      popUp.style.display = "flex";
+    popUp.style.display = "flex";
   }
 
   function updateCategory(form) {
@@ -565,15 +565,5 @@ document.addEventListener("DOMContentLoaded", function () {
       popUp.innerHTML = "";
       popUp.style.display = "none";
     }
-  });
-
-  // Size (en plus, sera supp)//
-  sizes.addEventListener("click", function (e) {
-    e.preventDefault();
-    fetch("inc/php/adminGestion.php?sizes")
-      .then((response) => response.text())
-      .then((response) => {
-        console.log(response);
-      });
   });
 });
