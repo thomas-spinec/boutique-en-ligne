@@ -214,12 +214,6 @@ if (isset($_GET["getStock"])) {
     echo json_encode($stock);
 }
 
-
-if (isset($_GET["sizes"])) {
-    $product->addSize();
-    // $product->correctPrice();
-}
-
 // CATEGORY -------------------------------------------------
 
 if (isset($_GET['delCategory'])) {
