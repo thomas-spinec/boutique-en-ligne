@@ -5,38 +5,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const matchList = document.querySelector("#matchList");
   const matchList2 = document.querySelector("#matchList2");
 
-  //Cherche suggest.php et le filtre
+  //get suggest.php & filter it
   const searchProduct = async (searchText) => {
     const response = await fetch("inc/php/suggest.php");
     const product = await response.json();
 
-    // Vérifie si le texte saisi correspond à un produit
+    // check if searchText has a correspondance in product
     let matches = product.filter((title) => {
-      // première proposition (le ^ désigne le premier caractère)
+      // first proposal ( ^ is for first caracter of the string)
       const regex = new RegExp(`^${searchText}`, "gi");
-      // Le premier argument de la fonction RegExp() est le motif de l'expression régulière utilisé pour rechercher des correspondances. Le second argument représente les options de l'expression régulière (ici 'gi' pour global et ignorer la casse).
+      // first argument is the regex, second is the flag (g = global, i = case insensitive)
       return title.title.match(regex);
     });
-    // seconde proposition
+    // second proposal
     let matches2 = product.filter((title) => {
       const regex = new RegExp(`${searchText}`, "gi");
       return title.title.match(regex);
     });
-    // Si le texte saisi est vide, on ne propose rien
+    // if searchText is empty, hide the list
     if (searchText.length === 0) {
       matches = [];
       matchList.innerHTML = "";
     }
-    // Génère le html pour chaque valeur
+    // generate the html for each value
     outputHtml(matches);
     outputHtml2(matches2);
   };
 
-  // Renvoie le html pour chaque valeur
+  // send the html to the DOM
   const outputHtml = (matches) => {
-    // Si il y a des résultats, on les affiche
+
     if (matches.length > 0) {
-      // Réduit le nombre de résultats
+      // limit the number of proposals to 5
       const html = matches
         .slice(0, 5)
         .map(
