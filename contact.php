@@ -2,11 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/boutique-en-ligne/inc/img/icons/favicon.png" />
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- jQuery 3.6.4 -->
@@ -59,16 +62,17 @@
                                 <textarea class="form-control" id="message" rows="6" required></textarea>
                             </div>
                             <div class="text-center">
-                            <button type="submit" class="btn btn-dark my-5">Submit</button></div>
+                                <button type="submit" class="btn btn-dark my-5">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Adress -->
             <div class="col-12 col-sm-4">
                 <div class="card bg-light mb-3">
-                    
+
                     <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
                     <div class="card-body text-center">
                         <i class="fas fa-map-marker-alt fa-2x"></i>
