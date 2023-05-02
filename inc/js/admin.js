@@ -499,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
   gestion.addEventListener("change", function (e) {
     if (e.target.classList.contains("selectSize")) {
       const target = e.target;
-      const div = target.parentNode;
+      const div = target.parentNode.parentNode.parentNode;
       const selectSize = div.querySelectorAll(".selectSize");
       const size = [];
       // we put the value of each select in an array

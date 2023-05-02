@@ -29,6 +29,7 @@ if (!$user->isAdmin()) {
     <script src="inc/js/stickToTop.js"></script>
     <script src="inc/js/admin.js"></script>
     <script src="inc/js/adminThumbs.js"></script>
+    <script src="inc/js/search.js"></script>
 
     <script>
         /* Tabs script */

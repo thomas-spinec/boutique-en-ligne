@@ -84,6 +84,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   search.addEventListener("blur", () => {
     setTimeout(() => {
       hideLists();
-    }, 100);
+    }, 500);
   });
 }); // Fin de l'écouteur d'évènement DOMContentLoaded
