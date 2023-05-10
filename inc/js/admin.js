@@ -38,10 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function changeRole(id) {
-    const formRole = document.querySelector("#formRole");
-
-    let data = new FormData(formRole);
+  function changeRole(id, formValue) {
+    let data = new FormData();
+    data.append("role", formValue);
     data.append("id", id);
     data.append("changeRole", "ok");
     fetch("inc/php/adminGestion.php", {
@@ -371,7 +370,9 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     if (e.target.classList.contains("changeDroit")) {
       const id = e.target.getAttribute("data-id");
-      changeRole(id);
+      const form = e.target.parentNode;
+      const formValue = form.querySelector("select").value;
+      changeRole(id, formValue);
     }
   });
 
