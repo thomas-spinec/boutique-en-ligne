@@ -225,7 +225,7 @@ if (!$user->isLogged()) {
                                     </a>
                             </div>
                             <div class="card-text">
-                                <p><?= $item['price'] / 100 ?>€</p>
+                                <p class="px-3"><?= $item['price'] / 100 ?>€</p>
                             </div>
                         </div>
                     <?php endforeach; ?>
