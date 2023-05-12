@@ -2,11 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/boutique-en-ligne/inc/img/icons/favicon.png" />
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- Fontawesome kit -->
@@ -18,10 +21,11 @@
     <script type="text/javascript" src="inc/js/search.js"></script>
 
 </head>
+
 <body>
-    
+
     <div class="wrapper">
-        
+
         <?php include 'inc/header.php'; ?>
 
         <main class="container min-vh-100 justify-content-center align-items-center">
@@ -32,11 +36,13 @@
                     <table class="table table-hover bg-light">
                         <thead>
                             <tr>
-                                <th scope="col text-white"><h2 class="py-5">Your search</h2></th>
+                                <th scope="col text-white">
+                                    <h2 class="py-5">Your search</h2>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
+                            <?php
 
                             // récupérer les résultats de la recherche depuis la méthode searchProducts()
                             $search = $_GET['search'];
@@ -48,8 +54,8 @@
                                 <td>
                                     <ul>
                                         <li class="list-unstyled">
-                                            <?php foreach ($results as $result): ?>
-                                                <a href="product.php?id=<?= $result['id_product'] ?>"> <?=$result['title'] ?></a>
+                                            <?php foreach ($results as $result) : ?>
+                                                <a href="product.php?id=<?= $result['id_product'] ?>"> <?= $result['title'] ?></a>
                                             <?php endforeach; ?>
                                         </li>
                                     </ul>

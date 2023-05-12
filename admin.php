@@ -14,6 +14,8 @@ if (!$user->isAdmin()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/boutique-en-ligne/inc/img/icons/favicon.png" />
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- Jquery -->
@@ -23,10 +25,13 @@ if (!$user->isAdmin()) {
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- JS -->
-    <script src="inc/js/scrollToTop.js"></script>
-    <script src="inc/js/stickToTop.js"></script>
-    <script src="inc/js/admin.js"></script>
-    <script src="inc/js/adminThumbs.js"></script>
+    <?php if ($user->isAdmin()) : ?>
+        <script src="inc/js/scrollToTop.js"></script>
+        <script src="inc/js/stickToTop.js"></script>
+        <script src="inc/js/admin.js"></script>
+        <script src="inc/js/adminThumbs.js"></script>
+        <script src="inc/js/search.js"></script>
+    <?php endif; ?>
 
     <script>
         /* Tabs script */

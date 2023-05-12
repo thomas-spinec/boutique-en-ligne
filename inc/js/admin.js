@@ -38,10 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function changeRole(id) {
-    const formRole = document.querySelector("#formRole");
-
-    let data = new FormData(formRole);
+  function changeRole(id, formValue) {
+    let data = new FormData();
+    data.append("role", formValue);
     data.append("id", id);
     data.append("changeRole", "ok");
     fetch("inc/php/adminGestion.php", {
@@ -371,7 +370,9 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     if (e.target.classList.contains("changeDroit")) {
       const id = e.target.getAttribute("data-id");
-      changeRole(id);
+      const form = e.target.parentNode;
+      const formValue = form.querySelector("select").value;
+      changeRole(id, formValue);
     }
   });
 
@@ -414,7 +415,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     } else if (e.target.classList.contains("filterCateg")) {
       const idCategory = e.target.value;
-      console.log(idCategory);
       displayProducts(idCategory);
     }
   });
@@ -500,7 +500,7 @@ document.addEventListener("DOMContentLoaded", function () {
   gestion.addEventListener("change", function (e) {
     if (e.target.classList.contains("selectSize")) {
       const target = e.target;
-      const div = target.parentNode;
+      const div = target.parentNode.parentNode.parentNode;
       const selectSize = div.querySelectorAll(".selectSize");
       const size = [];
       // we put the value of each select in an array

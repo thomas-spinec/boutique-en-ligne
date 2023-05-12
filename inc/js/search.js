@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // send the html to the DOM
   const outputHtml = (matches) => {
-
     if (matches.length > 0) {
       // limit the number of proposals to 5
       const html = matches
@@ -83,6 +82,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   search.addEventListener("blur", () => {
-    hideLists();
+    setTimeout(() => {
+      hideLists();
+    }, 500);
   });
 }); // Fin de l'écouteur d'évènement DOMContentLoaded

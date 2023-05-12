@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/boutique-en-ligne/inc/img/icons/favicon.png" />
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- JQuery 3.6.4 -->

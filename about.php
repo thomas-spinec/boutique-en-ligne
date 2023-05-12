@@ -2,11 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="/boutique-en-ligne/inc/img/icons/favicon.png" />
     <!-- CSS -->
     <link rel="stylesheet" href="inc/css/style.css">
     <!-- JQuery 3.6.4 -->
@@ -23,6 +26,7 @@
 
 
 </head>
+
 <body>
 
     <?php include 'inc/header.php'; ?>
@@ -53,12 +57,12 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="row gy-5">
             <h2 class="text-start mt-5">Our mission</h2>
             <hr>
             <p class="lead text-start mt-5">The purpose of this project is to validate REAC Competencies.</p>
-            
+
             <div class="col-lg-6 col-sm-12">
                 <h3 class="text-start lead">Targeted skills</h3>
                 <ul>
@@ -72,18 +76,19 @@
                 </ul>
             </div>
             <div class="col-lg-6 col-sm-12">
-                <h3 class="text-start lead">REAC competence validated</h3><hr>
+                <h3 class="text-start lead">REAC competence validated</h3>
+                <hr>
                 <p class="lead">Mock up an app</p>
                 <ul>
                     <li>Realize a static and adaptable web user interface</li>
                     <li>Develop a dynamic web user interface</li>
                     <li>Develop a user interface with a content management solution or
-                    ecommerce</li>
+                        ecommerce</li>
                     <li>Create a database</li>
                     <li>Develop data access components</li>
                     <li>Develop the back-end part of a web or mobile web application</li>
                     <li>Develop and implement components in a data management application
-                    content or e-commerce</li>
+                        content or e-commerce</li>
                 </ul>
             </div>
         </section>
@@ -100,15 +105,15 @@
                 <li>On click on each product: a complete “detail” page generated dynamically (name, image, price, description, add to cart button...)</li>
                 <li>A user account creation system</li>
                 <li>Registration / Login Module (Using Javascript and Asynchronous mandatory in this part)</li>
-                    <ul>
-                        <li>Registration / Login Module (Using Javascript and Asynchronous mandatory in this part)</li>
-                        <li>User profile management page (Summary and possibility of modify their information, view their purchase history, view their basket...)</li>
-                    </ul>
+                <ul>
+                    <li>Registration / Login Module (Using Javascript and Asynchronous mandatory in this part)</li>
+                    <li>User profile management page (Summary and possibility of modify their information, view their purchase history, view their basket...)</li>
+                </ul>
                 <li>Administrator dashboard space:</li>
-                    <ul>
-                        <li>Product management using back office, Add / Delete / Changes to products, stocks, etc.</li>
-                        <li>Management of product categories and subcategories (Add / Deletion / Modifications...)</li>
-                    </ul>
+                <ul>
+                    <li>Product management using back office, Add / Delete / Changes to products, stocks, etc.</li>
+                    <li>Management of product categories and subcategories (Add / Deletion / Modifications...)</li>
+                </ul>
                 <li>Basket validation system (a simulation of the process only)</li>
             </ul>
         </section>
@@ -153,15 +158,15 @@
                     <li><a href="https://www.lucidchart.com/pages/fr" target="_blank"><img class="img-fluid" src="inc/img/icons/lucidchart.svg"></a></li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-sm-12 flex-wrap">         
+            <div class="col-lg-6 col-sm-12 flex-wrap">
                 <h2 class="pt-5">Libs</h2>
                 <hr class="pb-5">
                 <ul class="d-flex flex-wrap list-unstyled justify-content-start">
                     <li><a href="https://getbootstrap.com/" target="_blank"><img class="img-fluid" src="inc/img/icons/bootstrap.svg"></a></li>
                     <li><a href="https://fontawesome.com/" target="_blank"><img class="img-fluid" src="inc/img/icons/font-awesome.svg"></a></li>
                     <li class="fs-3 px-2"><a href="https://github.com/lokesh/lightbox2" target="_blank">Lightbox2</a></li>
-                </div>
             </div>
+        </div>
         </div>
 
         <div class="row my-5">
@@ -177,5 +182,5 @@
     <?php include 'inc/footer.php'; ?>
 
 </body>
-</html>
 
+</html>

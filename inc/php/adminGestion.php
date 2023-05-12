@@ -10,14 +10,20 @@ $product = new Product();
 // USER ---------------------------------------------
 if (isset($_GET['delUser'])) {
     $id = $_GET['delUser'];
-
-    $user->deleteOne($id);
+    if ($user->isAdmin()) {
+        if ($id != $_SESSION['user']['id']) {
+            $user->deleteOne($id);
+        }
+    }
 }
 
 if (isset($_POST['changeRole'])) {
     $newRole = $_POST['role'];
     $id = $_POST['id'];
-    $user->changeRole($newRole, $id);
+    // si le user est admin, on lance le changeRole
+    if ($user->isAdmin()) {
+        $user->changeRole($newRole, $id);
+    }
 }
 
 // PRODUCT ---------------------------------------------

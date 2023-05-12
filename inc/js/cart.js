@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cart.addEventListener("click", function (e) {
       e.preventDefault();
-      quantity = quantityInput.value;
-      size = sizeSelect.value;
+      let quantity = quantityInput.value;
+      let size = sizeSelect.value;
 
       addToCart(id_product, quantity, size);
     });
