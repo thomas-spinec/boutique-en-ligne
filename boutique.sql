@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 21 avr. 2023 à 12:10
+-- Généré le : jeu. 27 avr. 2023 à 13:22
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -68,14 +68,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id_comment`),
   KEY `id_product` (`id_product`),
   KEY `id_user` (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `comment`
 --
 
 INSERT INTO `comment` (`id_comment`, `subject`, `comment`, `date`, `id_product`, `id_user`) VALUES
-(2, 'Satisfaite', 'Très joli modèle léger pour le printemps. Je recommande !', '2023-04-11 11:14:45.000000', 3, 4);
+(5, 'Good mantra ', 'In code we trust!', '2023-04-24 14:53:13.000000', 0, 6);
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,17 @@ CREATE TABLE IF NOT EXISTS `detail` (
   PRIMARY KEY (`id_detail`),
   KEY `id_order` (`id_order`),
   KEY `id_product` (`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `detail`
+--
+
+INSERT INTO `detail` (`id_detail`, `id_order`, `id_product`, `total`, `quantity`, `size`) VALUES
+(8, 6, 1, 110, 1, 'L'),
+(9, 6, 2, 135, 1, 'L'),
+(10, 7, 12, 80, 1, 'L'),
+(11, 8, 3, 90, 1, 'L');
 
 -- --------------------------------------------------------
 
@@ -211,7 +221,7 @@ INSERT INTO `product` (`id_product`, `title`, `description`, `image`, `image_1`,
 (1, 'Black suit', 'Black suit', 'suit_03.jpg', 'suit_03a.jpg', 'suit_03b.jpg', 11000, 1, 0, 0, NULL),
 (2, 'Pants with pleats', 'Wide pants with pleats, navy blue\r\n2 front pockets and 2 fake back pockets', 'pant_01.jpeg', 'pant_01a.jpeg', 'pant_01b.jpeg', 13500, 0, 0, 1, 75),
 (3, 'Powdery pink dress', 'Powdery pink dress.\r\nSoft and light for summer time\r\nv-neck, fitted waist, Silk fabric', 'dress_03.jpg', '', '', 9000, 1, 1, 0, NULL),
-(4, 'Ivory sweater', 'Ivory cashmere sweater', 'sweater_03.jpeg', 'sweater_03a.jpeg', 'sweater_03b.jpeg', 8600, 0, 0, 1, 50),
+(4, 'Ivory sweater', 'Ivory cashmere sweater', 'sweater_03.jpg', 'sweater_03a.jpg', 'sweater_03b.jpg', 8600, 0, 0, 1, 50),
 (5, 'Intense Red suit', 'Red suit, double-breasted, jacket slim pants', 'suit_01.jpg', 'suit_01a.jpg', '', 15000, 0, 0, 0, NULL),
 (6, 'Pink spring suit', 'Light pink suit', 'suit_06.jpg', 'suit_06a.jpg', '', 15000, 0, 1, 0, NULL),
 (7, 'Satin suit', 'Brown satin summer suit', 'suit_07.jpg', '', '', 8000, 0, 1, 0, NULL),
@@ -230,14 +240,14 @@ INSERT INTO `product` (`id_product`, `title`, `description`, `image`, `image_1`,
 (20, 'Satin dress', 'Satin dress, printed with small yellow flowers, bow bustier and side slit', 'dress_04.jpg', 'dress_04a.jpg', '', 11200, 0, 1, 0, NULL),
 (21, 'Green relaxation set', 'strapless loungewear and cropped pants', 'loungewear_01.jpg', 'loungewear_01a.jpg', '', 6000, 0, 1, 0, NULL),
 (22, 'satin sleepwear set', 'Pink satin sleepwear set. Top and short', 'loungewear_02.jpg', 'loungewear_02a.jpg', '', 5500, 0, 1, 0, NULL),
-(23, 'Sportswear set Nike', 'Pink sportswear set Nike', 'sportswear_03.jpg', 'sportswear_03a.jpg', '', 9000, 0, 0, 0, NULL),
+(23, 'Nike set', 'Nike pink sportswear set', 'sportswear_03.jpg', 'sportswear_03a.jpg', '', 9000, 0, 0, 0, NULL),
 (24, 'Yellow suit ', 'Yellow suit', 'suit_02.jpg', 'suit_02a.jpg', 'suit_02b.jpg', 12000, 0, 0, 0, NULL),
 (25, 'Sky blue suit', 'Sky blue suit without collar, 2 side pockets, a hook closure ', 'suit_05.jpg', 'suit_05a.jpg', 'suit_05b.jpg', 13500, 0, 1, 0, NULL),
 (26, 'Grey loose suit', 'Grey loose boyfriend suit', 'suit_08.jpg', 'suit_08a.jpg', 'suit_08b.jpg', 13500, 0, 0, 0, NULL),
 (27, 'Red shorts suit', 'Red shorts suit, smocking cut', 'suit_09.jpg', 'suit_09a.jpg', 'suit_09b.jpg', 13500, 0, 0, 0, NULL),
-(28, 'Cashmere sweater', 'Blue cashmere turtleneck sweater', 'sweater_01.jpg', 'sweater_01a.jpg', '', 6200, 0, 0, 1, 30),
+(28, 'Blue sweater', 'Blue cashmere turtleneck sweater', 'sweater_01.jpg', 'sweater_01a.jpg', '', 6200, 0, 0, 1, 30),
 (29, 'Glossy brown top', 'glossy brown top. Backless', 'top_01.jpg', 'top_01a.jpg', 'top_01b.jpg', 7500, 0, 1, 0, NULL),
-(30, 'Pink t-shirt & shorts', 'Oversized cotton shirt and shorts set', 'shirt_01.jpg', '', '', 5900, 0, 0, 0, NULL),
+(30, 'T-shirt/shorts set', 'Oversized cotton shirt and shorts set', 'shirt_01.jpg', '', '', 5900, 0, 0, 0, NULL),
 (31, 'Black cotton t-shirt', 'Black cotton t-shirt', 'tshirt_02.jpg', 'tshirt_02a.jpg', 'tshirt_02b.jpg', 2900, 0, 0, 0, NULL),
 (32, 'M&M watch', 'M&M watch white strap and gold metal', 'watch_01.jpg', '', '', 22600, 0, 0, 0, NULL),
 (33, 'Safari jacket', 'Belted safari jacket', 'coat_03.jpg', 'coat_03a.jpg', '', 8300, 1, 1, 0, NULL),
@@ -269,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `product_size` (
 --
 
 INSERT INTO `product_size` (`id_product_size`, `id_size`, `id_product`, `stock`) VALUES
-(1, 4, 12, 20),
+(1, 4, 12, 19),
 (2, 3, 12, 20),
 (3, 4, 13, 20),
 (4, 3, 13, 20),
@@ -281,7 +291,7 @@ INSERT INTO `product_size` (`id_product_size`, `id_size`, `id_product`, `stock`)
 (10, 3, 35, 20),
 (11, 4, 36, 20),
 (12, 3, 36, 20),
-(13, 4, 1, 20),
+(13, 4, 1, 19),
 (14, 3, 1, 20),
 (15, 4, 3, 20),
 (16, 3, 3, 20),
@@ -293,7 +303,7 @@ INSERT INTO `product_size` (`id_product_size`, `id_size`, `id_product`, `stock`)
 (22, 3, 19, 20),
 (23, 4, 33, 20),
 (24, 3, 33, 20),
-(25, 4, 2, 20),
+(25, 4, 2, 19),
 (26, 3, 2, 20),
 (27, 4, 9, 20),
 (28, 3, 9, 20),
@@ -362,7 +372,16 @@ CREATE TABLE IF NOT EXISTS `shop_order` (
   `state` enum('complete','pending','cart') NOT NULL,
   PRIMARY KEY (`id_order`),
   KEY `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `shop_order`
+--
+
+INSERT INTO `shop_order` (`id_order`, `total`, `date`, `id_user`, `state`) VALUES
+(6, 245, '2023-04-24 23:04:11', 6, 'pending'),
+(7, 80, '2023-04-25 08:22:38', 6, 'pending'),
+(8, 90, '2023-04-25 08:42:19', 6, 'cart');
 
 -- --------------------------------------------------------
 
@@ -409,16 +428,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `country` varchar(255) NOT NULL,
   `role` enum('user','admin') NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id_user`, `login`, `password`, `firstname`, `lastname`, `email`, `address`, `city`, `zip`, `country`, `role`) VALUES
-(1, 'jeremy', '$2y$10$ljcpdniyMc9oCci5sjIekezalUJNyv5E7HHRHi0LGJ6KSAC53ngyK', ' n', 'jn@orange.fr', 'j', 'a', 'a', 'france', '83500', 'user'),
-(2, 'admin', '$2y$10$1WgJOFotErRi.IV85iL9o.DOjgQ.6kh/QVnlfYty3QqWRFcH5SHLm', 'n', 'jn@orange.fr', 'j', 'a', 'La Seyne sur Mer', 'France', '83500', 'admin'),
-(4, 'nedh', '$2y$10$16kF9bY5b7CFJ/T.3RGgM.6IAwoeGgL9g/OxoOsNKniBac0DgyIxO', 'nedh', 'nedh@nedh.fr', 'nedh', 'nedh', 'nedh', 'france', '00000', 'user');
+(6, 'admin', '$2y$10$UxPLFRIE4bgPbY9NZAnCI.Rn/tNXZxWXvAAehwPEIKhWN8bb6Q6pq', 'admin', 'admin', 'admin@admin.fr', 'Bd de Paris', 'Mars', '13002', 'France', 'admin'),
+(7, 'tom', '$2y$10$qawxyxmmoH1Ecj2emPMdZ.saFo4Q7a5JDMn/TmmGjb0TpZnwfD/CS', 'tom', 'tom', 'tom@tom.fr', 'Rue Hozier', 'Marseille', '13002', 'France', 'user');
 
 -- --------------------------------------------------------
 
@@ -435,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   PRIMARY KEY (`id`),
   KEY `id_product` (`id_product`),
   KEY `id_user` (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `wishlist`
@@ -444,7 +462,17 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
 INSERT INTO `wishlist` (`id`, `id_user`, `id_product`, `date`) VALUES
 (19, 2, 1, '2023-04-20 13:59:27'),
 (11, 2, 2, '2023-04-19 19:50:10'),
-(28, 2, 8, '2023-04-20 20:39:59');
+(38, 2, 8, '2023-04-21 20:30:28'),
+(33, 2, 12, '2023-04-21 14:31:04'),
+(34, 2, 32, '2023-04-21 14:31:06'),
+(35, 2, 36, '2023-04-21 14:31:10'),
+(36, 2, 19, '2023-04-21 16:09:27'),
+(37, 2, 7, '2023-04-21 20:29:55'),
+(41, 6, 2, '2023-04-24 23:54:34'),
+(42, 6, 4, '2023-04-24 23:54:40'),
+(43, 6, 10, '2023-04-24 23:54:43'),
+(44, 6, 3, '2023-04-24 23:55:03'),
+(45, 6, 6, '2023-04-24 23:55:09');
 
 --
 -- Contraintes pour les tables déchargées

@@ -140,7 +140,6 @@ class Product extends Model
         $this->tablename = "product";
     }
 
-    // -------------------------------------------------------------------
     // ------------------------- Completion -----------------------------------
     public function completion()
     {
