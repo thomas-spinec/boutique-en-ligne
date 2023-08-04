@@ -68,7 +68,7 @@ There are no additional dependencies required for this project.
 
 ```bash
 # Clone this project
-$ git clone https://github.com/nadia-hazem/boutique-en-ligne/
+$ git clone https://github.com/thomas-spinec/boutique-en-ligne/
 
 # Access
 $ cd blog-js
