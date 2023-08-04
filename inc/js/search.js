@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (searchText.length === 0) {
       matches = [];
       matchList.innerHTML = "";
+      matches2 = [];
+      matchList2.innerHTML = "";
     }
     // generate the html for each value
     outputHtml(matches);
